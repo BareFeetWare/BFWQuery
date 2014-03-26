@@ -2,7 +2,7 @@
 //  BFWMasterViewController.m
 //  BFWQuery
 //
-//  Created by Tom on 26/03/2014.
+//  Created by Tom Brodhurst-Hill on 26/03/2014.
 //  Copyright (c) 2014 BareFeetWare. All rights reserved.
 //
 
