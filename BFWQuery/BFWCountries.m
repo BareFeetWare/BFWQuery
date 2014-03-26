@@ -40,9 +40,10 @@
 
 - (BFWQuery*)queryForCountriesContaining:(NSString*)searchString
 {
+	NSString* queryString = @"select * from Country where Name like '%%' || ? || '%%' or Code like '%%' || ? || '%%'  order by Name";
 	return [[BFWQuery alloc] initWithDatabase:self.database
-								  queryString:@"select * from Country where Name like '%%' || ? || '%%'"
-									arguments:@[searchString]];
+								  queryString:queryString
+									arguments:@[searchString, searchString]];
 }
 
 @end

@@ -14,6 +14,7 @@
 
 @property (nonatomic, strong) BFWCountries* countries;
 @property (nonatomic, strong) BFWQuery* query;
+@property (nonatomic, weak) IBOutlet UISearchBar* searchBar;
 
 @end
 
@@ -32,7 +33,11 @@
 - (BFWQuery*)query
 {
 	if (!_query) {
-		_query = [self.countries queryForAllCountries];
+		if ([self.searchBar.text length]) {
+			_query = [self.countries queryForCountriesContaining:self.searchBar.text];
+		} else {
+			_query = [self.countries queryForAllCountries];
+		}
 	}
 	return _query;
 }
@@ -56,6 +61,27 @@
 	cell.textLabel.text = self.query.resultArray[indexPath.row][@"Name"];
 	cell.detailTextLabel.text = self.query.resultArray[indexPath.row][@"Code"];
     return cell;
+}
+
+#pragma mark - UISearchBarDelegate
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+	self.query = nil;
+	[self.tableView reloadData];
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+	[searchBar resignFirstResponder];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+	[searchBar resignFirstResponder];
+	searchBar.text = nil;
+	self.query = nil;
+	[self.tableView reloadData];
 }
 
 @end

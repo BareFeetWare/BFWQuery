@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BFWMasterViewController : UITableViewController
+@interface BFWMasterViewController : UITableViewController <UISearchBarDelegate>
 
 @end
