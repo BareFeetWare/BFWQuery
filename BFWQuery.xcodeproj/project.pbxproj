@@ -38,6 +38,7 @@
 		E29C88B418E26B4E001E165E /* Countries.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = E29C88B218E26B4E001E165E /* Countries.sqlite */; };
 		E29C88B718E272F7001E165E /* BFWCountries.m in Sources */ = {isa = PBXBuildFile; fileRef = E29C88B618E272F7001E165E /* BFWCountries.m */; };
 		E29C88B818E272F7001E165E /* BFWCountries.m in Sources */ = {isa = PBXBuildFile; fileRef = E29C88B618E272F7001E165E /* BFWCountries.m */; };
+		E29C88BB18E28D9C001E165E /* readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = E29C88BA18E28D9C001E165E /* readme.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +88,7 @@
 		E29C88B218E26B4E001E165E /* Countries.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = Countries.sqlite; sourceTree = "<group>"; };
 		E29C88B518E272F7001E165E /* BFWCountries.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFWCountries.h; sourceTree = "<group>"; };
 		E29C88B618E272F7001E165E /* BFWCountries.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFWCountries.m; sourceTree = "<group>"; };
+		E29C88BA18E28D9C001E165E /* readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +119,7 @@
 		E29C87F918E25280001E165E = {
 			isa = PBXGroup;
 			children = (
+				E29C88B918E28D66001E165E /* Documentation */,
 				E29C884818E25B03001E165E /* Libraries */,
 				E29C880B18E25281001E165E /* BFWQuery */,
 				E29C883018E25281001E165E /* BFWQueryTests */,
@@ -268,6 +271,14 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		E29C88B918E28D66001E165E /* Documentation */ = {
+			isa = PBXGroup;
+			children = (
+				E29C88BA18E28D9C001E165E /* readme.txt */,
+			);
+			name = Documentation;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -352,6 +363,7 @@
 				E29C882418E25281001E165E /* Images.xcassets in Resources */,
 				E29C881918E25281001E165E /* Main_iPhone.storyboard in Resources */,
 				E29C881018E25281001E165E /* InfoPlist.strings in Resources */,
+				E29C88BB18E28D9C001E165E /* readme.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
