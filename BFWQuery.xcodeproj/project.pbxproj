@@ -14,7 +14,6 @@
 		E29C881218E25281001E165E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E29C881118E25281001E165E /* main.m */; };
 		E29C881618E25281001E165E /* BFWAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E29C881518E25281001E165E /* BFWAppDelegate.m */; };
 		E29C881918E25281001E165E /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E29C881718E25281001E165E /* Main_iPhone.storyboard */; };
-		E29C881C18E25281001E165E /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E29C881A18E25281001E165E /* Main_iPad.storyboard */; };
 		E29C881F18E25281001E165E /* BFWMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E29C881E18E25281001E165E /* BFWMasterViewController.m */; };
 		E29C882418E25281001E165E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E29C882318E25281001E165E /* Images.xcassets */; };
 		E29C882B18E25281001E165E /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E29C882A18E25281001E165E /* XCTest.framework */; };
@@ -63,7 +62,6 @@
 		E29C881418E25281001E165E /* BFWAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BFWAppDelegate.h; sourceTree = "<group>"; };
 		E29C881518E25281001E165E /* BFWAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BFWAppDelegate.m; sourceTree = "<group>"; };
 		E29C881818E25281001E165E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
-		E29C881B18E25281001E165E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
 		E29C881D18E25281001E165E /* BFWMasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BFWMasterViewController.h; sourceTree = "<group>"; };
 		E29C881E18E25281001E165E /* BFWMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BFWMasterViewController.m; sourceTree = "<group>"; };
 		E29C882318E25281001E165E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -194,7 +192,6 @@
 			isa = PBXGroup;
 			children = (
 				E29C881718E25281001E165E /* Main_iPhone.storyboard */,
-				E29C881A18E25281001E165E /* Main_iPad.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -319,6 +316,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = BareFeetWare;
 				TargetAttributes = {
+					E29C880118E25281001E165E = {
+						DevelopmentTeam = 2X3652T48P;
+					};
 					E29C882818E25281001E165E = {
 						TestTargetID = E29C880118E25281001E165E;
 					};
@@ -348,7 +348,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E29C881C18E25281001E165E /* Main_iPad.storyboard in Resources */,
 				E29C88B318E26B4E001E165E /* Countries.sqlite in Resources */,
 				E29C882418E25281001E165E /* Images.xcassets in Resources */,
 				E29C881918E25281001E165E /* Main_iPhone.storyboard in Resources */,
@@ -425,14 +424,6 @@
 				E29C881818E25281001E165E /* Base */,
 			);
 			name = Main_iPhone.storyboard;
-			sourceTree = "<group>";
-		};
-		E29C881A18E25281001E165E /* Main_iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E29C881B18E25281001E165E /* Base */,
-			);
-			name = Main_iPad.storyboard;
 			sourceTree = "<group>";
 		};
 		E29C883318E25281001E165E /* InfoPlist.strings */ = {
@@ -523,10 +514,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BFWQuery/BFWQuery-Prefix.pch";
 				INFOPLIST_FILE = "BFWQuery/BFWQuery-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -536,10 +529,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BFWQuery/BFWQuery-Prefix.pch";
 				INFOPLIST_FILE = "BFWQuery/BFWQuery-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
