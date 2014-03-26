@@ -16,7 +16,6 @@
 		E29C881918E25281001E165E /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E29C881718E25281001E165E /* Main_iPhone.storyboard */; };
 		E29C881C18E25281001E165E /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E29C881A18E25281001E165E /* Main_iPad.storyboard */; };
 		E29C881F18E25281001E165E /* BFWMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E29C881E18E25281001E165E /* BFWMasterViewController.m */; };
-		E29C882218E25281001E165E /* BFWDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E29C882118E25281001E165E /* BFWDetailViewController.m */; };
 		E29C882418E25281001E165E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E29C882318E25281001E165E /* Images.xcassets */; };
 		E29C882B18E25281001E165E /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E29C882A18E25281001E165E /* XCTest.framework */; };
 		E29C882C18E25281001E165E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E29C880518E25281001E165E /* Foundation.framework */; };
@@ -36,6 +35,10 @@
 		E29C888F18E25B04001E165E /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = E29C886418E25B04001E165E /* FMResultSet.m */; };
 		E29C889018E25B04001E165E /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = E29C886418E25B04001E165E /* FMResultSet.m */; };
 		E29C88B018E25F22001E165E /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E29C88AF18E25F22001E165E /* libsqlite3.dylib */; };
+		E29C88B318E26B4E001E165E /* Countries.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = E29C88B218E26B4E001E165E /* Countries.sqlite */; };
+		E29C88B418E26B4E001E165E /* Countries.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = E29C88B218E26B4E001E165E /* Countries.sqlite */; };
+		E29C88B718E272F7001E165E /* BFWCountries.m in Sources */ = {isa = PBXBuildFile; fileRef = E29C88B618E272F7001E165E /* BFWCountries.m */; };
+		E29C88B818E272F7001E165E /* BFWCountries.m in Sources */ = {isa = PBXBuildFile; fileRef = E29C88B618E272F7001E165E /* BFWCountries.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,8 +66,6 @@
 		E29C881B18E25281001E165E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
 		E29C881D18E25281001E165E /* BFWMasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BFWMasterViewController.h; sourceTree = "<group>"; };
 		E29C881E18E25281001E165E /* BFWMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BFWMasterViewController.m; sourceTree = "<group>"; };
-		E29C882018E25281001E165E /* BFWDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BFWDetailViewController.h; sourceTree = "<group>"; };
-		E29C882118E25281001E165E /* BFWDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BFWDetailViewController.m; sourceTree = "<group>"; };
 		E29C882318E25281001E165E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E29C882918E25281001E165E /* BFWQueryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BFWQueryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E29C882A18E25281001E165E /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -85,6 +86,9 @@
 		E29C886318E25B04001E165E /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
 		E29C886418E25B04001E165E /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
 		E29C88AF18E25F22001E165E /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		E29C88B218E26B4E001E165E /* Countries.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = Countries.sqlite; sourceTree = "<group>"; };
+		E29C88B518E272F7001E165E /* BFWCountries.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFWCountries.h; sourceTree = "<group>"; };
+		E29C88B618E272F7001E165E /* BFWCountries.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFWCountries.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +155,7 @@
 				E29C884118E252C1001E165E /* Controller */,
 				E29C884018E2529F001E165E /* Storyboards */,
 				E29C882318E25281001E165E /* Images.xcassets */,
+				E29C88B118E26B2A001E165E /* Resources */,
 				E29C880C18E25281001E165E /* Supporting Files */,
 			);
 			path = BFWQuery;
@@ -201,8 +206,6 @@
 				E29C881518E25281001E165E /* BFWAppDelegate.m */,
 				E29C881D18E25281001E165E /* BFWMasterViewController.h */,
 				E29C881E18E25281001E165E /* BFWMasterViewController.m */,
-				E29C882018E25281001E165E /* BFWDetailViewController.h */,
-				E29C882118E25281001E165E /* BFWDetailViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -212,6 +215,8 @@
 			children = (
 				E29C884318E25326001E165E /* BFWQuery.h */,
 				E29C884418E25326001E165E /* BFWQuery.m */,
+				E29C88B518E272F7001E165E /* BFWCountries.h */,
+				E29C88B618E272F7001E165E /* BFWCountries.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -256,6 +261,14 @@
 				E29C886418E25B04001E165E /* FMResultSet.m */,
 			);
 			path = fmdb;
+			sourceTree = "<group>";
+		};
+		E29C88B118E26B2A001E165E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E29C88B218E26B4E001E165E /* Countries.sqlite */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -336,6 +349,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E29C881C18E25281001E165E /* Main_iPad.storyboard in Resources */,
+				E29C88B318E26B4E001E165E /* Countries.sqlite in Resources */,
 				E29C882418E25281001E165E /* Images.xcassets in Resources */,
 				E29C881918E25281001E165E /* Main_iPhone.storyboard in Resources */,
 				E29C881018E25281001E165E /* InfoPlist.strings in Resources */,
@@ -346,6 +360,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E29C88B418E26B4E001E165E /* Countries.sqlite in Resources */,
 				E29C883518E25281001E165E /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -359,7 +374,7 @@
 			files = (
 				E29C881F18E25281001E165E /* BFWMasterViewController.m in Sources */,
 				E29C884518E25326001E165E /* BFWQuery.m in Sources */,
-				E29C882218E25281001E165E /* BFWDetailViewController.m in Sources */,
+				E29C88B718E272F7001E165E /* BFWCountries.m in Sources */,
 				E29C888718E25B04001E165E /* FMDatabase.m in Sources */,
 				E29C888B18E25B04001E165E /* FMDatabasePool.m in Sources */,
 				E29C888D18E25B04001E165E /* FMDatabaseQueue.m in Sources */,
@@ -378,6 +393,7 @@
 				E29C888C18E25B04001E165E /* FMDatabasePool.m in Sources */,
 				E29C883718E25281001E165E /* BFWQueryTests.m in Sources */,
 				E29C888E18E25B04001E165E /* FMDatabaseQueue.m in Sources */,
+				E29C88B818E272F7001E165E /* BFWCountries.m in Sources */,
 				E29C888818E25B04001E165E /* FMDatabase.m in Sources */,
 				E29C889018E25B04001E165E /* FMResultSet.m in Sources */,
 				E29C888A18E25B04001E165E /* FMDatabaseAdditions.m in Sources */,

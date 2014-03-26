@@ -8,10 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@class BFWDetailViewController;
-
 @interface BFWMasterViewController : UITableViewController
-
-@property (strong, nonatomic) BFWDetailViewController *detailViewController;
 
 @end
