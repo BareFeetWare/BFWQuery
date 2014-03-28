@@ -448,7 +448,7 @@
 			NSString* component = [components objectAtIndex:argumentN];
 			[descriptionArray addObject:component];
 			id argument = [self.arguments objectAtIndex:argumentN];
-			NSString* argumentString = [self.class stringForValue:argument usingNullString:@"null" quoteMark:@"'"];
+			NSString* argumentString = [BFWDatabase stringForValue:argument usingNullString:@"null" quoteMark:@"'"];
 			[descriptionArray addObject:argumentString];
 		}
 		[descriptionArray addObject:[components lastObject]];
