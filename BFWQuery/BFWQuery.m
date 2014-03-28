@@ -24,18 +24,33 @@
 
 @implementation NSDictionary (BFWQuery)
 
+- (id)objectForCaseInsensitiveKey:(id)key
+{
+    id object = self[key];
+    if (!object && [key isKindOfClass:[NSString class]]) {
+        for (NSString* myKey in [self allKeys]) {
+            if ([myKey compare:key options:NSCaseInsensitiveSearch] == NSOrderedSame) {
+                object = self[myKey];
+                break;
+            }
+        }
+    }
+    return object;
+}
+
 - (NSDictionary*)dictionaryWithValuesForKeyPathMap:(NSDictionary*)columnKeyPathMap
 {
 	NSMutableDictionary* rowDict = [NSMutableDictionary dictionary];
 	for (NSString* columnName in columnKeyPathMap) {
 		id nestedItem = self;
-		for (NSString* key in [columnKeyPathMap[columnName] componentsSeparatedByString:@"."]) {
-			if ([@"0123456789" rangeOfString:key].location != NSNotFound) { // TODO: more robust check for number
+        NSString* keyPath = columnKeyPathMap[columnName];
+		for (NSString* key in [keyPath componentsSeparatedByString:@"."]) {
+			if ([@"0123456789" rangeOfString:key].location != NSNotFound) { // TODO: more robust check for number, eg if > 9
 				NSUInteger index = [key integerValue];
 				nestedItem = nestedItem[index];
 			} else {
-				nestedItem = nestedItem[key];
-			}
+				nestedItem = [nestedItem objectForCaseInsensitiveKey:key];
+            }
 		}
 		if (nestedItem) {
 			rowDict[columnName] = nestedItem;
@@ -55,13 +70,15 @@
 	return [NSDictionary dictionaryWithDictionary:dictionaryWithoutNulls];
 }
 
-- (NSDictionary*)dictionaryWithValuesForExistingKeys:(NSArray*)keys
+// Similar to dictionaryWithValuesForKeys except keys are case insensitice and returns without null values
+- (NSDictionary*)dictionaryWithValuesForExistingCaseInsensitiveKeys:(NSArray*)keys
 {
 	NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
 	for (id key in keys) {
-		if (self[key]) {
-			dictionary[key] = self[key];
-		}
+        id object = [self objectForCaseInsensitiveKey:key];
+        if (object) {
+            dictionary[key] = object;
+        }
 	}
 	return [NSDictionary dictionaryWithDictionary:dictionary];
 }
@@ -70,13 +87,23 @@
 
 @implementation BFWDatabase
 
+#pragma mark - transactions
+
+- (BOOL)beginImmediateTransaction
+{
+    BOOL success = [self executeUpdate:@"begin immediate transaction"];
+    if (success) {
+        _inTransaction = YES;
+    }
+    return success;
+}
+
 #pragma mark - open
 
 - (BOOL)open
 {
 	BOOL success = [super open];
-	if (success)
-	{
+	if (success) {
 		[self executeUpdate:@"pragma foreign_keys = ON"];
 	}
 	return success;
@@ -98,9 +125,51 @@
 
 - (BOOL)insertIntoTable:(NSString*)table rowDict:(NSDictionary*)rowDict
 {
+    return [self insertIntoTable:table rowDict:rowDict conflictAction:nil];
+}
+
+- (BOOL)insertIntoTable:(NSString *)table rowDict:(NSDictionary *)rowDict conflictAction:(NSString*)conflictAction
+{
+    NSString* insertString = @"insert";
+    if (conflictAction) {
+        insertString = [insertString stringByAppendingFormat:@" or %@", conflictAction]; // ignore or replace
+    }
 	NSDictionary* sqlDict = [self.class sqlDictFromRowDict:rowDict assignListSeparator:nil];
-	NSString* queryString = [NSString stringWithFormat:@"insert into \"%@\" (%@) values (%@)", table, sqlDict[@"columns"], sqlDict[@"placeholders"]];
+	NSString* queryString = [NSString stringWithFormat:@"%@ into \"%@\" (%@) values (%@)", insertString, table, sqlDict[@"columns"], sqlDict[@"placeholders"]];
 	BOOL success = [self executeUpdate:queryString withArgumentsInArray:sqlDict[@"arguments"]];
+	return success;
+}
+
+- (BOOL)insertIntoTable:(NSString*)table
+        sourceDictArray:(NSArray*)sourceDictArray
+       columnKeyPathMap:(NSDictionary*)columnKeyPathMap
+         conflictAction:(NSString*)conflictAction
+{
+	BOOL success = YES;
+	NSArray* columns = [self columnNamesInTable:table];
+#ifdef DEBUG
+    NSMutableArray* missingColumns = [NSMutableArray arrayWithArray:[columnKeyPathMap allKeys]];
+    for (NSString* tableColumn in columns) {
+        for (NSString* mapColumn in missingColumns) {
+            if ([[tableColumn lowercaseString] isEqualToString:[mapColumn lowercaseString]]) {
+                [missingColumns removeObject:mapColumn];
+                break;
+            }
+        }
+    }
+    if ([missingColumns count]) {
+        NSLog(@"columnKeyPathMap contains columns: (%@) which aren't in the table: %@", [missingColumns componentsJoinedByString:@", "], table);
+    }
+#endif
+	for (NSDictionary* sourceDict in sourceDictArray)
+	{
+		NSMutableDictionary* rowDict = [NSMutableDictionary dictionaryWithDictionary:[sourceDict dictionaryWithValuesForExistingCaseInsensitiveKeys:columns]];
+		[rowDict addEntriesFromDictionary:[sourceDict dictionaryWithValuesForKeyPathMap:columnKeyPathMap]];
+		success = [self insertIntoTable:table rowDict:rowDict conflictAction:conflictAction];
+		if (!success) {
+			break;
+		}
+	}
 	return success;
 }
 
@@ -120,22 +189,6 @@
 	NSMutableArray* arguments = [NSMutableArray arrayWithArray:rowSqlDict[@"arguments"]];
 	[arguments addObjectsFromArray:whereSqlDict[@"arguments"]];
 	BOOL success = [self executeUpdate:queryString withArgumentsInArray:arguments];
-	return success;
-}
-
-- (BOOL)insertIntoTable:(NSString*)table sourceDictArray:(NSArray*)sourceDictArray columnKeyPathMap:(NSDictionary*)columnKeyPathMap
-{
-	BOOL success = YES;
-	NSArray* columns = [self columnNamesInTable:table];
-	for (NSDictionary* sourceDict in sourceDictArray)
-	{
-		NSMutableDictionary* rowDict = [NSMutableDictionary dictionaryWithDictionary:[sourceDict dictionaryWithValuesForExistingKeys:columns]];
-		[rowDict addEntriesFromDictionary:[sourceDict dictionaryWithValuesForKeyPathMap:columnKeyPathMap]];
-		success = [self insertIntoTable:table rowDict:rowDict];
-		if (!success) {
-			break;
-		}
-	}
 	return success;
 }
 
@@ -259,7 +312,9 @@
 #pragma mark - init
 
 // Designated initializer:
-- (instancetype)initWithDatabase:(BFWDatabase*)database queryString:(NSString*)queryString arguments:(NSArray*)arguments
+- (instancetype)initWithDatabase:(BFWDatabase*)database
+                     queryString:(NSString*)queryString
+                       arguments:(NSArray*)arguments
 {
 	self = [super init];
 	if (self) {
@@ -268,6 +323,7 @@
 		_arguments = arguments;
 		_currentRow = -1;
 		_rowCount = -1;
+        NSLog(@"BFWQuery init queryString: %@", _queryString); // testing
 	}
 	return self;
 }

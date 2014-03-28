@@ -13,13 +13,18 @@
 
 @interface NSDictionary (BFWQuery)
 
+- (id)objectForCaseInsensitiveKey:(id)key;
 - (NSDictionary*)dictionaryWithValuesForKeyPathMap:(NSDictionary*)columnKeyPathMap;
 - (NSDictionary*)dictionaryByRemovingNulls;
-- (NSDictionary*)dictionaryWithValuesForExistingKeys:(NSArray*)keys;
+- (NSDictionary*)dictionaryWithValuesForExistingCaseInsensitiveKeys:(NSArray*)keys;
 
 @end
 
 @interface BFWDatabase : FMDatabase
+
+#pragma mark - transactions
+
+- (BOOL)beginImmediateTransaction;
 
 #pragma mark - introspection
 
@@ -28,9 +33,11 @@
 #pragma mark - insert, delete, update
 
 - (BOOL)insertIntoTable:(NSString*)table rowDict:(NSDictionary*)rowDict;
+- (BOOL)insertIntoTable:(NSString*)table rowDict:(NSDictionary*)rowDict conflictAction:(NSString*)conflictAction;
+- (BOOL)insertIntoTable:(NSString*)table sourceDictArray:(NSArray*)sourceDictArray columnKeyPathMap:(NSDictionary*)columnKeyPathMap conflictAction:(NSString*)conflictAction;
+
 - (BOOL)deleteFromTable:(NSString*)table whereDict:(NSDictionary*)whereDict;
 - (BOOL)updateTable:(NSString*)table rowDict:(NSDictionary*)rowDict where:(NSDictionary*)whereDict;
-- (BOOL)insertIntoTable:(NSString*)table sourceDictArray:(NSArray*)sourceDictArray columnKeyPathMap:(NSDictionary*)columnKeyPathMap;
 
 @end
 
