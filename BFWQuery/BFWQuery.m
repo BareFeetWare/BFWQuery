@@ -323,7 +323,6 @@
 		_arguments = arguments;
 		_currentRow = -1;
 		_rowCount = -1;
-        NSLog(@"BFWQuery init queryString: %@", _queryString); // testing
 	}
 	return self;
 }
