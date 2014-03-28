@@ -18,11 +18,11 @@ Usage:
 
 - (BFWDatabase*)database
 {
-	if (!_database) {
-		_database = [[BFWDatabase alloc] initWithPath:databasePath];
-		[_database open];
-	}
-	return _database;
+    if (!_database) {
+        _database = [[BFWDatabase alloc] initWithPath:databasePath];
+        [_database open];
+    }
+    return _database;
 }
 
 2. Create a query, eg:
@@ -33,18 +33,59 @@ BFWQuery* query = [[BFWQuery alloc] initWithDatabase:self.database
 
 3. Access rows of the result array:
 
-To get the number of rows in the result array:
+To get the number of rows in the result array: [query.resultArray count]
 
-[query.resultArray count]
+To get row 4, value in column "Name": query.resultArray[4][@"Name"]
 
-To get row 4, value in column "Name":
 
-query.resultArray[4][@"Name"]
+4. Using BFWQuery in a UITableViewController:
 
+See the BFWQuery sample project for more.
+
+@interface BFWMasterViewController ()
+
+@property (nonatomic, strong) BFWQuery* query;
+
+@end
+
+@implementation BFWMasterViewController
+
+#pragma mark - accessors
+
+- (BFWQuery*)query
+{
+    if (!_query) {
+        _query = [[BFWQuery alloc] initWithDatabase:self.database
+                                        queryString:@"select * from Country order by Name"
+                                                  arguments:nil];
+    }
+    return _query;
+}
+
+#pragma mark - Table View
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [self.query.resultArray count];
+}
+
+- (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
+{
+    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+
+    cell.textLabel.text = self.query.resultArray[indexPath.row][@"Name"];
+    cell.detailTextLabel.text = self.query.resultArray[indexPath.row][@"Code"];
+    return cell;
+}
 
 Requirements:
 
-1. In Xcode, add lybsqlite to your project’s list of frameworks.
+1. In Xcode, add libsqlite to your project’s list of frameworks.
 
 2. Add the BFWQuery.h and BFWQuery.m files to your project.
 
