@@ -463,7 +463,7 @@
 
 @interface BFWResultArray ()
 
-@property (nonatomic, strong) BFWQuery* query;
+@property (nonatomic, weak) BFWQuery* query;
 
 @end
 
