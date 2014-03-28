@@ -323,7 +323,6 @@
 		_arguments = arguments;
 		_currentRow = -1;
 		_rowCount = -1;
-        NSLog(@"BFWQuery init queryString: %@", _queryString); // testing
 	}
 	return self;
 }
@@ -449,7 +448,7 @@
 			NSString* component = [components objectAtIndex:argumentN];
 			[descriptionArray addObject:component];
 			id argument = [self.arguments objectAtIndex:argumentN];
-			NSString* argumentString = [self.class stringForValue:argument usingNullString:@"null" quoteMark:@"'"];
+			NSString* argumentString = [BFWDatabase stringForValue:argument usingNullString:@"null" quoteMark:@"'"];
 			[descriptionArray addObject:argumentString];
 		}
 		[descriptionArray addObject:[components lastObject]];
@@ -464,7 +463,7 @@
 
 @interface BFWResultArray ()
 
-@property (nonatomic, strong) BFWQuery* query;
+@property (nonatomic, weak) BFWQuery* query;
 
 @end
 
