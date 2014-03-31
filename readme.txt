@@ -57,7 +57,7 @@ See the BFWQuery sample project for more.
     if (!_query) {
         _query = [[BFWQuery alloc] initWithDatabase:self.database
                                         queryString:@"select * from Country order by Name"
-                                                  arguments:nil];
+                                          arguments:nil];
     }
     return _query;
 }

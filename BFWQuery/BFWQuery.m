@@ -329,10 +329,7 @@
 
 - (instancetype)initWithDatabase:(BFWDatabase *)database table:(NSString*)tableName
 {
-	self = [self initWithDatabase:database queryString:nil arguments:nil];
-	if (self) {
-		_tableName = tableName;
-    }
+	self = [self initWithDatabase:database table:tableName columns:nil whereDict:nil];
 	return self;
 }
 
@@ -349,7 +346,7 @@
         arguments = whereSqlDict[@"arguments"];
     }
     NSString* columnsString = @"*";
-    if (columnNames) {
+    if ([columnNames count]) {
         columnsString = [columnNames componentsJoinedByString:@", " quote:@"\""];
     }
     NSString* queryString = [NSString stringWithFormat:@"select %@ from \"%@\"%@", columnsString, tableName, whereString];
@@ -412,6 +409,25 @@
 		_resultArray = [[BFWResultArray alloc] initWithQuery:self];
 	}
 	return _resultArray;
+}
+
+#pragma mark - introspection
+
+- (NSArray*)columns
+{
+	if (_columns == nil) {
+		NSMutableArray* mutableColumns = [NSMutableArray array];
+		for (int columnN = 0; columnN < self.resultSet.columnCount; columnN++) {
+			NSString* columnType = [self.resultSet columnTypeForIndex:columnN];
+			NSMutableDictionary* columnDict = [NSMutableDictionary dictionaryWithObject:[self.resultSet columnNameForIndex:columnN] forKey:@"name"];
+			if (columnType.length) {
+				[columnDict setObject:columnType forKey:@"type"];
+			}
+			[mutableColumns addObject:[NSDictionary dictionaryWithDictionary:columnDict]];
+		}
+		_columns = [[NSArray alloc] initWithArray:mutableColumns];
+	}
+	return _columns;
 }
 
 #pragma mark - caching
