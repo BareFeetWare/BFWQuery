@@ -137,7 +137,7 @@
     if (conflictAction) {
         insertString = [insertString stringByAppendingFormat:@" or %@", conflictAction]; // ignore or replace
     }
-	NSDictionary* sqlDict = [self.class sqlDictFromRowDict:rowDict assignListSeparator:nil];
+	NSDictionary* sqlDict = [[self class] sqlDictFromRowDict:rowDict assignListSeparator:nil];
 	NSString* queryString = [NSString stringWithFormat:@"%@ into \"%@\" (%@) values (%@)", insertString, table, sqlDict[@"columns"], sqlDict[@"placeholders"]];
 	BOOL success = [self executeUpdate:queryString withArgumentsInArray:sqlDict[@"arguments"]];
 	return success;
@@ -181,7 +181,7 @@
 - (BOOL)deleteFromTable:(NSString*)table
               whereDict:(NSDictionary*)whereDict
 {
-	NSDictionary* whereSqlDict = [self.class sqlDictFromRowDict:whereDict assignListSeparator:@" and "];
+	NSDictionary* whereSqlDict = [[self class] sqlDictFromRowDict:whereDict assignListSeparator:@" and "];
 	NSString* queryString = [NSString stringWithFormat:@"delete from \"%@\" where %@", table, whereSqlDict[@"assign"]];
 	BOOL success = [self executeUpdate:queryString withArgumentsInArray:whereSqlDict[@"arguments"]];
 	return success;
@@ -191,8 +191,8 @@
             rowDict:(NSDictionary*)rowDict
               where:(NSDictionary*)whereDict
 {
-	NSDictionary* rowSqlDict = [self.class sqlDictFromRowDict:rowDict assignListSeparator:@", "];
-	NSDictionary* whereSqlDict = [self.class sqlDictFromRowDict:whereDict assignListSeparator:@" and "];
+	NSDictionary* rowSqlDict = [[self class] sqlDictFromRowDict:rowDict assignListSeparator:@", "];
+	NSDictionary* whereSqlDict = [[self class] sqlDictFromRowDict:whereDict assignListSeparator:@" and "];
 	NSString* queryString = [NSString stringWithFormat:@"update \"%@\" set %@ where %@", table, rowSqlDict[@"assign"], whereSqlDict[@"assign"]];
 	NSMutableArray* arguments = [NSMutableArray arrayWithArray:rowSqlDict[@"arguments"]];
 	[arguments addObjectsFromArray:whereSqlDict[@"arguments"]];
