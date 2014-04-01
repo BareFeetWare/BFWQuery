@@ -70,7 +70,7 @@
 	return [NSDictionary dictionaryWithDictionary:dictionaryWithoutNulls];
 }
 
-// Similar to dictionaryWithValuesForKeys except keys are case insensitice and returns without null values
+// Similar to dictionaryWithValuesForKeys except keys are case insensitive and returns without null values
 - (NSDictionary*)dictionaryWithValuesForExistingCaseInsensitiveKeys:(NSArray*)keys
 {
 	NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
@@ -123,12 +123,15 @@
 
 #pragma mark - insert, delete, update
 
-- (BOOL)insertIntoTable:(NSString*)table rowDict:(NSDictionary*)rowDict
+- (BOOL)insertIntoTable:(NSString*)table
+                rowDict:(NSDictionary*)rowDict
 {
     return [self insertIntoTable:table rowDict:rowDict conflictAction:nil];
 }
 
-- (BOOL)insertIntoTable:(NSString *)table rowDict:(NSDictionary *)rowDict conflictAction:(NSString*)conflictAction
+- (BOOL)insertIntoTable:(NSString *)table
+                rowDict:(NSDictionary *)rowDict
+         conflictAction:(NSString*)conflictAction
 {
     NSString* insertString = @"insert";
     if (conflictAction) {
@@ -173,7 +176,8 @@
 	return success;
 }
 
-- (BOOL)deleteFromTable:(NSString*)table whereDict:(NSDictionary*)whereDict
+- (BOOL)deleteFromTable:(NSString*)table
+              whereDict:(NSDictionary*)whereDict
 {
 	NSDictionary* whereSqlDict = [self.class sqlDictFromRowDict:whereDict assignListSeparator:@" and "];
 	NSString* queryString = [NSString stringWithFormat:@"delete from \"%@\" where %@", table, whereSqlDict[@"assign"]];
@@ -181,7 +185,9 @@
 	return success;
 }
 
-- (BOOL)updateTable:(NSString*)table rowDict:(NSDictionary*)rowDict where:(NSDictionary*)whereDict
+- (BOOL)updateTable:(NSString*)table
+            rowDict:(NSDictionary*)rowDict
+              where:(NSDictionary*)whereDict
 {
 	NSDictionary* rowSqlDict = [self.class sqlDictFromRowDict:rowDict assignListSeparator:@", "];
 	NSDictionary* whereSqlDict = [self.class sqlDictFromRowDict:whereDict assignListSeparator:@" and "];
