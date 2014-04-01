@@ -164,11 +164,13 @@
         NSLog(@"columnKeyPathMap contains columns: (%@) which aren't in the table: %@", [missingColumns componentsJoinedByString:@", "], table);
     }
 #endif
-	for (NSDictionary* sourceDict in sourceDictArray)
-	{
-		NSMutableDictionary* rowDict = [NSMutableDictionary dictionaryWithDictionary:[sourceDict dictionaryWithValuesForExistingCaseInsensitiveKeys:columns]];
-		[rowDict addEntriesFromDictionary:[sourceDict dictionaryWithValuesForKeyPathMap:columnKeyPathMap]];
-		success = [self insertIntoTable:table rowDict:rowDict conflictAction:conflictAction];
+	for (NSDictionary* sourceDict in sourceDictArray) {
+		NSMutableDictionary* mutableDict = [NSMutableDictionary dictionaryWithDictionary:sourceDict];
+		[mutableDict addEntriesFromDictionary:[sourceDict dictionaryWithValuesForKeyPathMap:columnKeyPathMap]];
+        NSDictionary* rowDict = [mutableDict dictionaryWithValuesForExistingCaseInsensitiveKeys:columns];
+		success = [self insertIntoTable:table
+                                rowDict:rowDict
+                         conflictAction:conflictAction];
 		if (!success) {
 			break;
 		}
