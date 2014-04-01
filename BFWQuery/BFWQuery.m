@@ -512,7 +512,7 @@
 - (NSDictionary*)objectAtQueryRow:(NSUInteger)queryRow
 {
 	self.query.currentRow = queryRow;
-	return self.query.resultSet.resultDictionary;
+	return [self.query.resultSet.resultDictionary dictionaryByRemovingNulls];
 }
 
 - (id)objectAtQueryRow:(NSUInteger)queryRow columnName:(NSString*)columnName
