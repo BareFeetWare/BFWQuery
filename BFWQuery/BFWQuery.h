@@ -32,10 +32,13 @@
 
 #pragma mark - insert, delete, update
 
-- (BOOL)insertIntoTable:(NSString*)table rowDict:(NSDictionary*)rowDict;
+- (BOOL)insertIntoTable:(NSString*)table
+				rowDict:(NSDictionary*)rowDict;
+
 - (BOOL)insertIntoTable:(NSString*)table
                 rowDict:(NSDictionary*)rowDict
          conflictAction:(NSString*)conflictAction; // nil or @"ignore" or @"replace"
+
 - (BOOL)insertIntoTable:(NSString*)table
         sourceDictArray:(NSArray*)sourceDictArray
        columnKeyPathMap:(NSDictionary*)columnKeyPathMap
@@ -43,9 +46,15 @@
 
 - (BOOL)deleteFromTable:(NSString*)table
               whereDict:(NSDictionary*)whereDict;
+
 - (BOOL)updateTable:(NSString*)table
             rowDict:(NSDictionary*)rowDict
-              where:(NSDictionary*)whereDict;
+		  whereDict:(NSDictionary*)whereDict;
+
+#pragma mark - SQL construction
+
++ (NSDictionary*)sqlDictFromRowDict:(NSDictionary*)rowDict
+				assignListSeparator:(NSString*)assignListSeparator;
 
 @end
 
@@ -72,8 +81,10 @@
 - (instancetype)initWithDatabase:(BFWDatabase*)database
                      queryString:(NSString*)queryString
                        arguments:(NSArray*)arguments;
+
 - (instancetype)initWithDatabase:(BFWDatabase*)database
                            table:(NSString*)tableName;
+
 - (instancetype)initWithDatabase:(BFWDatabase*)database
                            table:(NSString*)tableName
                          columns:(NSArray*)columnNames

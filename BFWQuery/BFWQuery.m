@@ -189,7 +189,7 @@
 
 - (BOOL)updateTable:(NSString*)table
             rowDict:(NSDictionary*)rowDict
-              where:(NSDictionary*)whereDict
+		  whereDict:(NSDictionary*)whereDict
 {
 	NSDictionary* rowSqlDict = [[self class] sqlDictFromRowDict:rowDict assignListSeparator:@", "];
 	NSDictionary* whereSqlDict = [[self class] sqlDictFromRowDict:whereDict assignListSeparator:@" and "];
@@ -211,7 +211,8 @@
 	return  placeholdersString;
 }
 
-+ (NSDictionary*)sqlDictFromRowDict:(NSDictionary*)rowDict assignListSeparator:(NSString*)assignListSeparator
++ (NSDictionary*)sqlDictFromRowDict:(NSDictionary*)rowDict
+				assignListSeparator:(NSString*)assignListSeparator
 {
 	NSMutableArray* assignArray = [NSMutableArray array];
 	NSMutableArray* arguments = [NSMutableArray array];
