@@ -15,7 +15,6 @@
 
 - (id)objectForCaseInsensitiveKey:(id)key;
 - (NSDictionary*)dictionaryWithValuesForKeyPathMap:(NSDictionary*)columnKeyPathMap;
-- (NSDictionary*)dictionaryByRemovingNulls;
 - (NSDictionary*)dictionaryWithValuesForExistingCaseInsensitiveKeys:(NSArray*)keys;
 
 @end
@@ -66,12 +65,14 @@
 @property (nonatomic, strong) NSString* queryString;
 @property (nonatomic, strong) NSArray* arguments;
 
+@property (nonatomic, readonly) NSString* sqlString;
+
 @property (nonatomic, assign) NSInteger currentRow;
 @property (nonatomic, strong) BFWResultArray* resultArray;
 
 @property (nonatomic, strong, readonly) FMResultSet* resultSet;
 @property (nonatomic, assign, readonly) NSInteger rowCount;
-@property (nonatomic, strong, readonly) NSArray* columns;
+@property (nonatomic, strong, readonly) NSArray* columnDictArray;
 
 @property (nonatomic, strong) NSString* tableName; // if querying a single table or view
 
@@ -90,17 +91,43 @@
                          columns:(NSArray*)columnNames
                        whereDict:(NSDictionary*)whereDict;
 
-#pragma mark - other
+#pragma mark derived accessors
+
+- (NSString*)description;
+- (NSUInteger)columnCount;
+- (NSArray*)columnNames;
+
+#pragma mark reload & reset
 
 - (void)reload;
 - (void)resetStatement;
 
 @end
 
+@class BFWResultDictionary;
+
 @interface BFWResultArray : NSArray
 
+@property (nonatomic, weak) BFWQuery* query;
+
 - (instancetype)initWithQuery:(BFWQuery*)query;
+- (BFWResultDictionary*)objectAtRow:(NSUInteger)row;
+- (id)objectAtRow:(NSUInteger)row columnIndex:(NSUInteger)columnIndex;
+- (id)objectAtRow:(NSUInteger)row columnName:(NSString*)columnName;
 
 @end
 
+@interface BFWResultDictionary : NSDictionary
 
+@property (nonatomic, strong) BFWResultArray* resultArray; //TODO: check for retain cycle
+@property (nonatomic) NSInteger row;
+
+- (instancetype)initWithResultArray:(BFWResultArray*)resultArray
+								row:(NSUInteger)row;
+
+#pragma mark NSArray like access
+
+- (id)objectAtIndex:(NSUInteger)index;
+- (id)objectAtIndexedSubscript:(NSUInteger)index;
+
+@end

@@ -10,7 +10,8 @@
 
 @implementation NSArray (BFWQuery)
 
-- (NSString*)componentsJoinedByString:(NSString *)separator quote:(NSString*)quote
+- (NSString*)componentsJoinedByString:(NSString *)separator
+								quote:(NSString*)quote
 {
     NSMutableArray* mutableArray = [NSMutableArray array];
     for (NSString* component in self) {
@@ -57,17 +58,6 @@
 		}
 	}
 	return [NSDictionary dictionaryWithDictionary:rowDict];
-}
-
-- (NSDictionary*)dictionaryByRemovingNulls
-{
-	NSMutableDictionary* dictionaryWithoutNulls = [NSMutableDictionary dictionary];
-	for (id key in self) {
-		if (self[key] != [NSNull null]) {
-			dictionaryWithoutNulls[key] = self[key];
-		}
-	}
-	return [NSDictionary dictionaryWithDictionary:dictionaryWithoutNulls];
 }
 
 // Similar to dictionaryWithValuesForKeys except keys are case insensitive and returns without null values
@@ -205,8 +195,9 @@
 + (NSString*)placeholdersStringForCount:(NSUInteger)count
 {
 	NSMutableArray* placeholders = [NSMutableArray array];
-	for (int placeholderN = 0; placeholderN < count; placeholderN++)
+	for (int placeholderN = 0; placeholderN < count; placeholderN++) {
 		[placeholders addObject:@"?"];
+	}
 	NSString* placeholdersString = [placeholders componentsJoinedByString:@", "];
 	return  placeholdersString;
 }
@@ -217,8 +208,7 @@
 	NSMutableArray* assignArray = [NSMutableArray array];
 	NSMutableArray* arguments = [NSMutableArray array];
     NSArray* columnNames = rowDict.allKeys;
-	for (NSString* columnName in rowDict.allKeys)
-	{
+	for (NSString* columnName in rowDict.allKeys) {
 		NSString* quotedColumnName = [NSString stringWithFormat:@"\"%@\"", columnName];
 		NSString* assignString = [NSString stringWithFormat:@"%@ = ?", quotedColumnName];
 		[assignArray addObject:assignString];
@@ -227,8 +217,7 @@
 	NSString* placeholdersString = [self placeholdersStringForCount:rowDict.allKeys.count];
 	NSString* quotedColumnNamesString = [columnNames componentsJoinedByString:@", " quote:@"\""];
 	NSMutableDictionary* sqlDict = [NSMutableDictionary dictionaryWithDictionary:@{@"columns" : quotedColumnNamesString, @"placeholders" : placeholdersString, @"arguments" : arguments}];
-	if (assignListSeparator)
-	{
+	if (assignListSeparator) {
 		NSString* assignListString = [assignArray componentsJoinedByString:assignListSeparator];
 		[sqlDict setObject:assignListString forKey:@"assign"];
 	}
@@ -239,32 +228,25 @@
 {
 	NSMutableArray* components = [NSMutableArray array];
 	[components addObject:@"select"];
-	if ([queryDict[@"columns"] count])
-	{
+	if ([queryDict[@"columns"] count]) {
 		NSMutableArray* columns = [NSMutableArray array];
-		for (id column in queryDict[@"columns"])
-		{
+		for (id column in queryDict[@"columns"]) {
 			NSString* columnString = nil;
-			if ([column isKindOfClass:[NSDictionary class]] && [column count] == 1)
-			{
+			if ([column isKindOfClass:[NSDictionary class]] && [column count] == 1) {
 				NSDictionary* columnDict = (NSDictionary*)column;
 				NSString* columnAlias = columnDict.allKeys[0];
 				columnString = [NSString stringWithFormat:@"%@ as \"%@\"", columnDict[columnAlias], columnAlias];
-			}
-			else if ([column isKindOfClass:[NSString class]])
-			{
+			} else if ([column isKindOfClass:[NSString class]]) {
 				columnString = column;
 			}
 			[columns addObject:column];
 		}
 		[components addObject:[columns componentsJoinedByString:@", "]];
 	}
-	if (queryDict[@"from"])
-	{
+	if (queryDict[@"from"]) {
 		[components addObject:[NSString stringWithFormat:@"from \"%@\"", queryDict[@"from"]]];
 	}
-	if ([queryDict[@"where"] count])
-	{
+	if ([queryDict[@"where"] count]) {
 		NSString* whereString = [queryDict[@"where"] componentsJoinedByString:@" and "];
 		[components addObject:[NSString stringWithFormat:@"where %@", whereString]];
 	}
@@ -276,28 +258,18 @@
 {
 	NSString* quotedQuote = [NSString stringWithFormat:@"%@%@", quoteMark, quoteMark];
 	NSString* string = nil;
-	if ([value isKindOfClass:[NSNull class]])
+	if ([value isKindOfClass:[NSNull class]]) {
 		string = nullString;
-	else if ([value isKindOfClass:[NSString class]])
-	{
+	} else if ([value isKindOfClass:[NSString class]]) {
 		string = [value stringByReplacingOccurrencesOfString:quoteMark withString:quotedQuote];
 		string = [NSString stringWithFormat:@"%@%@%@", quoteMark, string, quoteMark];
-	}
-	else // need to cater for NSData to blob syntax
+	} else if (value == nil) {
+		string = @"?";
+	} else { // need to cater for NSData to blob syntax
 		string = [value description];
+	}
 	return string;
 }
-
-@end
-
-@interface BFWQuery ()
-
-@property (nonatomic, strong, readwrite) FMResultSet* resultSet;
-@property (nonatomic, assign, readwrite) NSInteger rowCount;
-@property (nonatomic, strong, readwrite) NSArray* columns;
-
-@property (nonatomic, strong) BFWDatabase* cacheDatabase;
-@property (nonatomic, readonly) NSString* cacheQuotedTableName;
 
 @end
 
@@ -307,12 +279,24 @@
 {
 	NSString* columnType;
 	const char* columnTypeC = (const char *)sqlite3_column_decltype(self.statement.statement, (int)index);
-	if(columnTypeC == nil)
+	if(columnTypeC == nil) {
 		columnType = @""; // TODO: get another way, such as sample rows or function type used in view
-	else
+	} else {
 		columnType = [NSString stringWithUTF8String:columnTypeC];
+	}
 	return columnType;
 }
+
+@end
+
+@interface BFWQuery ()
+
+@property (nonatomic, strong, readwrite) FMResultSet* resultSet;
+@property (nonatomic, assign, readwrite) NSInteger rowCount;
+@property (nonatomic, strong, readwrite) NSArray* columnDictArray;
+
+@property (nonatomic, strong) BFWDatabase* cacheDatabase;
+@property (nonatomic, readonly) NSString* cacheQuotedTableName;
 
 @end
 
@@ -366,32 +350,50 @@
     return self;
 }
 
+#pragma mark query
+
+- (NSString*)sqlString
+{
+	NSArray* components = [self.queryString componentsSeparatedByString:@"?"];
+	NSMutableArray* descriptionArray = [NSMutableArray array];
+	for (int argumentN = 0; argumentN < self.arguments.count; argumentN++) {
+		NSString* component = [components objectAtIndex:argumentN];
+		[descriptionArray addObject:component];
+		id argument = argumentN < [self.arguments count] ? [self.arguments objectAtIndex:argumentN] : nil;
+		NSString* argumentString = [BFWDatabase stringForValue:argument usingNullString:@"null" quoteMark:@"'"];
+		[descriptionArray addObject:argumentString];
+	}
+	[descriptionArray addObject:[components lastObject]];
+	NSString* sqlString = [descriptionArray componentsJoinedByString:@""];
+	return sqlString;
+}
+
 #pragma mark - result set
 
 - (FMResultSet*)resultSet
 {
-	if (_resultSet == nil)
+	if (_resultSet == nil) {
 		_resultSet = [self.database executeQuery:self.queryString withArgumentsInArray:self.arguments];
+	}
 	return _resultSet;
 }
 
 - (void)setCurrentRow:(NSInteger)currentRow
 {
-	if (currentRow < _currentRow)
-	{
+	if (currentRow < _currentRow){
 		[self resetStatement];
 	}
-	while (_currentRow < currentRow && [self.resultSet next])
+	while (_currentRow < currentRow && [self.resultSet next]) {
 		_currentRow++;
-//	DLog(@"currentRow = %ld, rowDict = %@", (long)_currentRow, self.resultSet.resultDictionary);
+	}
 }
 
 - (NSInteger)rowCount
 {
-	if (_rowCount == -1)
-	{
-		while ([self.resultSet next])
+	if (_rowCount == -1) {
+		while ([self.resultSet next]) {
 			_currentRow++;
+		}
 		_rowCount = _currentRow + 1;
 		[self resetStatement];
 	}
@@ -412,6 +414,17 @@
 	[self resetStatement];
 }
 
+- (id)objectAtRow:(NSUInteger)row columnIndex:(int)columnIndex
+{
+	self.currentRow = row;
+	id object = [self.resultSet objectForColumnIndex:columnIndex];
+	if (object == [NSNull null]) {
+		// TODO: re-implement FMResultSet's objectForColumnIndex to prevent swap of nil/NSNull
+		object = nil;
+	}
+	return object;
+}
+
 - (BFWResultArray*)resultArray
 {
 	if (!_resultArray) {
@@ -422,29 +435,42 @@
 
 #pragma mark - introspection
 
-- (NSArray*)columns
+- (NSUInteger)columnCount
 {
-	if (_columns == nil) {
-		NSMutableArray* mutableColumns = [NSMutableArray array];
+	return [self.resultSet columnCount];
+}
+
+- (NSArray*)columnDictArray
+{
+	if (_columnDictArray == nil) {
+		NSMutableArray* columnDictArray = [NSMutableArray array];
 		for (int columnN = 0; columnN < self.resultSet.columnCount; columnN++) {
 			NSString* columnType = [self.resultSet columnTypeForIndex:columnN];
 			NSMutableDictionary* columnDict = [NSMutableDictionary dictionaryWithObject:[self.resultSet columnNameForIndex:columnN] forKey:@"name"];
 			if (columnType.length) {
 				[columnDict setObject:columnType forKey:@"type"];
 			}
-			[mutableColumns addObject:[NSDictionary dictionaryWithDictionary:columnDict]];
+			[columnDictArray addObject:[NSDictionary dictionaryWithDictionary:columnDict]];
 		}
-		_columns = [[NSArray alloc] initWithArray:mutableColumns];
+		_columnDictArray = [[NSArray alloc] initWithArray:columnDictArray];
 	}
-	return _columns;
+	return _columnDictArray;
+}
+
+- (NSArray*)columnNames
+{
+	NSMutableArray* columnNames = [NSMutableArray array];
+	for (NSDictionary* columnDict in self.columnDictArray) {
+		[columnNames addObject:columnDict[@"name"]];
+	}
+	return [columnNames copy];
 }
 
 #pragma mark - caching
 
 - (BFWDatabase*)cacheDatabase // different database connection since different resultSet
 {
-	if (_cacheDatabase == nil)
-	{
+	if (_cacheDatabase == nil) {
 		_cacheDatabase = [[BFWDatabase alloc] initWithPath:self.database.databasePath];
 		[_cacheDatabase open];
 	}
@@ -463,32 +489,16 @@
 
 - (NSString*)description
 {
-	NSString* description = nil;
-	NSArray* components = [self.queryString componentsSeparatedByString:@"?"];
-	if (components.count == self.arguments.count + 1)
-	{
-		NSMutableArray* descriptionArray = [NSMutableArray array];
-		for (int argumentN = 0; argumentN < self.arguments.count; argumentN++)
-		{
-			NSString* component = [components objectAtIndex:argumentN];
-			[descriptionArray addObject:component];
-			id argument = [self.arguments objectAtIndex:argumentN];
-			NSString* argumentString = [BFWDatabase stringForValue:argument usingNullString:@"null" quoteMark:@"'"];
-			[descriptionArray addObject:argumentString];
-		}
-		[descriptionArray addObject:[components lastObject]];
-		description = [descriptionArray componentsJoinedByString:@""];
-	}
-	else
+	NSString* description = [self sqlString];
+	if (!description) {
 		description = [super description];
+	}
 	return description;
 }
 
 @end
 
 @interface BFWResultArray ()
-
-@property (nonatomic, weak) BFWQuery* query;
 
 @end
 
@@ -507,18 +517,26 @@
 
 - (NSUInteger)columnCount
 {
-	return [self.query.columns count];
+	return [self.query columnCount];
 }
 
-- (NSDictionary*)objectAtQueryRow:(NSUInteger)queryRow
+- (BFWResultDictionary*)objectAtRow:(NSUInteger)row
 {
-	self.query.currentRow = queryRow;
-	return [self.query.resultSet.resultDictionary dictionaryByRemovingNulls];
+	BFWResultDictionary* resultDictionary = [[BFWResultDictionary alloc] initWithResultArray:self row:row];
+	return resultDictionary;
 }
 
-- (id)objectAtQueryRow:(NSUInteger)queryRow columnName:(NSString*)columnName
+- (id)objectAtRow:(NSUInteger)row
+	  columnIndex:(NSUInteger)columnIndex
 {
-	self.query.currentRow = queryRow;
+	self.query.currentRow = row;
+	return [self.query.resultSet objectForColumnIndex:(int)columnIndex];
+}
+
+- (id)objectAtRow:(NSUInteger)row
+	   columnName:(NSString*)columnName
+{
+	self.query.currentRow = row;
 	return [self.query.resultSet objectForColumnName:columnName];
 }
 
@@ -526,12 +544,111 @@
 
 - (NSDictionary*)objectAtIndex:(NSUInteger)index
 {
-	return [self objectAtQueryRow:index];
+	return [self objectAtRow:index];
 }
 
 - (NSUInteger)count
 {
 	return self.query.rowCount;
+}
+
+@end
+
+@interface BFWResultDictionaryEnumerator : NSEnumerator
+
+@property (nonatomic, strong) BFWResultDictionary* resultDictionary;
+@property (nonatomic, assign) NSInteger columnN;
+
+@end
+
+@implementation BFWResultDictionaryEnumerator
+
+- (instancetype)initWithResultDictionary:(BFWResultDictionary*)resultDictionary
+{
+	self = [super init];
+	if (self) {
+		_resultDictionary = resultDictionary;
+	}
+	return self;
+}
+
+- (id)nextObject
+{
+	id nextObject = nil;
+	if (self.columnN < [self.resultDictionary.allKeys count]) {
+		nextObject = self.resultDictionary.allKeys[self.columnN];
+		self.columnN++;
+	}
+	return nextObject;
+}
+
+@end
+
+@interface BFWResultDictionary ()
+
+@property (nonatomic, strong) NSArray* allKeys;
+
+@end
+
+@implementation BFWResultDictionary
+
+#pragma mark - BFWResultDictionary
+
+- (instancetype)initWithResultArray:(BFWResultArray*)resultArray
+								row:(NSUInteger)row
+{
+	self = [super init];
+	if (self) {
+		_resultArray = resultArray;
+		_row = row;
+	}
+	return self;
+}
+
+- (id)objectAtIndex:(NSUInteger)index
+{
+	id object = [self.resultArray objectAtRow:self.row columnIndex:index];
+	return object;
+}
+
+- (id)objectAtIndexedSubscript:(NSUInteger)index
+{
+	return [self objectAtIndex:index];
+}
+
+#pragma mark - NSDictionary
+
+- (id)objectForKey:(id)key
+{
+	id object = [self.resultArray objectAtRow:self.row columnName:key];
+	return object;
+}
+
+- (NSArray*)allKeys
+{
+	if (!_allKeys) {
+		NSMutableArray* allKeys = [NSMutableArray array];
+		NSArray* columnNames = [self.resultArray.query columnNames];
+		for (NSUInteger columnIndex = 0; columnIndex < [columnNames count]; columnIndex++) {
+			id object = [self.resultArray objectAtRow:self.row columnIndex:columnIndex];
+			if (object && object != [NSNull null]) {
+				// TODO: bypass FMDB's objectForColumnIndex so no NSNulls
+				[allKeys addObject:columnNames[columnIndex]];
+			}
+		}
+		_allKeys = [allKeys copy];
+	}
+	return _allKeys;
+}
+
+- (NSUInteger)count // count the non null/nil values
+{
+	return [self.allKeys count];
+}
+
+- (BFWResultDictionaryEnumerator*)keyEnumerator
+{
+	return [[BFWResultDictionaryEnumerator alloc] initWithResultDictionary:self];
 }
 
 @end
