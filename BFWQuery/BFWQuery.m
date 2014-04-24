@@ -224,36 +224,6 @@
 	return [NSDictionary dictionaryWithDictionary:sqlDict];
 }
 
-+ (NSString*)queryStringForDict:(NSDictionary*)queryDict
-{
-	NSMutableArray* components = [NSMutableArray array];
-	[components addObject:@"select"];
-	if ([queryDict[@"columns"] count]) {
-		NSMutableArray* columns = [NSMutableArray array];
-		for (id column in queryDict[@"columns"]) {
-			NSString* columnString = nil;
-			if ([column isKindOfClass:[NSDictionary class]] && [column count] == 1) {
-				NSDictionary* columnDict = (NSDictionary*)column;
-				NSString* columnAlias = columnDict.allKeys[0];
-				columnString = [NSString stringWithFormat:@"%@ as \"%@\"", columnDict[columnAlias], columnAlias];
-			} else if ([column isKindOfClass:[NSString class]]) {
-				columnString = column;
-			}
-			[columns addObject:column];
-		}
-		[components addObject:[columns componentsJoinedByString:@", "]];
-	}
-	if (queryDict[@"from"]) {
-		[components addObject:[NSString stringWithFormat:@"from \"%@\"", queryDict[@"from"]]];
-	}
-	if ([queryDict[@"where"] count]) {
-		NSString* whereString = [queryDict[@"where"] componentsJoinedByString:@" and "];
-		[components addObject:[NSString stringWithFormat:@"where %@", whereString]];
-	}
-	NSString* queryString = [components componentsJoinedByString:@"\n"];
-	return queryString;
-}
-
 + (NSString*)stringForValue:(id)value usingNullString:(NSString*)nullString quoteMark:(NSString*)quoteMark
 {
 	NSString* quotedQuote = [NSString stringWithFormat:@"%@%@", quoteMark, quoteMark];
