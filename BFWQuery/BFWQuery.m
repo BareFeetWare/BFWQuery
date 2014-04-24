@@ -77,7 +77,7 @@
 
 @implementation BFWDatabase
 
-#pragma mark - transactions
+#pragma mark transactions
 
 - (BOOL)beginImmediateTransaction
 {
@@ -88,7 +88,7 @@
     return success;
 }
 
-#pragma mark - open
+#pragma mark open
 
 - (BOOL)open
 {
@@ -99,7 +99,7 @@
 	return success;
 }
 
-#pragma mark - introspection
+#pragma mark introspection
 
 - (NSArray*)columnNamesInTable:(NSString*)tableName
 {
@@ -111,7 +111,7 @@
 	return [NSArray arrayWithArray:columnNameArray];
 }
 
-#pragma mark - insert, delete, update
+#pragma mark insert, delete, update
 
 - (BOOL)insertIntoTable:(NSString*)table
                 rowDict:(NSDictionary*)rowDict
@@ -190,7 +190,7 @@
 	return success;
 }
 
-#pragma mark - SQL construction
+#pragma mark SQL construction
 
 + (NSString*)placeholdersStringForCount:(NSUInteger)count
 {
@@ -272,7 +272,7 @@
 
 @implementation BFWQuery
 
-#pragma mark - init
+#pragma mark init
 
 // Designated initializer:
 - (instancetype)initWithDatabase:(BFWDatabase*)database
@@ -338,7 +338,7 @@
 	return sqlString;
 }
 
-#pragma mark - result set
+#pragma mark result set
 
 - (FMResultSet*)resultSet
 {
@@ -403,7 +403,7 @@
 	return _resultArray;
 }
 
-#pragma mark - introspection
+#pragma mark introspection
 
 - (NSUInteger)columnCount
 {
@@ -436,7 +436,7 @@
 	return [columnNames copy];
 }
 
-#pragma mark - caching
+#pragma mark caching
 
 - (BFWDatabase*)cacheDatabase // different database connection since different resultSet
 {
@@ -455,7 +455,7 @@
 
 //TODO: Finish implementing caching for backwards scrolling
 
-#pragma mark - NSObject
+#pragma mark NSObject
 
 - (NSString*)description
 {
@@ -474,7 +474,7 @@
 
 @implementation BFWResultArray
 
-#pragma mark - BFWResultArray
+#pragma mark BFWResultArray
 
 - (instancetype)initWithQuery:(BFWQuery*)query
 {
@@ -510,7 +510,7 @@
 	return [self.query.resultSet objectForColumnName:columnName];
 }
 
-#pragma mark - NSArray
+#pragma mark NSArray
 
 - (NSDictionary*)objectAtIndex:(NSUInteger)index
 {
@@ -562,7 +562,7 @@
 
 @implementation BFWResultDictionary
 
-#pragma mark - BFWResultDictionary
+#pragma mark BFWResultDictionary
 
 - (instancetype)initWithResultArray:(BFWResultArray*)resultArray
 								row:(NSUInteger)row
@@ -586,7 +586,7 @@
 	return [self objectAtIndex:index];
 }
 
-#pragma mark - NSDictionary
+#pragma mark NSDictionary
 
 - (id)objectForKey:(id)key
 {

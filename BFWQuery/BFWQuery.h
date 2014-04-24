@@ -21,15 +21,15 @@
 
 @interface BFWDatabase : FMDatabase
 
-#pragma mark - transactions
+#pragma mark transactions
 
 - (BOOL)beginImmediateTransaction;
 
-#pragma mark - introspection
+#pragma mark introspection
 
 - (NSArray*)columnNamesInTable:(NSString*)tableName;
 
-#pragma mark - insert, delete, update
+#pragma mark insert, delete, update
 
 - (BOOL)insertIntoTable:(NSString*)table
 				rowDict:(NSDictionary*)rowDict;
@@ -50,7 +50,7 @@
             rowDict:(NSDictionary*)rowDict
 		  whereDict:(NSDictionary*)whereDict;
 
-#pragma mark - SQL construction
+#pragma mark SQL construction
 
 + (NSDictionary*)sqlDictFromRowDict:(NSDictionary*)rowDict
 				assignListSeparator:(NSString*)assignListSeparator;
@@ -76,7 +76,7 @@
 
 @property (nonatomic, strong) NSString* tableName; // if querying a single table or view
 
-#pragma mark - init
+#pragma mark init
 
  // designated initializer:
 - (instancetype)initWithDatabase:(BFWDatabase*)database
