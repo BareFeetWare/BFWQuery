@@ -62,7 +62,7 @@
 			"create table Test\n"
 			"(	ID integer primary key not null\n"
 			",	Name text not null\n"
-			",	Row integer"
+			",	Row integer\n"
 			")";
 			success = [database executeUpdate:createTableSql];
 			if (success) {
