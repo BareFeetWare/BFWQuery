@@ -39,6 +39,7 @@
 		E29C88B718E272F7001E165E /* BFWCountries.m in Sources */ = {isa = PBXBuildFile; fileRef = E29C88B618E272F7001E165E /* BFWCountries.m */; };
 		E29C88B818E272F7001E165E /* BFWCountries.m in Sources */ = {isa = PBXBuildFile; fileRef = E29C88B618E272F7001E165E /* BFWCountries.m */; };
 		E29C88BB18E28D9C001E165E /* readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = E29C88BA18E28D9C001E165E /* readme.txt */; };
+		E2CDA629190951FE000B7A4F /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E29C88AF18E25F22001E165E /* libsqlite3.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +108,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2CDA629190951FE000B7A4F /* libsqlite3.dylib in Frameworks */,
 				E29C882B18E25281001E165E /* XCTest.framework in Frameworks */,
 				E29C882D18E25281001E165E /* UIKit.framework in Frameworks */,
 				E29C882C18E25281001E165E /* Foundation.framework in Frameworks */,
