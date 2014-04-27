@@ -507,7 +507,11 @@
 	   columnName:(NSString*)columnName
 {
 	self.query.currentRow = row;
-	return [self.query.resultSet objectForColumnName:columnName];
+	id object = [self.query.resultSet objectForColumnName:columnName];
+	if (object == [NSNull null]) {
+		object = nil;
+	}
+	return object;
 }
 
 #pragma mark NSArray
