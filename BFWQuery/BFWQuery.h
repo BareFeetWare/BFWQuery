@@ -63,7 +63,7 @@
 
 @property (nonatomic, strong) BFWDatabase* database;
 @property (nonatomic, strong) NSString* queryString;
-@property (nonatomic, strong) NSArray* arguments;
+@property (nonatomic, strong) id arguments;
 
 @property (nonatomic, readonly) NSString* sqlString;
 
@@ -81,7 +81,7 @@
  // designated initializer:
 - (instancetype)initWithDatabase:(BFWDatabase*)database
                      queryString:(NSString*)queryString
-                       arguments:(NSArray*)arguments;
+                       arguments:(id)arguments;
 
 - (instancetype)initWithDatabase:(BFWDatabase*)database
                            table:(NSString*)tableName;

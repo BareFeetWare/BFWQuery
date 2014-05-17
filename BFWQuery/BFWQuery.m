@@ -277,7 +277,7 @@
 // Designated initializer:
 - (instancetype)initWithDatabase:(BFWDatabase*)database
                      queryString:(NSString*)queryString
-                       arguments:(NSArray*)arguments
+                       arguments:(id)arguments
 {
 	self = [super init];
 	if (self) {
@@ -326,9 +326,10 @@
 {
 	NSArray* components = [self.queryString componentsSeparatedByString:@"?"];
 	NSMutableArray* descriptionArray = [NSMutableArray array];
-	for (int argumentN = 0; argumentN < self.arguments.count; argumentN++) {
+	for (int argumentN = 0; argumentN < [self.arguments count]; argumentN++) {
 		NSString* component = [components objectAtIndex:argumentN];
 		[descriptionArray addObject:component];
+        // TODO: handle if arguments is an NSDictionary
 		id argument = argumentN < [self.arguments count] ? [self.arguments objectAtIndex:argumentN] : nil;
 		NSString* argumentString = [BFWDatabase stringForValue:argument usingNullString:@"null" quoteMark:@"'"];
 		[descriptionArray addObject:argumentString];
@@ -342,8 +343,14 @@
 
 - (FMResultSet*)resultSet
 {
-	if (_resultSet == nil) {
-		_resultSet = [self.database executeQuery:self.queryString withArgumentsInArray:self.arguments];
+	if (!_resultSet) {
+        if ([self.arguments isKindOfClass:[NSDictionary class]]) {
+            _resultSet = [self.database executeQuery:self.queryString
+                             withParameterDictionary:self.arguments];
+        } else { // nil or NSArray
+            _resultSet = [self.database executeQuery:self.queryString
+                                withArgumentsInArray:self.arguments];
+        }
 	}
 	return _resultSet;
 }
