@@ -21,6 +21,21 @@
     return [mutableArray componentsJoinedByString:separator];
 }
 
+- (NSUInteger)indexOfCaseInsensitiveString:(NSString*)string
+{
+    NSUInteger matchedIndex = [self indexOfObject:string];
+    if (matchedIndex == NSNotFound) {
+        for (NSUInteger index = 0; index < [self count]; index++) {
+            NSString* object = self[index];
+            if ([string compare:(NSString*)object options:NSCaseInsensitiveSearch] == NSOrderedSame) {
+                matchedIndex = index;
+                break;
+            }
+        }
+    }
+    return matchedIndex;
+}
+
 @end
 
 @implementation NSDictionary (BFWQuery)
@@ -257,6 +272,22 @@
 	return columnType;
 }
 
+- (id)objectOrNilForColumnIndex:(int)columnIndex
+{
+    id returnObject = nil;
+    int columnType = sqlite3_column_type([_statement statement], columnIndex);
+    if (columnType == SQLITE_INTEGER) {
+        returnObject = @([self longLongIntForColumnIndex:columnIndex]);
+    } else if (columnType == SQLITE_FLOAT) {
+        returnObject = @([self doubleForColumnIndex:columnIndex]);
+    } else if (columnType == SQLITE_BLOB) {
+        returnObject = [self dataForColumnIndex:columnIndex];
+    } else {
+        returnObject = [self stringForColumnIndex:columnIndex];
+    }
+    return returnObject;
+}
+
 @end
 
 @interface BFWQuery ()
@@ -264,6 +295,7 @@
 @property (nonatomic, strong, readwrite) FMResultSet* resultSet;
 @property (nonatomic, assign, readwrite) NSInteger rowCount;
 @property (nonatomic, strong, readwrite) NSArray* columnDictArray;
+@property (nonatomic, strong, readwrite) NSArray* columnNames;
 
 @property (nonatomic, strong) BFWDatabase* cacheDatabase;
 @property (nonatomic, readonly) NSString* cacheQuotedTableName;
@@ -384,14 +416,23 @@
 	[self resetStatement];
 }
 
-- (id)objectAtRow:(NSUInteger)row columnIndex:(int)columnIndex
+- (id)objectAtRow:(NSUInteger)row
+      columnIndex:(NSUInteger)columnIndex
 {
 	self.currentRow = row;
-	id object = [self.resultSet objectForColumnIndex:columnIndex];
-	if (object == [NSNull null]) {
-		// TODO: re-implement FMResultSet's objectForColumnIndex to prevent swap of nil/NSNull
-		object = nil;
-	}
+	id object = [self.resultSet objectOrNilForColumnIndex:(int)columnIndex];
+	return object;
+}
+
+- (id)objectAtRow:(NSUInteger)row
+       columnName:(NSString*)columnName
+{
+    id object = nil;
+    NSUInteger columnIndex = [self.columnNames indexOfCaseInsensitiveString:columnName];
+    if (columnIndex != NSNotFound) {
+        object = [self objectAtRow:row
+                       columnIndex:columnIndex];
+    }
 	return object;
 }
 
@@ -429,11 +470,14 @@
 
 - (NSArray*)columnNames
 {
-	NSMutableArray* columnNames = [NSMutableArray array];
-	for (NSDictionary* columnDict in self.columnDictArray) {
-		[columnNames addObject:columnDict[@"name"]];
-	}
-	return [columnNames copy];
+    if (!_columnNames) {
+        NSMutableArray* columnNames = [NSMutableArray array];
+        for (NSDictionary* columnDict in self.columnDictArray) {
+            [columnNames addObject:columnDict[@"name"]];
+        }
+        _columnNames = [columnNames copy];
+    }
+    return _columnNames;
 }
 
 #pragma mark caching
@@ -494,24 +538,6 @@
 {
 	BFWResultDictionary* resultDictionary = [[BFWResultDictionary alloc] initWithResultArray:self row:row];
 	return resultDictionary;
-}
-
-- (id)objectAtRow:(NSUInteger)row
-	  columnIndex:(NSUInteger)columnIndex
-{
-	self.query.currentRow = row;
-	return [self.query.resultSet objectForColumnIndex:(int)columnIndex];
-}
-
-- (id)objectAtRow:(NSUInteger)row
-	   columnName:(NSString*)columnName
-{
-	self.query.currentRow = row;
-	id object = [self.query.resultSet objectForColumnName:columnName];
-	if (object == [NSNull null]) {
-		object = nil;
-	}
-	return object;
 }
 
 #pragma mark NSArray
@@ -581,7 +607,8 @@
 
 - (id)objectAtIndex:(NSUInteger)index
 {
-	id object = [self.resultArray objectAtRow:self.row columnIndex:index];
+	id object = [self.resultArray.query objectAtRow:self.row
+                                        columnIndex:index];
 	return object;
 }
 
@@ -594,7 +621,8 @@
 
 - (id)objectForKey:(id)key
 {
-	id object = [self.resultArray objectAtRow:self.row columnName:key];
+	id object = [self.resultArray.query objectAtRow:self.row
+                                         columnName:key];
 	return object;
 }
 
@@ -604,9 +632,9 @@
 		NSMutableArray* allKeys = [NSMutableArray array];
 		NSArray* columnNames = [self.resultArray.query columnNames];
 		for (NSUInteger columnIndex = 0; columnIndex < [columnNames count]; columnIndex++) {
-			id object = [self.resultArray objectAtRow:self.row columnIndex:columnIndex];
-			if (object && object != [NSNull null]) {
-				// TODO: bypass FMDB's objectForColumnIndex so no NSNulls
+			id object = [self.resultArray.query objectAtRow:self.row
+                                                columnIndex:columnIndex];
+			if (object) {
 				[allKeys addObject:columnNames[columnIndex]];
 			}
 		}

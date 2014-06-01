@@ -73,6 +73,7 @@
 @property (nonatomic, strong, readonly) FMResultSet* resultSet;
 @property (nonatomic, assign, readonly) NSInteger rowCount;
 @property (nonatomic, strong, readonly) NSArray* columnDictArray;
+@property (nonatomic, strong, readonly) NSArray* columnNames;
 
 @property (nonatomic, strong) NSString* tableName; // if querying a single table or view
 
@@ -102,6 +103,14 @@
 - (void)reload;
 - (void)resetStatement;
 
+#pragma mark result set
+
+- (id)objectAtRow:(NSUInteger)row
+      columnIndex:(NSUInteger)columnIndex;
+
+- (id)objectAtRow:(NSUInteger)row
+       columnName:(NSString*)columnName;
+
 @end
 
 @class BFWResultDictionary;
@@ -112,8 +121,6 @@
 
 - (instancetype)initWithQuery:(BFWQuery*)query;
 - (BFWResultDictionary*)objectAtRow:(NSUInteger)row;
-- (id)objectAtRow:(NSUInteger)row columnIndex:(NSUInteger)columnIndex;
-- (id)objectAtRow:(NSUInteger)row columnName:(NSString*)columnName;
 
 @end
 
