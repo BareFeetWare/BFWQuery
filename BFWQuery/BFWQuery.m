@@ -374,7 +374,7 @@
 
 - (FMResultSet*)resultSet
 {
-	if (_resultSet == nil) {
+	if (!_resultSet) {
 		_resultSet = [self.database executeQuery:self.queryString withArgumentsInArray:self.arguments];
 	}
 	return _resultSet;
@@ -386,6 +386,10 @@
 		[self resetStatement];
 	}
 	while (_currentRow < currentRow && [self.resultSet next]) {
+        if (self.isCaching && self.cacheRowCount < currentRow) {
+            [self.database insertIntoTable:self.cacheTableName
+                                   rowDict:<#(NSDictionary *)#>]
+        }
 		_currentRow++;
 	}
 }
@@ -453,7 +457,7 @@
 
 - (NSArray*)columnDictArray
 {
-	if (_columnDictArray == nil) {
+	if (!_columnDictArray) {
 		NSMutableArray* columnDictArray = [NSMutableArray array];
 		for (int columnN = 0; columnN < self.resultSet.columnCount; columnN++) {
 			NSString* columnType = [self.resultSet columnTypeForIndex:columnN];
@@ -484,7 +488,7 @@
 
 - (BFWDatabase*)cacheDatabase // different database connection since different resultSet
 {
-	if (_cacheDatabase == nil) {
+	if (!_cacheDatabase) {
 		_cacheDatabase = [[BFWDatabase alloc] initWithPath:self.database.databasePath];
 		[_cacheDatabase open];
 	}
@@ -513,6 +517,8 @@
 @end
 
 @interface BFWResultArray ()
+
+@property (nonatomic, strong) NSMutableArray* resultDictionaryQueue;
 
 @end
 
