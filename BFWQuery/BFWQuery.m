@@ -386,10 +386,6 @@
 		[self resetStatement];
 	}
 	while (_currentRow < currentRow && [self.resultSet next]) {
-        if (self.isCaching && self.cacheRowCount < currentRow) {
-            [self.database insertIntoTable:self.cacheTableName
-                                   rowDict:<#(NSDictionary *)#>]
-        }
 		_currentRow++;
 	}
 }
@@ -517,8 +513,6 @@
 @end
 
 @interface BFWResultArray ()
-
-@property (nonatomic, strong) NSMutableArray* resultDictionaryQueue;
 
 @end
 
