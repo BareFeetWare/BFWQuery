@@ -7,22 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E21123DF1C34E04F00B97FF0 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E21123C81C34E04F00B97FF0 /* Main_iPhone.storyboard */; };
+		E21123E01C34E04F00B97FF0 /* BFWAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E21123CB1C34E04F00B97FF0 /* BFWAppDelegate.m */; };
+		E21123E11C34E04F00B97FF0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E21123CD1C34E04F00B97FF0 /* InfoPlist.strings */; };
+		E21123E21C34E04F00B97FF0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E21123CF1C34E04F00B97FF0 /* Images.xcassets */; };
+		E21123E41C34E04F00B97FF0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E21123D11C34E04F00B97FF0 /* main.m */; };
+		E21123E51C34E04F00B97FF0 /* BFWQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = E21123D61C34E04F00B97FF0 /* BFWQuery.m */; };
+		E21123E61C34E04F00B97FF0 /* BFWMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E21123DA1C34E04F00B97FF0 /* BFWMasterViewController.m */; };
+		E21123E71C34E04F00B97FF0 /* BFWCountries.m in Sources */ = {isa = PBXBuildFile; fileRef = E21123DD1C34E04F00B97FF0 /* BFWCountries.m */; };
+		E21123E81C34E04F00B97FF0 /* Countries.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = E21123DE1C34E04F00B97FF0 /* Countries.sqlite */; };
 		E29C880618E25281001E165E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E29C880518E25281001E165E /* Foundation.framework */; };
 		E29C880818E25281001E165E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E29C880718E25281001E165E /* CoreGraphics.framework */; };
 		E29C880A18E25281001E165E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E29C880918E25281001E165E /* UIKit.framework */; };
-		E29C881018E25281001E165E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E29C880E18E25281001E165E /* InfoPlist.strings */; };
-		E29C881218E25281001E165E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E29C881118E25281001E165E /* main.m */; };
-		E29C881618E25281001E165E /* BFWAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E29C881518E25281001E165E /* BFWAppDelegate.m */; };
-		E29C881918E25281001E165E /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E29C881718E25281001E165E /* Main_iPhone.storyboard */; };
-		E29C881F18E25281001E165E /* BFWMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E29C881E18E25281001E165E /* BFWMasterViewController.m */; };
-		E29C882418E25281001E165E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E29C882318E25281001E165E /* Images.xcassets */; };
 		E29C882B18E25281001E165E /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E29C882A18E25281001E165E /* XCTest.framework */; };
 		E29C882C18E25281001E165E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E29C880518E25281001E165E /* Foundation.framework */; };
 		E29C882D18E25281001E165E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E29C880918E25281001E165E /* UIKit.framework */; };
 		E29C883518E25281001E165E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E29C883318E25281001E165E /* InfoPlist.strings */; };
 		E29C883718E25281001E165E /* BFWQueryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E29C883618E25281001E165E /* BFWQueryTests.m */; };
-		E29C884518E25326001E165E /* BFWQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = E29C884418E25326001E165E /* BFWQuery.m */; };
-		E29C884618E25326001E165E /* BFWQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = E29C884418E25326001E165E /* BFWQuery.m */; };
 		E29C888718E25B04001E165E /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = E29C885B18E25B04001E165E /* FMDatabase.m */; };
 		E29C888818E25B04001E165E /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = E29C885B18E25B04001E165E /* FMDatabase.m */; };
 		E29C888918E25B04001E165E /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = E29C885D18E25B04001E165E /* FMDatabaseAdditions.m */; };
@@ -34,11 +35,6 @@
 		E29C888F18E25B04001E165E /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = E29C886418E25B04001E165E /* FMResultSet.m */; };
 		E29C889018E25B04001E165E /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = E29C886418E25B04001E165E /* FMResultSet.m */; };
 		E29C88B018E25F22001E165E /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E29C88AF18E25F22001E165E /* libsqlite3.dylib */; };
-		E29C88B318E26B4E001E165E /* Countries.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = E29C88B218E26B4E001E165E /* Countries.sqlite */; };
-		E29C88B418E26B4E001E165E /* Countries.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = E29C88B218E26B4E001E165E /* Countries.sqlite */; };
-		E29C88B718E272F7001E165E /* BFWCountries.m in Sources */ = {isa = PBXBuildFile; fileRef = E29C88B618E272F7001E165E /* BFWCountries.m */; };
-		E29C88B818E272F7001E165E /* BFWCountries.m in Sources */ = {isa = PBXBuildFile; fileRef = E29C88B618E272F7001E165E /* BFWCountries.m */; };
-		E29C88BB18E28D9C001E165E /* readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = E29C88BA18E28D9C001E165E /* readme.txt */; };
 		E2CDA629190951FE000B7A4F /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E29C88AF18E25F22001E165E /* libsqlite3.dylib */; };
 /* End PBXBuildFile section */
 
@@ -53,27 +49,29 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E21123C91C34E04F00B97FF0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
+		E21123CA1C34E04F00B97FF0 /* BFWAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFWAppDelegate.h; sourceTree = "<group>"; };
+		E21123CB1C34E04F00B97FF0 /* BFWAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFWAppDelegate.m; sourceTree = "<group>"; };
+		E21123CE1C34E04F00B97FF0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E21123CF1C34E04F00B97FF0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		E21123D01C34E04F00B97FF0 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E21123D11C34E04F00B97FF0 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E21123D51C34E04F00B97FF0 /* BFWQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFWQuery.h; sourceTree = "<group>"; };
+		E21123D61C34E04F00B97FF0 /* BFWQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFWQuery.m; sourceTree = "<group>"; };
+		E21123D91C34E04F00B97FF0 /* BFWMasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFWMasterViewController.h; sourceTree = "<group>"; };
+		E21123DA1C34E04F00B97FF0 /* BFWMasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFWMasterViewController.m; sourceTree = "<group>"; };
+		E21123DC1C34E04F00B97FF0 /* BFWCountries.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFWCountries.h; sourceTree = "<group>"; };
+		E21123DD1C34E04F00B97FF0 /* BFWCountries.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFWCountries.m; sourceTree = "<group>"; };
+		E21123DE1C34E04F00B97FF0 /* Countries.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = Countries.sqlite; sourceTree = "<group>"; };
 		E29C880218E25281001E165E /* BFWQuery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BFWQuery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E29C880518E25281001E165E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E29C880718E25281001E165E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		E29C880918E25281001E165E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		E29C880D18E25281001E165E /* BFWQuery-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BFWQuery-Info.plist"; sourceTree = "<group>"; };
-		E29C880F18E25281001E165E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		E29C881118E25281001E165E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		E29C881318E25281001E165E /* BFWQuery-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BFWQuery-Prefix.pch"; sourceTree = "<group>"; };
-		E29C881418E25281001E165E /* BFWAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BFWAppDelegate.h; sourceTree = "<group>"; };
-		E29C881518E25281001E165E /* BFWAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BFWAppDelegate.m; sourceTree = "<group>"; };
-		E29C881818E25281001E165E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
-		E29C881D18E25281001E165E /* BFWMasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BFWMasterViewController.h; sourceTree = "<group>"; };
-		E29C881E18E25281001E165E /* BFWMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BFWMasterViewController.m; sourceTree = "<group>"; };
-		E29C882318E25281001E165E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E29C882918E25281001E165E /* BFWQueryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BFWQueryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E29C882A18E25281001E165E /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		E29C883218E25281001E165E /* BFWQueryTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BFWQueryTests-Info.plist"; sourceTree = "<group>"; };
 		E29C883418E25281001E165E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E29C883618E25281001E165E /* BFWQueryTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BFWQueryTests.m; sourceTree = "<group>"; };
-		E29C884318E25326001E165E /* BFWQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFWQuery.h; sourceTree = "<group>"; };
-		E29C884418E25326001E165E /* BFWQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFWQuery.m; sourceTree = "<group>"; };
 		E29C885A18E25B04001E165E /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		E29C885B18E25B04001E165E /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
 		E29C885C18E25B04001E165E /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
@@ -86,10 +84,6 @@
 		E29C886318E25B04001E165E /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
 		E29C886418E25B04001E165E /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
 		E29C88AF18E25F22001E165E /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
-		E29C88B218E26B4E001E165E /* Countries.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = Countries.sqlite; sourceTree = "<group>"; };
-		E29C88B518E272F7001E165E /* BFWCountries.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFWCountries.h; sourceTree = "<group>"; };
-		E29C88B618E272F7001E165E /* BFWCountries.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFWCountries.m; sourceTree = "<group>"; };
-		E29C88BA18E28D9C001E165E /* readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,12 +112,83 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E21123C71C34E04F00B97FF0 /* Launch */ = {
+			isa = PBXGroup;
+			children = (
+				E21123C81C34E04F00B97FF0 /* Main_iPhone.storyboard */,
+				E21123CA1C34E04F00B97FF0 /* BFWAppDelegate.h */,
+				E21123CB1C34E04F00B97FF0 /* BFWAppDelegate.m */,
+				E21123CD1C34E04F00B97FF0 /* InfoPlist.strings */,
+				E21123CF1C34E04F00B97FF0 /* Images.xcassets */,
+				E21123D01C34E04F00B97FF0 /* Info.plist */,
+				E21123D11C34E04F00B97FF0 /* main.m */,
+			);
+			name = Launch;
+			path = BFWQuery/Launch;
+			sourceTree = "<group>";
+		};
+		E21123D21C34E04F00B97FF0 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				E21123D31C34E04F00B97FF0 /* BFWQuery */,
+			);
+			name = Modules;
+			path = BFWQuery/Modules;
+			sourceTree = "<group>";
+		};
+		E21123D31C34E04F00B97FF0 /* BFWQuery */ = {
+			isa = PBXGroup;
+			children = (
+				E21123D41C34E04F00B97FF0 /* Model */,
+			);
+			path = BFWQuery;
+			sourceTree = "<group>";
+		};
+		E21123D41C34E04F00B97FF0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E21123D51C34E04F00B97FF0 /* BFWQuery.h */,
+				E21123D61C34E04F00B97FF0 /* BFWQuery.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E21123D71C34E04F00B97FF0 /* Sample */ = {
+			isa = PBXGroup;
+			children = (
+				E21123D81C34E04F00B97FF0 /* Controller */,
+				E21123DB1C34E04F00B97FF0 /* Model */,
+			);
+			name = Sample;
+			path = BFWQuery/Sample;
+			sourceTree = "<group>";
+		};
+		E21123D81C34E04F00B97FF0 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E21123D91C34E04F00B97FF0 /* BFWMasterViewController.h */,
+				E21123DA1C34E04F00B97FF0 /* BFWMasterViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		E21123DB1C34E04F00B97FF0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E21123DC1C34E04F00B97FF0 /* BFWCountries.h */,
+				E21123DD1C34E04F00B97FF0 /* BFWCountries.m */,
+				E21123DE1C34E04F00B97FF0 /* Countries.sqlite */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		E29C87F918E25280001E165E = {
 			isa = PBXGroup;
 			children = (
-				E29C88B918E28D66001E165E /* Documentation */,
+				E21123C71C34E04F00B97FF0 /* Launch */,
+				E21123D21C34E04F00B97FF0 /* Modules */,
+				E21123D71C34E04F00B97FF0 /* Sample */,
 				E29C884818E25B03001E165E /* Libraries */,
-				E29C880B18E25281001E165E /* BFWQuery */,
 				E29C883018E25281001E165E /* BFWQueryTests */,
 				E29C880418E25281001E165E /* Frameworks */,
 				E29C880318E25281001E165E /* Products */,
@@ -151,30 +216,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		E29C880B18E25281001E165E /* BFWQuery */ = {
-			isa = PBXGroup;
-			children = (
-				E29C884218E252CF001E165E /* Model */,
-				E29C884118E252C1001E165E /* Controller */,
-				E29C884018E2529F001E165E /* Storyboards */,
-				E29C882318E25281001E165E /* Images.xcassets */,
-				E29C88B118E26B2A001E165E /* Resources */,
-				E29C880C18E25281001E165E /* Supporting Files */,
-			);
-			path = BFWQuery;
-			sourceTree = "<group>";
-		};
-		E29C880C18E25281001E165E /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				E29C880D18E25281001E165E /* BFWQuery-Info.plist */,
-				E29C880E18E25281001E165E /* InfoPlist.strings */,
-				E29C881118E25281001E165E /* main.m */,
-				E29C881318E25281001E165E /* BFWQuery-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		E29C883018E25281001E165E /* BFWQueryTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -191,36 +232,6 @@
 				E29C883318E25281001E165E /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		E29C884018E2529F001E165E /* Storyboards */ = {
-			isa = PBXGroup;
-			children = (
-				E29C881718E25281001E165E /* Main_iPhone.storyboard */,
-			);
-			name = Storyboards;
-			sourceTree = "<group>";
-		};
-		E29C884118E252C1001E165E /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				E29C881418E25281001E165E /* BFWAppDelegate.h */,
-				E29C881518E25281001E165E /* BFWAppDelegate.m */,
-				E29C881D18E25281001E165E /* BFWMasterViewController.h */,
-				E29C881E18E25281001E165E /* BFWMasterViewController.m */,
-			);
-			name = Controller;
-			sourceTree = "<group>";
-		};
-		E29C884218E252CF001E165E /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				E29C884318E25326001E165E /* BFWQuery.h */,
-				E29C884418E25326001E165E /* BFWQuery.m */,
-				E29C88B518E272F7001E165E /* BFWCountries.h */,
-				E29C88B618E272F7001E165E /* BFWCountries.m */,
-			);
-			name = Model;
 			sourceTree = "<group>";
 		};
 		E29C884818E25B03001E165E /* Libraries */ = {
@@ -263,22 +274,6 @@
 				E29C886418E25B04001E165E /* FMResultSet.m */,
 			);
 			path = fmdb;
-			sourceTree = "<group>";
-		};
-		E29C88B118E26B2A001E165E /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				E29C88B218E26B4E001E165E /* Countries.sqlite */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
-		E29C88B918E28D66001E165E /* Documentation */ = {
-			isa = PBXGroup;
-			children = (
-				E29C88BA18E28D9C001E165E /* readme.txt */,
-			);
-			name = Documentation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -361,11 +356,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E29C88B318E26B4E001E165E /* Countries.sqlite in Resources */,
-				E29C882418E25281001E165E /* Images.xcassets in Resources */,
-				E29C881918E25281001E165E /* Main_iPhone.storyboard in Resources */,
-				E29C881018E25281001E165E /* InfoPlist.strings in Resources */,
-				E29C88BB18E28D9C001E165E /* readme.txt in Resources */,
+				E21123E21C34E04F00B97FF0 /* Images.xcassets in Resources */,
+				E21123E11C34E04F00B97FF0 /* InfoPlist.strings in Resources */,
+				E21123DF1C34E04F00B97FF0 /* Main_iPhone.storyboard in Resources */,
+				E21123E81C34E04F00B97FF0 /* Countries.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,7 +367,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E29C88B418E26B4E001E165E /* Countries.sqlite in Resources */,
 				E29C883518E25281001E165E /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -385,15 +378,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E29C881F18E25281001E165E /* BFWMasterViewController.m in Sources */,
-				E29C884518E25326001E165E /* BFWQuery.m in Sources */,
-				E29C88B718E272F7001E165E /* BFWCountries.m in Sources */,
+				E21123E01C34E04F00B97FF0 /* BFWAppDelegate.m in Sources */,
+				E21123E61C34E04F00B97FF0 /* BFWMasterViewController.m in Sources */,
 				E29C888718E25B04001E165E /* FMDatabase.m in Sources */,
 				E29C888B18E25B04001E165E /* FMDatabasePool.m in Sources */,
 				E29C888D18E25B04001E165E /* FMDatabaseQueue.m in Sources */,
-				E29C881618E25281001E165E /* BFWAppDelegate.m in Sources */,
-				E29C881218E25281001E165E /* main.m in Sources */,
 				E29C888F18E25B04001E165E /* FMResultSet.m in Sources */,
+				E21123E41C34E04F00B97FF0 /* main.m in Sources */,
+				E21123E71C34E04F00B97FF0 /* BFWCountries.m in Sources */,
+				E21123E51C34E04F00B97FF0 /* BFWQuery.m in Sources */,
 				E29C888918E25B04001E165E /* FMDatabaseAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -402,11 +395,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E29C884618E25326001E165E /* BFWQuery.m in Sources */,
 				E29C888C18E25B04001E165E /* FMDatabasePool.m in Sources */,
 				E29C883718E25281001E165E /* BFWQueryTests.m in Sources */,
 				E29C888E18E25B04001E165E /* FMDatabaseQueue.m in Sources */,
-				E29C88B818E272F7001E165E /* BFWCountries.m in Sources */,
 				E29C888818E25B04001E165E /* FMDatabase.m in Sources */,
 				E29C889018E25B04001E165E /* FMResultSet.m in Sources */,
 				E29C888A18E25B04001E165E /* FMDatabaseAdditions.m in Sources */,
@@ -424,20 +415,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		E29C880E18E25281001E165E /* InfoPlist.strings */ = {
+		E21123C81C34E04F00B97FF0 /* Main_iPhone.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				E29C880F18E25281001E165E /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		E29C881718E25281001E165E /* Main_iPhone.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E29C881818E25281001E165E /* Base */,
+				E21123C91C34E04F00B97FF0 /* Base */,
 			);
 			name = Main_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		E21123CD1C34E04F00B97FF0 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E21123CE1C34E04F00B97FF0 /* en */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 		E29C883318E25281001E165E /* InfoPlist.strings */ = {
@@ -530,8 +521,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "BFWQuery/BFWQuery-Prefix.pch";
-				INFOPLIST_FILE = "BFWQuery/BFWQuery-Info.plist";
+				INFOPLIST_FILE = BFWQuery/Launch/Info.plist;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -545,8 +535,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "BFWQuery/BFWQuery-Prefix.pch";
-				INFOPLIST_FILE = "BFWQuery/BFWQuery-Info.plist";
+				INFOPLIST_FILE = BFWQuery/Launch/Info.plist;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
