@@ -156,7 +156,24 @@
                                          NSString* name = rowDict[1];
                                      }
                                  }];
-                
+
+                [self speedTestSummary:@" rowDict[1] only one rowDict alloc"
+                                 block:^{
+                                     BFWResultDictionary* rowDict = [[BFWResultDictionary alloc] initWithResultArray:query.resultArray row:-1];
+                                     for (NSInteger rowN = 0; rowN < rowCount; rowN++) {
+                                         rowDict.row = rowN;
+                                         NSString* name = rowDict[1];
+                                     }
+                                 }];
+
+                [self speedTestSummary:@" rowDict[1] with queue"
+                                 block:^{
+                                     for (BFWResultDictionary* rowDict in query.resultArray) {
+                                         NSString* name = rowDict[1];
+                                         [query.resultArray queueResultDictionary:rowDict];
+                                     }
+                                 }];
+
                 [self speedTestSummary:@" rowDict[@\"Name\"]"
                                  block:^{
                                      for (NSDictionary* rowDict in query.resultArray) {

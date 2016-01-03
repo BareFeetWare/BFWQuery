@@ -297,8 +297,11 @@
 @property (nonatomic, strong, readwrite) NSArray* columnDictArray;
 @property (nonatomic, strong, readwrite) NSArray* columnNames;
 
+@property (nonatomic, assign) BOOL caching;
+@property (nonatomic, assign) NSUInteger lastCacheRow;
 @property (nonatomic, strong) BFWDatabase* cacheDatabase;
-@property (nonatomic, readonly) NSString* cacheQuotedTableName;
+@property (nonatomic, readonly) NSString* cacheTableName;
+@property (nonatomic, assign) BOOL isCacheTableCreated;
 
 @end
 
@@ -419,8 +422,28 @@
 - (id)objectAtRow:(NSUInteger)row
       columnIndex:(NSUInteger)columnIndex
 {
-	self.currentRow = row;
-	id object = [self.resultSet objectOrNilForColumnIndex:(int)columnIndex];
+    id object = nil;
+    if (row <= self.lastCacheRow) {
+        BFWQuery* query = [[BFWQuery alloc] initWithDatabase:self.database
+                                                       table:self.cacheTableName
+                                                     columns:nil
+                                                   whereDict:@{@"BFW_cache_row": @(row)}];
+        object = [query objectAtRow:row columnIndex:columnIndex + 1];
+    } else {
+        if (self.caching) {
+            //TODO: batch insert from select
+            for (NSUInteger cacheRow = self.currentRow + 1; cacheRow < self.currentRow; cacheRow++) {
+                NSMutableDictionary* rowDict = [self.resultSet.resultDictionary mutableCopy];
+                rowDict[@"BFW_cache_row"] = @(row);
+                [self createCacheTable];
+                [self.database insertIntoTable:self.cacheTableName
+                                       rowDict:rowDict];
+            }
+            self.lastCacheRow = self.currentRow;
+        }
+        self.currentRow = row;
+        object = [self.resultSet objectOrNilForColumnIndex:(int)columnIndex];
+    }
 	return object;
 }
 
@@ -491,10 +514,27 @@
 	return _cacheDatabase;
 }
 
-- (NSString*)cacheQuotedTableName
+- (NSString*)cacheTableName
 {
-	NSString* cacheQuotedTableName = [NSString stringWithFormat:@"\"BFW Cache %@\"", [self.queryString stringByReplacingOccurrencesOfString:@"\"" withString:@""]];
-	return cacheQuotedTableName;
+	NSString* cacheTableName = [NSString stringWithFormat:@"BFW Cache %@", [self.queryString stringByReplacingOccurrencesOfString:@"\"" withString:@""]];
+	return cacheTableName;
+}
+
+- (void)createCacheTable
+{
+    if (!self.isCacheTableCreated) {
+        NSMutableArray* columnSchemas = [NSMutableArray array];
+        [columnSchemas addObject:@"BFW_cache_row integer primary key not null"];
+        for (NSDictionary* columnDict in self.columnDictArray) {
+            NSString* columnSchema = columnDict[@"name"];
+            if (columnDict[@"type"]) {
+                columnSchema = [columnSchema stringByAppendingFormat:@" %@", columnDict[@"type"]];
+            }
+            [columnSchemas addObject:columnSchema];
+        }
+        [self.database executeQueryWithFormat:@"create temp table \"%@\"\n(\t%@\n)", self.cacheTableName, [columnSchemas componentsJoinedByString:@"\n,\t"]];
+        self.isCacheTableCreated = YES;
+    }
 }
 
 //TODO: Finish implementing caching for backwards scrolling
