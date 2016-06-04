@@ -488,7 +488,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/Submodules/fmdb/src",
+				);
 				INFOPLIST_FILE = BFWQuery/Launch/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.barefeetware.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -502,7 +505,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/Submodules/fmdb/src",
+				);
 				INFOPLIST_FILE = BFWQuery/Launch/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.barefeetware.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -516,15 +522,13 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BFWQuery.app/BFWQuery";
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "BFWQuery/BFWQuery-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
+				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(SRCROOT)/Submodules/fmdb/src",
 				);
 				INFOPLIST_FILE = "BFWQueryTests/BFWQueryTests-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.barefeetware.${PRODUCT_NAME:rfc1034identifier}";
@@ -539,12 +543,14 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BFWQuery.app/BFWQuery";
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "BFWQuery/BFWQuery-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/Submodules/fmdb/src",
+				);
 				INFOPLIST_FILE = "BFWQueryTests/BFWQueryTests-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.barefeetware.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
