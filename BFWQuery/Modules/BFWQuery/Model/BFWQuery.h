@@ -6,7 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FMDatabase.h"
+#import <FMDB/FMDatabase.h>
 
 @class FMResultSet;
 @class BFWQuery;
