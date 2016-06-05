@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "BFWQuery"
-  s.version      = "1.0.0"
+  s.version      = "1.0.1"
   s.summary      = "Makes the power of SQLite available to Cocoa developers as simple as accessing arrays."
   s.description  = <<-DESC
 
