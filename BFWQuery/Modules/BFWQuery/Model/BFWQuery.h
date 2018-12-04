@@ -21,10 +21,6 @@
 
 @interface BFWDatabase : FMDatabase
 
-#pragma mark transactions
-
-- (BOOL)beginImmediateTransaction;
-
 #pragma mark introspection
 
 - (NSArray*)columnNamesInTable:(NSString*)tableName;

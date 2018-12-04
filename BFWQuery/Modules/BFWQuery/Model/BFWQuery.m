@@ -78,17 +78,6 @@
 
 @implementation BFWDatabase
 
-#pragma mark transactions
-
-- (BOOL)beginImmediateTransaction
-{
-    BOOL success = [self executeUpdate:@"begin immediate transaction"];
-    if (success) {
-        _inTransaction = YES;
-    }
-    return success;
-}
-
 #pragma mark open
 
 - (BOOL)open
