@@ -6,7 +6,7 @@
 //
 
 #import "BFWQuery.h"
-#import <FMDB/FMDB.h>
+#import <fmdb/FMDB.h>
 #import <sqlite3.h>
 
 @implementation NSArray (BFWQuery)
@@ -487,7 +487,7 @@
 	return [self.query columnCount];
 }
 
-- (BFWResultDictionary*)objectAtRow:(NSUInteger)row
+- (BFWResultDictionary*)dictionaryAtRow:(NSUInteger)row
 {
 	BFWResultDictionary* resultDictionary = [[BFWResultDictionary alloc] initWithResultArray:self row:row];
 	return resultDictionary;
@@ -504,7 +504,7 @@
 	   columnName:(NSString*)columnName
 {
 	self.query.currentRow = row;
-	id object = [self.query.resultSet objectForColumnName:columnName];
+	id object = [self.query.resultSet objectForColumn:columnName];
 	if (object == [NSNull null]) {
 		object = nil;
 	}
@@ -515,7 +515,7 @@
 
 - (NSDictionary*)objectAtIndex:(NSUInteger)index
 {
-	return [self objectAtRow:index];
+	return [self dictionaryAtRow:index];
 }
 
 - (NSUInteger)count

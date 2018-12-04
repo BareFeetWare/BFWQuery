@@ -6,7 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <FMDB/FMDatabase.h>
+#import <fmdb/FMDB.h>
 
 @class FMResultSet;
 @class BFWQuery;
@@ -107,7 +107,7 @@
 @property (nonatomic, weak) BFWQuery* query;
 
 - (instancetype)initWithQuery:(BFWQuery*)query;
-- (BFWResultDictionary*)objectAtRow:(NSUInteger)row;
+- (BFWResultDictionary*)dictionaryAtRow:(NSUInteger)row;
 - (id)objectAtRow:(NSUInteger)row columnIndex:(NSUInteger)columnIndex;
 - (id)objectAtRow:(NSUInteger)row columnName:(NSString*)columnName;
 
