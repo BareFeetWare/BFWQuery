@@ -17,16 +17,69 @@
 		E21123E71C34E04F00B97FF0 /* BFWCountries.m in Sources */ = {isa = PBXBuildFile; fileRef = E21123DD1C34E04F00B97FF0 /* BFWCountries.m */; };
 		E21123E81C34E04F00B97FF0 /* Countries.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = E21123DE1C34E04F00B97FF0 /* Countries.sqlite */; };
 		E21123EC1C34E5F600B97FF0 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E21123EB1C34E5F600B97FF0 /* libsqlite3.tbd */; };
-		E25643F21C39F8A5004DD65E /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = E25643E81C39F8A5004DD65E /* FMDatabase.m */; };
-		E25643F31C39F8A5004DD65E /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = E25643EA1C39F8A5004DD65E /* FMDatabaseAdditions.m */; };
-		E25643F41C39F8A5004DD65E /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = E25643EC1C39F8A5004DD65E /* FMDatabasePool.m */; };
-		E25643F51C39F8A5004DD65E /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = E25643EE1C39F8A5004DD65E /* FMDatabaseQueue.m */; };
-		E25643F61C39F8A5004DD65E /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = E25643F11C39F8A5004DD65E /* FMResultSet.m */; };
+		E29A36F321B60B250069DF78 /* FMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E29A36EE21B60B080069DF78 /* FMDB.framework */; };
+		E29A36F421B60B250069DF78 /* FMDB.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E29A36EE21B60B080069DF78 /* FMDB.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E29C883518E25281001E165E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E29C883318E25281001E165E /* InfoPlist.strings */; };
 		E29C883718E25281001E165E /* BFWQueryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E29C883618E25281001E165E /* BFWQueryTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		E29A36E521B60B080069DF78 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E29A36DB21B60B080069DF78 /* fmdb.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8DD76FA10486AA7600D96B5E;
+			remoteInfo = fmdb;
+		};
+		E29A36E721B60B080069DF78 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E29A36DB21B60B080069DF78 /* fmdb.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EE4290EF12B42F870088BD94;
+			remoteInfo = FMDB;
+		};
+		E29A36E921B60B080069DF78 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E29A36DB21B60B080069DF78 /* fmdb.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BF5D041618416BB2008C5AA9;
+			remoteInfo = Tests;
+		};
+		E29A36EB21B60B080069DF78 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E29A36DB21B60B080069DF78 /* fmdb.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6290CBB5188FE836009790F8;
+			remoteInfo = "FMDB-IOS";
+		};
+		E29A36ED21B60B080069DF78 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E29A36DB21B60B080069DF78 /* fmdb.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 83C73EFE1C326AB000FFC730;
+			remoteInfo = "FMDB iOS";
+		};
+		E29A36EF21B60B080069DF78 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E29A36DB21B60B080069DF78 /* fmdb.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 83C73F0B1C326ADA00FFC730;
+			remoteInfo = "FMDB MacOS";
+		};
+		E29A36F121B60B080069DF78 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E29A36DB21B60B080069DF78 /* fmdb.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2CD2426D1FCC09CA00479FDE;
+			remoteInfo = "FMDB watchOS";
+		};
+		E29A36F521B60B250069DF78 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E29A36DB21B60B080069DF78 /* fmdb.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 83C73EFD1C326AB000FFC730;
+			remoteInfo = "FMDB iOS";
+		};
 		E29C882E18E25281001E165E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E29C87FA18E25280001E165E /* Project object */;
@@ -35,6 +88,20 @@
 			remoteInfo = BFWQuery;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E29A36F721B60B260069DF78 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				E29A36F421B60B250069DF78 /* FMDB.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		E21123C91C34E04F00B97FF0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -52,17 +119,7 @@
 		E21123DD1C34E04F00B97FF0 /* BFWCountries.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFWCountries.m; sourceTree = "<group>"; };
 		E21123DE1C34E04F00B97FF0 /* Countries.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = Countries.sqlite; sourceTree = "<group>"; };
 		E21123EB1C34E5F600B97FF0 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
-		E25643E71C39F8A5004DD65E /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
-		E25643E81C39F8A5004DD65E /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
-		E25643E91C39F8A5004DD65E /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
-		E25643EA1C39F8A5004DD65E /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
-		E25643EB1C39F8A5004DD65E /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
-		E25643EC1C39F8A5004DD65E /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
-		E25643ED1C39F8A5004DD65E /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
-		E25643EE1C39F8A5004DD65E /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
-		E25643EF1C39F8A5004DD65E /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
-		E25643F01C39F8A5004DD65E /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
-		E25643F11C39F8A5004DD65E /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		E29A36DB21B60B080069DF78 /* fmdb.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = fmdb.xcodeproj; path = fmdb/fmdb.xcodeproj; sourceTree = "<group>"; };
 		E29C880218E25281001E165E /* BFWQuery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BFWQuery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E29C882918E25281001E165E /* BFWQueryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BFWQueryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E29C883218E25281001E165E /* BFWQueryTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BFWQueryTests-Info.plist"; sourceTree = "<group>"; };
@@ -76,6 +133,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E21123EC1C34E5F600B97FF0 /* libsqlite3.tbd in Frameworks */,
+				E29A36F321B60B250069DF78 /* FMDB.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -170,43 +228,23 @@
 		E21123EE1C34E73300B97FF0 /* Submodules */ = {
 			isa = PBXGroup;
 			children = (
-				E21123EF1C34E73300B97FF0 /* fmdb */,
+				E29A36DB21B60B080069DF78 /* fmdb.xcodeproj */,
 			);
 			path = Submodules;
 			sourceTree = "<group>";
 		};
-		E21123EF1C34E73300B97FF0 /* fmdb */ = {
+		E29A36DC21B60B080069DF78 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E21123FB1C34E73300B97FF0 /* src */,
+				E29A36E621B60B080069DF78 /* fmdb */,
+				E29A36E821B60B080069DF78 /* libFMDB.a */,
+				E29A36EA21B60B080069DF78 /* Tests.xctest */,
+				E29A36EC21B60B080069DF78 /* libFMDB-IOS.a */,
+				E29A36EE21B60B080069DF78 /* FMDB.framework */,
+				E29A36F021B60B080069DF78 /* FMDB.framework */,
+				E29A36F221B60B080069DF78 /* FMDB.framework */,
 			);
-			path = fmdb;
-			sourceTree = "<group>";
-		};
-		E21123FB1C34E73300B97FF0 /* src */ = {
-			isa = PBXGroup;
-			children = (
-				E21124071C34E73300B97FF0 /* fmdb */,
-			);
-			path = src;
-			sourceTree = "<group>";
-		};
-		E21124071C34E73300B97FF0 /* fmdb */ = {
-			isa = PBXGroup;
-			children = (
-				E25643E71C39F8A5004DD65E /* FMDatabase.h */,
-				E25643E81C39F8A5004DD65E /* FMDatabase.m */,
-				E25643E91C39F8A5004DD65E /* FMDatabaseAdditions.h */,
-				E25643EA1C39F8A5004DD65E /* FMDatabaseAdditions.m */,
-				E25643EB1C39F8A5004DD65E /* FMDatabasePool.h */,
-				E25643EC1C39F8A5004DD65E /* FMDatabasePool.m */,
-				E25643ED1C39F8A5004DD65E /* FMDatabaseQueue.h */,
-				E25643EE1C39F8A5004DD65E /* FMDatabaseQueue.m */,
-				E25643EF1C39F8A5004DD65E /* FMDB.h */,
-				E25643F01C39F8A5004DD65E /* FMResultSet.h */,
-				E25643F11C39F8A5004DD65E /* FMResultSet.m */,
-			);
-			path = fmdb;
+			name = Products;
 			sourceTree = "<group>";
 		};
 		E29C87F918E25280001E165E = {
@@ -259,10 +297,12 @@
 				E29C87FE18E25281001E165E /* Sources */,
 				E29C87FF18E25281001E165E /* Frameworks */,
 				E29C880018E25281001E165E /* Resources */,
+				E29A36F721B60B260069DF78 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				E29A36F621B60B250069DF78 /* PBXTargetDependency */,
 			);
 			name = BFWQuery;
 			productName = BFWQuery;
@@ -316,6 +356,12 @@
 			mainGroup = E29C87F918E25280001E165E;
 			productRefGroup = E29C880318E25281001E165E /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = E29A36DC21B60B080069DF78 /* Products */;
+					ProjectRef = E29A36DB21B60B080069DF78 /* fmdb.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				E29C880118E25281001E165E /* BFWQuery */,
@@ -323,6 +369,58 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		E29A36E621B60B080069DF78 /* fmdb */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = fmdb;
+			remoteRef = E29A36E521B60B080069DF78 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E29A36E821B60B080069DF78 /* libFMDB.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libFMDB.a;
+			remoteRef = E29A36E721B60B080069DF78 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E29A36EA21B60B080069DF78 /* Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = Tests.xctest;
+			remoteRef = E29A36E921B60B080069DF78 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E29A36EC21B60B080069DF78 /* libFMDB-IOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libFMDB-IOS.a";
+			remoteRef = E29A36EB21B60B080069DF78 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E29A36EE21B60B080069DF78 /* FMDB.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = FMDB.framework;
+			remoteRef = E29A36ED21B60B080069DF78 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E29A36F021B60B080069DF78 /* FMDB.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = FMDB.framework;
+			remoteRef = E29A36EF21B60B080069DF78 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E29A36F221B60B080069DF78 /* FMDB.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = FMDB.framework;
+			remoteRef = E29A36F121B60B080069DF78 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		E29C880018E25281001E165E /* Resources */ = {
@@ -354,13 +452,8 @@
 				E21123E01C34E04F00B97FF0 /* BFWAppDelegate.m in Sources */,
 				E21123E61C34E04F00B97FF0 /* BFWMasterViewController.m in Sources */,
 				E21123E41C34E04F00B97FF0 /* main.m in Sources */,
-				E25643F21C39F8A5004DD65E /* FMDatabase.m in Sources */,
-				E25643F61C39F8A5004DD65E /* FMResultSet.m in Sources */,
 				E21123E71C34E04F00B97FF0 /* BFWCountries.m in Sources */,
-				E25643F41C39F8A5004DD65E /* FMDatabasePool.m in Sources */,
-				E25643F31C39F8A5004DD65E /* FMDatabaseAdditions.m in Sources */,
 				E21123E51C34E04F00B97FF0 /* BFWQuery.m in Sources */,
-				E25643F51C39F8A5004DD65E /* FMDatabaseQueue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,6 +468,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		E29A36F621B60B250069DF78 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "FMDB iOS";
+			targetProxy = E29A36F521B60B250069DF78 /* PBXContainerItemProxy */;
+		};
 		E29C882F18E25281001E165E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = E29C880118E25281001E165E /* BFWQuery */;
@@ -519,6 +617,7 @@
 					"$(SRCROOT)/Submodules/fmdb/src",
 				);
 				INFOPLIST_FILE = BFWQuery/Launch/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.barefeetware.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -536,6 +635,7 @@
 					"$(SRCROOT)/Submodules/fmdb/src",
 				);
 				INFOPLIST_FILE = BFWQuery/Launch/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.barefeetware.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;

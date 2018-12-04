@@ -6,7 +6,7 @@
 //
 
 #import "BFWQuery.h"
-#import "FMResultSet.h"
+#import <FMDB/FMDB.h>
 #import <sqlite3.h>
 
 @implementation NSArray (BFWQuery)
