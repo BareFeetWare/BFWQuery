@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E208F19021B63A2D00FD2B24 /* FMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2AD903621B62CE6006426A0 /* FMDB.framework */; };
+		E208F19121B63A2D00FD2B24 /* FMDB.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E2AD903621B62CE6006426A0 /* FMDB.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E21123DF1C34E04F00B97FF0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E21123C81C34E04F00B97FF0 /* Main.storyboard */; };
 		E21123E01C34E04F00B97FF0 /* BFWAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E21123CB1C34E04F00B97FF0 /* BFWAppDelegate.m */; };
 		E21123E11C34E04F00B97FF0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E21123CD1C34E04F00B97FF0 /* InfoPlist.strings */; };
@@ -17,65 +19,14 @@
 		E21123E71C34E04F00B97FF0 /* BFWCountries.m in Sources */ = {isa = PBXBuildFile; fileRef = E21123DD1C34E04F00B97FF0 /* BFWCountries.m */; };
 		E21123E81C34E04F00B97FF0 /* Countries.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = E21123DE1C34E04F00B97FF0 /* Countries.sqlite */; };
 		E21123EC1C34E5F600B97FF0 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E21123EB1C34E5F600B97FF0 /* libsqlite3.tbd */; };
-		E29A36F321B60B250069DF78 /* FMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E29A36EE21B60B080069DF78 /* FMDB.framework */; };
-		E29A36F421B60B250069DF78 /* FMDB.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E29A36EE21B60B080069DF78 /* FMDB.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E29C883518E25281001E165E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E29C883318E25281001E165E /* InfoPlist.strings */; };
 		E29C883718E25281001E165E /* BFWQueryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E29C883618E25281001E165E /* BFWQueryTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		E29A36E521B60B080069DF78 /* PBXContainerItemProxy */ = {
+		E208F19221B63A2D00FD2B24 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = E29A36DB21B60B080069DF78 /* fmdb.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 8DD76FA10486AA7600D96B5E;
-			remoteInfo = fmdb;
-		};
-		E29A36E721B60B080069DF78 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E29A36DB21B60B080069DF78 /* fmdb.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = EE4290EF12B42F870088BD94;
-			remoteInfo = FMDB;
-		};
-		E29A36E921B60B080069DF78 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E29A36DB21B60B080069DF78 /* fmdb.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = BF5D041618416BB2008C5AA9;
-			remoteInfo = Tests;
-		};
-		E29A36EB21B60B080069DF78 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E29A36DB21B60B080069DF78 /* fmdb.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 6290CBB5188FE836009790F8;
-			remoteInfo = "FMDB-IOS";
-		};
-		E29A36ED21B60B080069DF78 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E29A36DB21B60B080069DF78 /* fmdb.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 83C73EFE1C326AB000FFC730;
-			remoteInfo = "FMDB iOS";
-		};
-		E29A36EF21B60B080069DF78 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E29A36DB21B60B080069DF78 /* fmdb.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 83C73F0B1C326ADA00FFC730;
-			remoteInfo = "FMDB MacOS";
-		};
-		E29A36F121B60B080069DF78 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E29A36DB21B60B080069DF78 /* fmdb.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 2CD2426D1FCC09CA00479FDE;
-			remoteInfo = "FMDB watchOS";
-		};
-		E29A36F521B60B250069DF78 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E29A36DB21B60B080069DF78 /* fmdb.xcodeproj */;
+			containerPortal = E2AD902321B62CE6006426A0 /* fmdb.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 83C73EFD1C326AB000FFC730;
 			remoteInfo = "FMDB iOS";
@@ -87,6 +38,55 @@
 			remoteGlobalIDString = E29C880118E25281001E165E;
 			remoteInfo = BFWQuery;
 		};
+		E2AD902D21B62CE6006426A0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E2AD902321B62CE6006426A0 /* fmdb.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8DD76FA10486AA7600D96B5E;
+			remoteInfo = fmdb;
+		};
+		E2AD902F21B62CE6006426A0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E2AD902321B62CE6006426A0 /* fmdb.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EE4290EF12B42F870088BD94;
+			remoteInfo = FMDB;
+		};
+		E2AD903121B62CE6006426A0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E2AD902321B62CE6006426A0 /* fmdb.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BF5D041618416BB2008C5AA9;
+			remoteInfo = Tests;
+		};
+		E2AD903321B62CE6006426A0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E2AD902321B62CE6006426A0 /* fmdb.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6290CBB5188FE836009790F8;
+			remoteInfo = "FMDB-IOS";
+		};
+		E2AD903521B62CE6006426A0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E2AD902321B62CE6006426A0 /* fmdb.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 83C73EFE1C326AB000FFC730;
+			remoteInfo = "FMDB iOS";
+		};
+		E2AD903721B62CE6006426A0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E2AD902321B62CE6006426A0 /* fmdb.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 83C73F0B1C326ADA00FFC730;
+			remoteInfo = "FMDB MacOS";
+		};
+		E2AD903921B62CE6006426A0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E2AD902321B62CE6006426A0 /* fmdb.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2CD2426D1FCC09CA00479FDE;
+			remoteInfo = "FMDB watchOS";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -96,7 +96,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				E29A36F421B60B250069DF78 /* FMDB.framework in Embed Frameworks */,
+				E208F19121B63A2D00FD2B24 /* FMDB.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -119,12 +119,12 @@
 		E21123DD1C34E04F00B97FF0 /* BFWCountries.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFWCountries.m; sourceTree = "<group>"; };
 		E21123DE1C34E04F00B97FF0 /* Countries.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = Countries.sqlite; sourceTree = "<group>"; };
 		E21123EB1C34E5F600B97FF0 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
-		E29A36DB21B60B080069DF78 /* fmdb.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = fmdb.xcodeproj; path = fmdb/fmdb.xcodeproj; sourceTree = "<group>"; };
 		E29C880218E25281001E165E /* BFWQuery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BFWQuery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E29C882918E25281001E165E /* BFWQueryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BFWQueryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E29C883218E25281001E165E /* BFWQueryTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BFWQueryTests-Info.plist"; sourceTree = "<group>"; };
 		E29C883418E25281001E165E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E29C883618E25281001E165E /* BFWQueryTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BFWQueryTests.m; sourceTree = "<group>"; };
+		E2AD902321B62CE6006426A0 /* fmdb.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = fmdb.xcodeproj; path = FMDB/fmdb.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,7 +133,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E21123EC1C34E5F600B97FF0 /* libsqlite3.tbd in Frameworks */,
-				E29A36F321B60B250069DF78 /* FMDB.framework in Frameworks */,
+				E208F19021B63A2D00FD2B24 /* FMDB.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,23 +228,9 @@
 		E21123EE1C34E73300B97FF0 /* Submodules */ = {
 			isa = PBXGroup;
 			children = (
-				E29A36DB21B60B080069DF78 /* fmdb.xcodeproj */,
+				E2AD902321B62CE6006426A0 /* fmdb.xcodeproj */,
 			);
 			path = Submodules;
-			sourceTree = "<group>";
-		};
-		E29A36DC21B60B080069DF78 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				E29A36E621B60B080069DF78 /* fmdb */,
-				E29A36E821B60B080069DF78 /* libFMDB.a */,
-				E29A36EA21B60B080069DF78 /* Tests.xctest */,
-				E29A36EC21B60B080069DF78 /* libFMDB-IOS.a */,
-				E29A36EE21B60B080069DF78 /* FMDB.framework */,
-				E29A36F021B60B080069DF78 /* FMDB.framework */,
-				E29A36F221B60B080069DF78 /* FMDB.framework */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		E29C87F918E25280001E165E = {
@@ -287,6 +273,20 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		E2AD902421B62CE6006426A0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E2AD902E21B62CE6006426A0 /* fmdb */,
+				E2AD903021B62CE6006426A0 /* libFMDB.a */,
+				E2AD903221B62CE6006426A0 /* Tests.xctest */,
+				E2AD903421B62CE6006426A0 /* libFMDB-IOS.a */,
+				E2AD903621B62CE6006426A0 /* FMDB.framework */,
+				E2AD903821B62CE6006426A0 /* FMDB.framework */,
+				E2AD903A21B62CE6006426A0 /* FMDB.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -302,7 +302,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				E29A36F621B60B250069DF78 /* PBXTargetDependency */,
+				E208F19321B63A2D00FD2B24 /* PBXTargetDependency */,
 			);
 			name = BFWQuery;
 			productName = BFWQuery;
@@ -358,8 +358,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = E29A36DC21B60B080069DF78 /* Products */;
-					ProjectRef = E29A36DB21B60B080069DF78 /* fmdb.xcodeproj */;
+					ProductGroup = E2AD902421B62CE6006426A0 /* Products */;
+					ProjectRef = E2AD902321B62CE6006426A0 /* fmdb.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -371,53 +371,53 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		E29A36E621B60B080069DF78 /* fmdb */ = {
+		E2AD902E21B62CE6006426A0 /* fmdb */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.executable";
 			path = fmdb;
-			remoteRef = E29A36E521B60B080069DF78 /* PBXContainerItemProxy */;
+			remoteRef = E2AD902D21B62CE6006426A0 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		E29A36E821B60B080069DF78 /* libFMDB.a */ = {
+		E2AD903021B62CE6006426A0 /* libFMDB.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libFMDB.a;
-			remoteRef = E29A36E721B60B080069DF78 /* PBXContainerItemProxy */;
+			remoteRef = E2AD902F21B62CE6006426A0 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		E29A36EA21B60B080069DF78 /* Tests.xctest */ = {
+		E2AD903221B62CE6006426A0 /* Tests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = Tests.xctest;
-			remoteRef = E29A36E921B60B080069DF78 /* PBXContainerItemProxy */;
+			remoteRef = E2AD903121B62CE6006426A0 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		E29A36EC21B60B080069DF78 /* libFMDB-IOS.a */ = {
+		E2AD903421B62CE6006426A0 /* libFMDB-IOS.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = "libFMDB-IOS.a";
-			remoteRef = E29A36EB21B60B080069DF78 /* PBXContainerItemProxy */;
+			remoteRef = E2AD903321B62CE6006426A0 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		E29A36EE21B60B080069DF78 /* FMDB.framework */ = {
+		E2AD903621B62CE6006426A0 /* FMDB.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = FMDB.framework;
-			remoteRef = E29A36ED21B60B080069DF78 /* PBXContainerItemProxy */;
+			remoteRef = E2AD903521B62CE6006426A0 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		E29A36F021B60B080069DF78 /* FMDB.framework */ = {
+		E2AD903821B62CE6006426A0 /* FMDB.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = FMDB.framework;
-			remoteRef = E29A36EF21B60B080069DF78 /* PBXContainerItemProxy */;
+			remoteRef = E2AD903721B62CE6006426A0 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		E29A36F221B60B080069DF78 /* FMDB.framework */ = {
+		E2AD903A21B62CE6006426A0 /* FMDB.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = FMDB.framework;
-			remoteRef = E29A36F121B60B080069DF78 /* PBXContainerItemProxy */;
+			remoteRef = E2AD903921B62CE6006426A0 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -468,10 +468,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		E29A36F621B60B250069DF78 /* PBXTargetDependency */ = {
+		E208F19321B63A2D00FD2B24 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "FMDB iOS";
-			targetProxy = E29A36F521B60B250069DF78 /* PBXContainerItemProxy */;
+			targetProxy = E208F19221B63A2D00FD2B24 /* PBXContainerItemProxy */;
 		};
 		E29C882F18E25281001E165E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
