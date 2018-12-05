@@ -10,6 +10,5 @@
 #define BFWQuery_Bridging_Header_h
 
 #import <fmdb/FMDB.h>
-#import "BFWQuery.h"
 
 #endif /* BFWQuery_Bridging_Header_h */

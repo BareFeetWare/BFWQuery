@@ -14,7 +14,7 @@
 		E21123E11C34E04F00B97FF0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E21123CD1C34E04F00B97FF0 /* InfoPlist.strings */; };
 		E21123E21C34E04F00B97FF0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E21123CF1C34E04F00B97FF0 /* Images.xcassets */; };
 		E21123E41C34E04F00B97FF0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E21123D11C34E04F00B97FF0 /* main.m */; };
-		E21123E51C34E04F00B97FF0 /* BFWQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = E21123D61C34E04F00B97FF0 /* BFWQuery.m */; };
+		E21123E51C34E04F00B97FF0 /* BFWQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21123D61C34E04F00B97FF0 /* BFWQuery.swift */; };
 		E21123E61C34E04F00B97FF0 /* BFWMasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21123DA1C34E04F00B97FF0 /* BFWMasterViewController.swift */; };
 		E21123E71C34E04F00B97FF0 /* BFWCountries.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21123DD1C34E04F00B97FF0 /* BFWCountries.swift */; };
 		E21123E81C34E04F00B97FF0 /* Countries.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = E21123DE1C34E04F00B97FF0 /* Countries.sqlite */; };
@@ -111,8 +111,7 @@
 		E21123CF1C34E04F00B97FF0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E21123D01C34E04F00B97FF0 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E21123D11C34E04F00B97FF0 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		E21123D51C34E04F00B97FF0 /* BFWQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFWQuery.h; sourceTree = "<group>"; };
-		E21123D61C34E04F00B97FF0 /* BFWQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFWQuery.m; sourceTree = "<group>"; };
+		E21123D61C34E04F00B97FF0 /* BFWQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BFWQuery.swift; sourceTree = "<group>"; };
 		E21123DA1C34E04F00B97FF0 /* BFWMasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BFWMasterViewController.swift; sourceTree = "<group>"; };
 		E21123DD1C34E04F00B97FF0 /* BFWCountries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BFWCountries.swift; sourceTree = "<group>"; };
 		E21123DE1C34E04F00B97FF0 /* Countries.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = Countries.sqlite; sourceTree = "<group>"; };
@@ -182,8 +181,7 @@
 		E21123D41C34E04F00B97FF0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E21123D51C34E04F00B97FF0 /* BFWQuery.h */,
-				E21123D61C34E04F00B97FF0 /* BFWQuery.m */,
+				E21123D61C34E04F00B97FF0 /* BFWQuery.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -451,7 +449,7 @@
 				E21123E61C34E04F00B97FF0 /* BFWMasterViewController.swift in Sources */,
 				E21123E41C34E04F00B97FF0 /* main.m in Sources */,
 				E21123E71C34E04F00B97FF0 /* BFWCountries.swift in Sources */,
-				E21123E51C34E04F00B97FF0 /* BFWQuery.m in Sources */,
+				E21123E51C34E04F00B97FF0 /* BFWQuery.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

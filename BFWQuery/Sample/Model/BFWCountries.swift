@@ -16,7 +16,7 @@ class BFWCountries {
 
     lazy var database: BFWDatabase = {
 		let database = BFWDatabase(path: databasePath)
-		database.open()
+		_ = database.open()
         return database
     }()
 

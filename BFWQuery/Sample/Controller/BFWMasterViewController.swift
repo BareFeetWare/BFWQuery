@@ -49,9 +49,9 @@ class BFWMasterViewController: UITableViewController, UISearchBarDelegate {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        let rowDictionary = query.resultArray?.dictionary(atRow: UInt(indexPath.row))
-        cell.textLabel?.text = rowDictionary?["Name"] as? String
-        cell.detailTextLabel?.text = rowDictionary?["Code"] as? String
+        let rowDictionary = query.resultArray.dictionary(atRow: indexPath.row)
+        cell.textLabel?.text = rowDictionary.object(forKey: "Name") as? String
+        cell.detailTextLabel?.text = rowDictionary.object(forKey: "Code") as? String
         return cell
     }
     

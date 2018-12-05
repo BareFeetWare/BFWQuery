@@ -7,7 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "BFWQuery.h"
+#import "BFWQuery-Swift.h"
 #import "BFWCountries.h"
 
 @interface BFWQueryTests : XCTestCase
