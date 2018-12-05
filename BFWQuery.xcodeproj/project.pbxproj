@@ -25,8 +25,17 @@
 		E21123E71C34E04F00B97FF0 /* BFWCountries.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21123DD1C34E04F00B97FF0 /* BFWCountries.swift */; };
 		E21123E81C34E04F00B97FF0 /* Countries.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = E21123DE1C34E04F00B97FF0 /* Countries.sqlite */; };
 		E21123EC1C34E5F600B97FF0 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E21123EB1C34E5F600B97FF0 /* libsqlite3.tbd */; };
+		E2405D1321B8814200A7F01B /* BFWCountries.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21123DD1C34E04F00B97FF0 /* BFWCountries.swift */; };
+		E2405D4D21B8880C00A7F01B /* BFWDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E208F1A721B8782700FD2B24 /* BFWDatabase.swift */; };
+		E2405D4E21B8884800A7F01B /* FMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2AD903621B62CE6006426A0 /* FMDB.framework */; };
+		E2405D4F21B888BD00A7F01B /* BFWQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21123D61C34E04F00B97FF0 /* BFWQuery.swift */; };
+		E2405D5021B888E400A7F01B /* BFWResultArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = E208F1AB21B878DA00FD2B24 /* BFWResultArray.swift */; };
+		E2405D5121B888EA00A7F01B /* Array+joined.swift in Sources */ = {isa = PBXBuildFile; fileRef = E208F1A321B8775E00FD2B24 /* Array+joined.swift */; };
+		E2405D5221B888EA00A7F01B /* BFWResultDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E208F1AD21B8791C00FD2B24 /* BFWResultDictionary.swift */; };
+		E2405D5321B888EA00A7F01B /* Dictionary+case.swift in Sources */ = {isa = PBXBuildFile; fileRef = E208F1A521B877BC00FD2B24 /* Dictionary+case.swift */; };
+		E2405D5421B888EA00A7F01B /* FMResultSet+ColumnType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E208F1A921B8787C00FD2B24 /* FMResultSet+ColumnType.swift */; };
 		E29C883518E25281001E165E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E29C883318E25281001E165E /* InfoPlist.strings */; };
-		E29C883718E25281001E165E /* BFWQueryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E29C883618E25281001E165E /* BFWQueryTests.m */; };
+		E29C883718E25281001E165E /* BFWQueryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29C883618E25281001E165E /* BFWQueryTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -128,12 +137,11 @@
 		E21123DD1C34E04F00B97FF0 /* BFWCountries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BFWCountries.swift; sourceTree = "<group>"; };
 		E21123DE1C34E04F00B97FF0 /* Countries.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = Countries.sqlite; sourceTree = "<group>"; };
 		E21123EB1C34E5F600B97FF0 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
-		E29A370C21B624AB0069DF78 /* BFWQuery-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BFWQuery-Bridging-Header.h"; sourceTree = "<group>"; };
 		E29C880218E25281001E165E /* BFWQuery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BFWQuery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E29C882918E25281001E165E /* BFWQueryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BFWQueryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E29C883218E25281001E165E /* BFWQueryTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BFWQueryTests-Info.plist"; sourceTree = "<group>"; };
 		E29C883418E25281001E165E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		E29C883618E25281001E165E /* BFWQueryTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BFWQueryTests.m; sourceTree = "<group>"; };
+		E29C883618E25281001E165E /* BFWQueryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BFWQueryTests.swift; sourceTree = "<group>"; };
 		E2AD902321B62CE6006426A0 /* fmdb.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = fmdb.xcodeproj; path = FMDB/fmdb.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -151,6 +159,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2405D4E21B8884800A7F01B /* FMDB.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -162,7 +171,6 @@
 			children = (
 				E21123CA1C34E04F00B97FF0 /* BFWAppDelegate.h */,
 				E21123CB1C34E04F00B97FF0 /* BFWAppDelegate.m */,
-				E29A370C21B624AB0069DF78 /* BFWQuery-Bridging-Header.h */,
 				E21123CF1C34E04F00B97FF0 /* Images.xcassets */,
 				E21123D01C34E04F00B97FF0 /* Info.plist */,
 				E21123CD1C34E04F00B97FF0 /* InfoPlist.strings */,
@@ -272,7 +280,7 @@
 		E29C883018E25281001E165E /* BFWQueryTests */ = {
 			isa = PBXGroup;
 			children = (
-				E29C883618E25281001E165E /* BFWQueryTests.m */,
+				E29C883618E25281001E165E /* BFWQueryTests.swift */,
 				E29C883118E25281001E165E /* Supporting Files */,
 			);
 			path = BFWQueryTests;
@@ -481,7 +489,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E29C883718E25281001E165E /* BFWQueryTests.m in Sources */,
+				E2405D5221B888EA00A7F01B /* BFWResultDictionary.swift in Sources */,
+				E2405D5421B888EA00A7F01B /* FMResultSet+ColumnType.swift in Sources */,
+				E2405D5121B888EA00A7F01B /* Array+joined.swift in Sources */,
+				E2405D1321B8814200A7F01B /* BFWCountries.swift in Sources */,
+				E29C883718E25281001E165E /* BFWQueryTests.swift in Sources */,
+				E2405D4F21B888BD00A7F01B /* BFWQuery.swift in Sources */,
+				E2405D5321B888EA00A7F01B /* Dictionary+case.swift in Sources */,
+				E2405D5021B888E400A7F01B /* BFWResultArray.swift in Sources */,
+				E2405D4D21B8880C00A7F01B /* BFWDatabase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -643,7 +659,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.barefeetware.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "BFWQuery/Launch/BFWQuery-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -662,7 +677,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.barefeetware.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "BFWQuery/Launch/BFWQuery-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
