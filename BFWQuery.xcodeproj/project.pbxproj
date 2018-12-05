@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		E208F19021B63A2D00FD2B24 /* FMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2AD903621B62CE6006426A0 /* FMDB.framework */; };
 		E208F19121B63A2D00FD2B24 /* FMDB.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E2AD903621B62CE6006426A0 /* FMDB.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E208F1A421B8775E00FD2B24 /* Array+joined.swift in Sources */ = {isa = PBXBuildFile; fileRef = E208F1A321B8775E00FD2B24 /* Array+joined.swift */; };
+		E208F1A621B877BC00FD2B24 /* Dictionary+case.swift in Sources */ = {isa = PBXBuildFile; fileRef = E208F1A521B877BC00FD2B24 /* Dictionary+case.swift */; };
+		E208F1A821B8782700FD2B24 /* BFWDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E208F1A721B8782700FD2B24 /* BFWDatabase.swift */; };
+		E208F1AA21B8787C00FD2B24 /* FMResultSet+ColumnType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E208F1A921B8787C00FD2B24 /* FMResultSet+ColumnType.swift */; };
+		E208F1AC21B878DA00FD2B24 /* BFWResultArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = E208F1AB21B878DA00FD2B24 /* BFWResultArray.swift */; };
+		E208F1AE21B8791C00FD2B24 /* BFWResultDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E208F1AD21B8791C00FD2B24 /* BFWResultDictionary.swift */; };
 		E21123DF1C34E04F00B97FF0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E21123C81C34E04F00B97FF0 /* Main.storyboard */; };
 		E21123E01C34E04F00B97FF0 /* BFWAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E21123CB1C34E04F00B97FF0 /* BFWAppDelegate.m */; };
 		E21123E11C34E04F00B97FF0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E21123CD1C34E04F00B97FF0 /* InfoPlist.strings */; };
@@ -104,6 +110,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E208F1A321B8775E00FD2B24 /* Array+joined.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+joined.swift"; sourceTree = "<group>"; };
+		E208F1A521B877BC00FD2B24 /* Dictionary+case.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+case.swift"; sourceTree = "<group>"; };
+		E208F1A721B8782700FD2B24 /* BFWDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BFWDatabase.swift; sourceTree = "<group>"; };
+		E208F1A921B8787C00FD2B24 /* FMResultSet+ColumnType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FMResultSet+ColumnType.swift"; sourceTree = "<group>"; };
+		E208F1AB21B878DA00FD2B24 /* BFWResultArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BFWResultArray.swift; sourceTree = "<group>"; };
+		E208F1AD21B8791C00FD2B24 /* BFWResultDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BFWResultDictionary.swift; sourceTree = "<group>"; };
 		E21123C91C34E04F00B97FF0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E21123CA1C34E04F00B97FF0 /* BFWAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFWAppDelegate.h; sourceTree = "<group>"; };
 		E21123CB1C34E04F00B97FF0 /* BFWAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFWAppDelegate.m; sourceTree = "<group>"; };
@@ -181,7 +193,13 @@
 		E21123D41C34E04F00B97FF0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E208F1A321B8775E00FD2B24 /* Array+joined.swift */,
+				E208F1A721B8782700FD2B24 /* BFWDatabase.swift */,
 				E21123D61C34E04F00B97FF0 /* BFWQuery.swift */,
+				E208F1AB21B878DA00FD2B24 /* BFWResultArray.swift */,
+				E208F1AD21B8791C00FD2B24 /* BFWResultDictionary.swift */,
+				E208F1A521B877BC00FD2B24 /* Dictionary+case.swift */,
+				E208F1A921B8787C00FD2B24 /* FMResultSet+ColumnType.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -445,11 +463,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E208F1A821B8782700FD2B24 /* BFWDatabase.swift in Sources */,
+				E208F1AA21B8787C00FD2B24 /* FMResultSet+ColumnType.swift in Sources */,
 				E21123E01C34E04F00B97FF0 /* BFWAppDelegate.m in Sources */,
 				E21123E61C34E04F00B97FF0 /* BFWMasterViewController.swift in Sources */,
+				E208F1AE21B8791C00FD2B24 /* BFWResultDictionary.swift in Sources */,
 				E21123E41C34E04F00B97FF0 /* main.m in Sources */,
+				E208F1A421B8775E00FD2B24 /* Array+joined.swift in Sources */,
 				E21123E71C34E04F00B97FF0 /* BFWCountries.swift in Sources */,
 				E21123E51C34E04F00B97FF0 /* BFWQuery.swift in Sources */,
+				E208F1AC21B878DA00FD2B24 /* BFWResultArray.swift in Sources */,
+				E208F1A621B877BC00FD2B24 /* Dictionary+case.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
