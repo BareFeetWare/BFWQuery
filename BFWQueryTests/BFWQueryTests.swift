@@ -50,7 +50,7 @@ create table Test
 """
                 success = database.executeUpdate(createTableSql, withArgumentsIn: [])
                 if success {
-                    for rowN in 0 ..< 100000 {
+                    for rowN in 0 ..< 100 {
                         if success {
                             do {
                                 try database.insertIntoTable("Test",

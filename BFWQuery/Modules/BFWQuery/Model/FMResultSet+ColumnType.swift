@@ -10,9 +10,9 @@ import Foundation
 import FMDB
 import SQLite3
 
-extension FMResultSet {
+public extension FMResultSet {
     
-    func columnType(forIndex index: Int) -> String {
+    public func columnType(forIndex index: Int) -> String {
         let columnType: String
         let opaqueStatement = OpaquePointer(statement!.statement)
         if let columnTypeC = sqlite3_column_decltype(opaqueStatement, Int32(index)) {

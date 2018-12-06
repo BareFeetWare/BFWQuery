@@ -1,5 +1,5 @@
 //
-//  BFWMasterViewController.swift
+//  CountriesViewController.swift
 //  BFWQuery
 //
 //  Created by Tom Brodhurst-Hill on 26/03/2014.
@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import BFWQuery
 
-class BFWMasterViewController: UITableViewController, UISearchBarDelegate {
+class CountriesViewController: UITableViewController, UISearchBarDelegate {
     
     // MARK: - IBOutlets
     

@@ -9,31 +9,31 @@
 import Foundation
 import FMDB
 
-class BFWResultArray {
+open class BFWResultArray {
     
-    weak var query: BFWQuery!
+    open weak var query: BFWQuery!
     
     init(query: BFWQuery) {
         self.query = query
     }
     
-    var columnCount: Int {
+    open var columnCount: Int {
         return query.columnCount
     }
     
-    func dictionary(atRow row: Int) -> BFWResultDictionary {
+    open func dictionary(atRow row: Int) -> BFWResultDictionary {
         return BFWResultDictionary(resultArray: self, row:row)
     }
     
-    func object(atRow row: Int,
-                columnIndex: Int) -> Any?
+    open func object(atRow row: Int,
+                     columnIndex: Int) -> Any?
     {
         query.currentRow = row
         return query.resultSet.object(forColumnIndex: Int32(columnIndex))
     }
     
-    func object(atRow row: Int,
-                columnName: String) -> Any?
+    open func object(atRow row: Int,
+                     columnName: String) -> Any?
     {
         query.currentRow = row
         var object = query.resultSet.object(forColumn: columnName)
@@ -45,11 +45,11 @@ class BFWResultArray {
     
     // MARK: - NSArray
     
-    func object(atIndex index: Int) -> Any {
+    open func object(atIndex index: Int) -> Any {
         return dictionary(atRow: index)
     }
     
-    var count: Int {
+    open var count: Int {
         return query!.rowCount
     }
     

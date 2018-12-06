@@ -9,11 +9,11 @@
 import Foundation
 import FMDB
 
-class BFWDatabase: FMDatabase {
+open class BFWDatabase: FMDatabase {
     
     // MARK: - Open
     
-    override func open() -> Bool {
+    open override func open() -> Bool {
         let success = super.open()
         if success {
             executeStatements("pragma foreign_keys = ON")
@@ -23,7 +23,7 @@ class BFWDatabase: FMDatabase {
     
     // MARK: - Introspection
     
-    func columnNamesInTable(_ tableName: String) -> [String] {
+    open func columnNamesInTable(_ tableName: String) -> [String] {
         let resultSet = try! executeQuery("pragma table_info('\(tableName)')", values: nil)
         var columnNames = [String]()
         while resultSet.next() {
@@ -34,13 +34,13 @@ class BFWDatabase: FMDatabase {
     
     // MARK: - insert, delete, update
     
-    func insertIntoTable(_ table: String, rowDict: [String : Any]) throws {
+    open func insertIntoTable(_ table: String, rowDict: [String : Any]) throws {
         return try insertIntoTable(table, rowDict: rowDict, conflictAction: nil)
     }
     
-    func insertIntoTable(_ table: String,
-                         rowDict: [String : Any],
-                         conflictAction: String?) throws // ignore or replace
+    open func insertIntoTable(_ table: String,
+                              rowDict: [String : Any],
+                              conflictAction: String?) throws // ignore or replace
     {
         let insertString = ["insert", conflictAction].compactMap { $0 }.joined(separator: " or ")
         let sqlDict = type(of: self).sqlDictFromRowDict(rowDict, assignListSeparator: nil)
@@ -48,10 +48,10 @@ class BFWDatabase: FMDatabase {
         try executeUpdate(queryString, values: sqlDict["arguments"] as? [Any])
     }
     
-    func insertIntoTable(_ table: String,
-                         sourceDictArray: [[String : Any]],
-                         columnKeyPathMap: [String : String],
-                         conflictAction: String) throws
+    open func insertIntoTable(_ table: String,
+                              sourceDictArray: [[String : Any]],
+                              columnKeyPathMap: [String : String],
+                              conflictAction: String) throws
     {
         let columns = columnNamesInTable(table)
         #if DEBUG
@@ -78,8 +78,8 @@ class BFWDatabase: FMDatabase {
         }
     }
     
-    func deleteFromTable(_ table: String,
-                         whereDict: [String : Any]) -> Bool
+    open func deleteFromTable(_ table: String,
+                              whereDict: [String : Any]) -> Bool
     {
         let whereSqlDict = type(of: self).sqlDictFromRowDict(whereDict, assignListSeparator: " and ")
         let queryString = "delete from \"\(table)\" where \(whereSqlDict["assign"] as! String)"
@@ -87,9 +87,9 @@ class BFWDatabase: FMDatabase {
         return success
     }
     
-    func updateTable(_ table: String,
-                     rowDict: [String : Any],
-                     whereDict: [String : Any]) -> Bool
+    open func updateTable(_ table: String,
+                          rowDict: [String : Any],
+                          whereDict: [String : Any]) -> Bool
     {
         let rowSqlDict = type(of: self).sqlDictFromRowDict(rowDict, assignListSeparator: ", ")
         let whereSqlDict = type(of: self).sqlDictFromRowDict(whereDict, assignListSeparator: " and ")
@@ -102,7 +102,7 @@ class BFWDatabase: FMDatabase {
     
     // MARK: - SQL construction
     
-    static func placeholdersStringForCount(_ count: Int) -> String {
+    public static func placeholdersStringForCount(_ count: Int) -> String {
         var placeholders = [String]()
         for _ in 0 ..< count {
             placeholders.append("?")
@@ -112,8 +112,8 @@ class BFWDatabase: FMDatabase {
     }
     
     /// Returns a dictionary with ["columns" : "columnName1", ..., "placeholders" : "?", ..., "arguments" : [value1, ...]]
-    static func sqlDictFromRowDict(_ rowDict: [String : Any],
-                                   assignListSeparator: String?) -> [String : Any]
+    public static func sqlDictFromRowDict(_ rowDict: [String : Any],
+                                          assignListSeparator: String?) -> [String : Any]
     {
         var assignArray = [String]()
         var arguments = [Any]()
@@ -134,9 +134,9 @@ class BFWDatabase: FMDatabase {
         return sqlDict
     }
     
-    static func stringForValue(_ value: Any?,
-                               usingNullString nullString: String,
-                               quoteMark: String) -> String
+    public static func stringForValue(_ value: Any?,
+                                      usingNullString nullString: String,
+                                      quoteMark: String) -> String
     {
         let quotedQuote = "\(quoteMark)\(quoteMark)"
         let string: String

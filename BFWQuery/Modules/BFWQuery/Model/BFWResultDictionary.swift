@@ -9,28 +9,28 @@
 import Foundation
 import FMDB
 
-class BFWResultDictionary {
+open class BFWResultDictionary {
     
     // TODO: Check for retain cycle
-    var resultArray: BFWResultArray
-    var row: Int
+    open var resultArray: BFWResultArray
+    open var row: Int
     
     init(resultArray: BFWResultArray, row: Int) {
         self.resultArray = resultArray
         self.row = row
     }
     
-    func object(atIndex index: Int) -> Any? {
+    open func object(atIndex index: Int) -> Any? {
         return resultArray.object(atRow: row, columnIndex: index)
     }
     
-    func object(atIndexedSubscript index: Int) -> Any? {
+    open func object(atIndexedSubscript index: Int) -> Any? {
         return object(atIndex: index)
     }
     
     // MARK: - NSDictionary
     
-    func object(forKey key: String) -> Any? {
+    open func object(forKey key: String) -> Any? {
         return resultArray.object(atRow: row, columnName: key)
     }
     
@@ -48,7 +48,7 @@ class BFWResultDictionary {
         return allKeys
     }()
     
-    var count: Int { // count the non null/nil values
+    open var count: Int { // count the non null/nil values
         return allKeys.count
     }
     

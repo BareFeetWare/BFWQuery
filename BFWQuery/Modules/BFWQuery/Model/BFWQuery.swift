@@ -8,20 +8,20 @@
 import Foundation
 import FMDB
 
-class BFWQuery {
+open class BFWQuery {
     
-    var database: BFWDatabase
-    var queryString: String
-    var arguments: Any?
+    open var database: BFWDatabase
+    open var queryString: String
+    open var arguments: Any?
     
-    var tableName: String? // if querying a single table or view
+    open var tableName: String? // if querying a single table or view
     
     // MARK: - Init
     
     /// Designated initializer
-    init(database: BFWDatabase,
-         queryString: String,
-         arguments: Any?)
+    public init(database: BFWDatabase,
+                queryString: String,
+                arguments: Any?)
     {
         self.database = database
         self.queryString = queryString
@@ -29,16 +29,16 @@ class BFWQuery {
         self.currentRow = -1
     }
     
-    convenience init(database: BFWDatabase,
-                     table tableName: String)
+    public convenience init(database: BFWDatabase,
+                            table tableName: String)
     {
         self.init(database:database, table: tableName, columns: nil, whereDict: nil)
     }
     
-    convenience init(database: BFWDatabase,
-                     table tableName: String,
-                     columns columnNames: [String]?,
-                     whereDict: [String: Any]?)
+    public convenience init(database: BFWDatabase,
+                            table tableName: String,
+                            columns columnNames: [String]?,
+                            whereDict: [String: Any]?)
     {
         var whereString = ""
         var arguments: [Any]?
@@ -58,7 +58,7 @@ class BFWQuery {
     
     // MARK: - Query
     
-    var sqlString: String {
+    open var sqlString: String {
         let components = queryString.components(separatedBy: "?")
         var descriptionArray = [String]()
         let arguments = self.arguments as! [Any]
@@ -81,7 +81,7 @@ class BFWQuery {
     
     private var _resultSet: FMResultSet?
     
-    var resultSet: FMResultSet {
+    open var resultSet: FMResultSet {
         if _resultSet == nil {
             if let arguments = arguments as? [String : Any] {
                 _resultSet = database.executeQuery(queryString,
@@ -100,7 +100,7 @@ class BFWQuery {
     
     private var _currentRow = -1
     
-    var currentRow: Int {
+    open var currentRow: Int {
         get {
             return _currentRow
         }
@@ -117,7 +117,7 @@ class BFWQuery {
     
     private var _rowCount = -1
     
-    var rowCount: Int {
+    open var rowCount: Int {
         if _rowCount == -1 {
             while resultSet.next() {
                 _currentRow += 1
@@ -128,19 +128,19 @@ class BFWQuery {
         return _rowCount
     }
     
-    func resetStatement() {
+    open func resetStatement() {
         resultSet.statement?.reset()
         //TODO: why doesn't above work?
         _resultSet = nil
         _currentRow = -1
     }
     
-    func reload() {
+    open func reload() {
         _rowCount = -1
         resetStatement()
     }
     
-    func object(atRow row: Int, columnIndex: Int) -> Any? {
+    open func object(atRow row: Int, columnIndex: Int) -> Any? {
         currentRow = row
         var object = resultSet.object(forColumnIndex: Int32(columnIndex))
         if object is NSNull {
@@ -150,17 +150,17 @@ class BFWQuery {
         return object
     }
     
-    lazy var resultArray: BFWResultArray = {
+    open lazy var resultArray: BFWResultArray = {
         return BFWResultArray(query: self)
     }()
     
     // MARK: - Introspection
     
-    var columnCount: Int {
+    open var columnCount: Int {
         return Int(resultSet.columnCount)
     }
     
-    lazy var columnDictArray: [[String : String]] = {
+    open lazy var columnDictArray: [[String : String]] = {
         var columnDictArray = [[String : String]]()
         for columnN in 0 ..< resultSet.columnCount {
             let columnType = resultSet.columnType(forIndex: Int(columnN))
@@ -173,19 +173,19 @@ class BFWQuery {
         return columnDictArray
     }()
     
-    var columnNames: [String] {
+    open var columnNames: [String] {
         return columnDictArray.map { $0["name"]! }
     }
     
     // MARK: - Caching
     
-    lazy var cacheDatabase: BFWDatabase = { // different database connection since different resultSet
+    open lazy var cacheDatabase: BFWDatabase = { // different database connection since different resultSet
         let cacheDatabase = BFWDatabase(path: database.databasePath)
         _ = cacheDatabase.open()
         return cacheDatabase
     }()
     
-    var cacheQuotedTableName: String {
+    open var cacheQuotedTableName: String {
         let unquotedQueryString = queryString.replacingOccurrences(of: "\"", with: "")
         let cacheQuotedTableName = "\"BFW Cache \(unquotedQueryString)\""
         return cacheQuotedTableName
@@ -195,7 +195,7 @@ class BFWQuery {
     
     // MARK: - NSObject
     
-    var description: String {
+    open var description: String {
         return sqlString
     }
     
