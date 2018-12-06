@@ -29,8 +29,6 @@
 		E2405E0121B8D80B00A7F01B /* BFWCountries.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2405DFF21B8D80B00A7F01B /* BFWCountries.swift */; };
 		E2405E0321B8D82200A7F01B /* CountriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2405E0221B8D82200A7F01B /* CountriesViewController.swift */; };
 		E2405E0521B8D8B000A7F01B /* Countries.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2405E0421B8D87C00A7F01B /* Countries.storyboard */; };
-		E2405E0921B8DDC300A7F01B /* BFWCountries.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2405DFF21B8D80B00A7F01B /* BFWCountries.swift */; };
-		E2405E0A21B8DDDE00A7F01B /* Countries.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = E2405DFE21B8D80B00A7F01B /* Countries.sqlite */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -421,7 +419,6 @@
 					};
 					E2405D9D21B8D5A900A7F01B = {
 						CreatedOnToolsVersion = 10.1;
-						TestTargetID = E2405DE121B8D6B700A7F01B;
 					};
 					E2405DE121B8D6B700A7F01B = {
 						CreatedOnToolsVersion = 10.1;
@@ -518,7 +515,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2405E0A21B8DDDE00A7F01B /* Countries.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -555,7 +551,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2405E0921B8DDC300A7F01B /* BFWCountries.swift in Sources */,
 				E2405DA421B8D5AA00A7F01B /* BFWQueryTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -795,7 +790,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BFWQuery Demo.app/BFWQuery Demo";
 			};
 			name = Debug;
 		};
@@ -814,7 +808,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BFWQuery Demo.app/BFWQuery Demo";
 			};
 			name = Release;
 		};
