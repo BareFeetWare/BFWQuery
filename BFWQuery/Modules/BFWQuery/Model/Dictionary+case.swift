@@ -12,7 +12,7 @@ extension Dictionary where Key == String {
     func objectForCaseInsensitiveKey(_ key: String) -> Any? {
         if let object = self[key] {
             return object
-        } else if let caseInsensitiveKey = keys.first(where: { $0.compare(key) == .orderedSame }) {
+        } else if let caseInsensitiveKey = keys.first(where: { $0.compare(key, options: .caseInsensitive) == .orderedSame }) {
             return self[caseInsensitiveKey]
         } else {
             return nil
