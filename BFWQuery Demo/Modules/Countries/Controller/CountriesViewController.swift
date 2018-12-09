@@ -46,9 +46,9 @@ class CountriesViewController: UITableViewController, UISearchBarDelegate {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        query.currentRow = indexPath.row
-        cell.textLabel?.text = query.value(columnName: "Name")
-        cell.detailTextLabel?.text = query.value(columnName: "Code")
+        let queryRow = query![indexPath.row]
+        cell.textLabel?.text = queryRow["name"]
+        cell.detailTextLabel?.text = queryRow["code"]
         return cell
     }
     

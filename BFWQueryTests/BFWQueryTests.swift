@@ -55,10 +55,8 @@ create table Test
     func testCaseInsensitiveKeysInQuery() {
         try! database.insertIntoTable("Test", rowDict: ["name" : "Tom"])
         let query = try! database.query(table: "Test")
-        query.currentRow = 0
-        let lowerKeyValue: String = query.value(columnName: "name")!
-        let upperKeyValue: String = query.value(columnName: "Name")!
-        let isCaseInsensitiveKeys = lowerKeyValue == upperKeyValue
+        let row = query[0]
+        let isCaseInsensitiveKeys = row["name"] == row["Name"]
         if !isCaseInsensitiveKeys {
             XCTFail("Failed test \"\(#function)\"")
         }
