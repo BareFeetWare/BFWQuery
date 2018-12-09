@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import FMDB
 
 open class BFWResultDictionary {
     
@@ -20,32 +19,18 @@ open class BFWResultDictionary {
         self.row = row
     }
     
-    open func object(atIndex index: Int) -> Any? {
-        return resultArray.object(atRow: row, columnIndex: index)
-    }
-    
-    open func object(atIndexedSubscript index: Int) -> Any? {
-        return object(atIndex: index)
+    open func value<T>(atIndex index: Int) -> T? {
+        return resultArray.value(atRow: row, columnIndex: index)
     }
     
     // MARK: - NSDictionary
     
-    open func object(forKey key: String) -> Any? {
-        return resultArray.object(atRow: row, columnName: key)
+    open func value<T>(forKey key: String) -> T? {
+        return resultArray.query.value(atRow: row, columnName: key)
     }
     
     lazy var allKeys: [String] = {
-        var allKeys = [String]()
-        let columnNames = resultArray.query.columnNames
-        for columnIndex in 0 ..< columnNames.count {
-            if let object = resultArray.object(atRow: row, columnIndex: columnIndex),
-                !(object is NSNull)
-            {
-                // TODO: bypass FMDB's objectForColumnIndex so no NSNulls
-                allKeys.append(columnNames[columnIndex])
-            }
-        }
-        return allKeys
+        return resultArray.query.columnNames
     }()
     
     open var count: Int { // count the non null/nil values

@@ -19,7 +19,7 @@ class CountriesViewController: UITableViewController, UISearchBarDelegate {
     
     private let countries = BFWCountries()
     
-    private var query: BFWQuery! {
+    private var query: Database.Query! {
         didSet {
             tableView.reloadData()
         }
@@ -40,19 +40,15 @@ class CountriesViewController: UITableViewController, UISearchBarDelegate {
     
     // MARK: - UITableViewController
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return query.resultArray.count
+        return query.rowCount
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        let rowDictionary = query.resultArray.dictionary(atRow: indexPath.row)
-        cell.textLabel?.text = rowDictionary.object(forKey: "Name") as? String
-        cell.detailTextLabel?.text = rowDictionary.object(forKey: "Code") as? String
+        query.currentRow = indexPath.row
+        cell.textLabel?.text = query.value(columnName: "Name")
+        cell.detailTextLabel?.text = query.value(columnName: "Code")
         return cell
     }
     

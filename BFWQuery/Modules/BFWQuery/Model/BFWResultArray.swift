@@ -7,13 +7,12 @@
 //
 
 import Foundation
-import FMDB
 
 open class BFWResultArray {
     
-    open weak var query: BFWQuery!
+    open var query: Database.Query!
     
-    init(query: BFWQuery) {
+    init(query: Database.Query) {
         self.query = query
     }
     
@@ -25,27 +24,23 @@ open class BFWResultArray {
         return BFWResultDictionary(resultArray: self, row:row)
     }
     
-    open func object(atRow row: Int,
-                     columnIndex: Int) -> Any?
+    open func value<T>(atRow row: Int,
+                       columnIndex: Int) -> T?
     {
         query.currentRow = row
-        return query.resultSet.object(forColumnIndex: Int32(columnIndex))
+        return query.value(columnIndex: columnIndex)
     }
     
-    open func object(atRow row: Int,
-                     columnName: String) -> Any?
+    open func value<T>(atRow row: Int,
+                       columnName: String) -> T?
     {
         query.currentRow = row
-        var object = query.resultSet.object(forColumn: columnName)
-        if object is NSNull {
-            object = nil
-        }
-        return object
+        return query.value(columnName: columnName)
     }
     
     // MARK: - NSArray
     
-    open func object(atIndex index: Int) -> Any {
+    open func rowDict(atIndex index: Int) -> BFWResultDictionary {
         return dictionary(atRow: index)
     }
     

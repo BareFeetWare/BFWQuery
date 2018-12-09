@@ -7,58 +7,170 @@
 //
 
 import Foundation
-import FMDB
+import SQLite3
 
-open class BFWDatabase: FMDatabase {
+open class Database {
     
-    // MARK: - Open
+    public let path: String
     
-    open override func open() -> Bool {
-        let success = super.open()
-        if success {
-            executeStatements("pragma foreign_keys = ON")
+    // MARK: - Errors
+    
+    public enum Error: Swift.Error {
+        case sqlite(message: String)
+        case unhandledType(message: String)
+    }
+    
+    open var sqliteError: Error {
+        let message = String(cString: sqlite3_errmsg(pointer)!)
+        return Error.sqlite(message: message)
+    }
+    
+    // MARK: - Types
+    
+    enum ColumnType: Int {
+        case integer
+        case real
+        case text
+        case blob
+        case null
+        
+        init(_ int32: Int32) {
+            switch int32 {
+            case SQLITE_INTEGER: self = .integer
+            case SQLITE_FLOAT: self = .real
+            case SQLITE_TEXT: self = .text
+            case SQLITE_BLOB: self = .blob
+            case SQLITE_NULL: self = .null
+            default:
+                fatalError("Unexpected SQLite type: \(int32)")
+            }
         }
-        return success
+        
+        var swiftType: Any.Type {
+            switch self {
+            case .integer: return Int.self
+            case .real: return Float.self
+            case .text: return String.self
+            case .blob: return Data.self
+            case .null: return NSNull.self
+            }
+        }
+        
+    }
+    
+    public enum ConflictAction: String {
+        case ignore
+        case replace
+    }
+    
+    // From: https://stackoverflow.com/questions/28142226/sqlite-for-swift-is-unstable
+    let SQLITE_STATIC = unsafeBitCast(0, to: sqlite3_destructor_type.self)
+    let SQLITE_TRANSIENT = unsafeBitCast(-1, to: sqlite3_destructor_type.self)
+    
+    private var pointer: OpaquePointer?
+    
+    // MARK: - Init
+    
+    public init(path: String, open: Bool = true) throws {
+        self.path = path
+        if open {
+            try self.open()
+        }
+    }
+    
+    deinit {
+        try! close()
+    }
+    
+    // MARK: - Functions
+    
+    open func guardIsOK(_ sqliteResult: Int32) throws {
+        guard sqliteResult == SQLITE_OK
+            else { throw sqliteError }
+    }
+    
+    open func open() throws {
+        try guardIsOK(sqlite3_open(path, &pointer))
+        try execute(sql: "pragma foreign_keys = ON")
+    }
+    
+    open func close() throws {
+        try guardIsOK(sqlite3_close(pointer))
+    }
+    
+    open func execute(sql: String) throws {
+        try guardIsOK(sqlite3_exec(pointer, sql, nil, nil, nil))
+    }
+    
+    open func executeUpdate(sql: String, arguments: [Any?] = []) throws {
+        let statement = try preparedStatement(sql: sql, arguments: arguments)
+        guard sqlite3_step(statement) == SQLITE_DONE
+            else { throw sqliteError }
+    }
+    
+    private func bindArgument(_ argument: Any?, toStatement statement: OpaquePointer, atIndex index: Int) throws {
+        // SQLite argument index starts at 1, not 0.
+        let sqliteIndex = Int32(index + 1)
+        if argument == nil {
+            try guardIsOK(sqlite3_bind_null(statement, sqliteIndex))
+        } else if let argument = argument as? Double {
+            try guardIsOK(sqlite3_bind_double(statement, sqliteIndex, argument))
+        } else if let argument = argument as? String {
+            try guardIsOK(sqlite3_bind_text(statement, sqliteIndex, argument, -1, SQLITE_TRANSIENT))
+        } else if let argument = argument as? Int {
+            try guardIsOK(sqlite3_bind_int(statement, sqliteIndex, Int32(argument)))
+        } else if let argument = argument {
+            throw Error.unhandledType(message: "bindArgument cannot bind a value of type \(type(of: argument))")
+        }
+    }
+    
+    private func bindArguments(_ arguments: [Any?], toStatement statement: OpaquePointer) throws {
+        for (columnIndex, argument) in arguments.enumerated() {
+            try bindArgument(argument, toStatement: statement, atIndex: columnIndex)
+        }
+    }
+    
+    open func preparedStatement(sql: String, arguments: [Any?] = []) throws -> OpaquePointer {
+        var statement: OpaquePointer?
+        try guardIsOK(sqlite3_prepare_v2(pointer, sql, -1, &statement, nil))
+        try bindArguments(arguments, toStatement: statement!)
+        return statement!
     }
     
     // MARK: - Introspection
     
-    open func columnNamesInTable(_ tableName: String) -> [String] {
-        let resultSet = try! executeQuery("pragma table_info('\(tableName)')", values: nil)
+    open func columnNamesInTable(_ tableName: String) throws -> [String] {
+        let query = try Query(database: self, sql: "pragma table_info('\(tableName)')")
         var columnNames = [String]()
-        while resultSet.next() {
-            columnNames.append(resultSet.string(forColumn: "name")!)
+        while sqlite3_step(query.statement) != SQLITE_DONE {
+            columnNames.append(query.value(columnIndex: 0)!)
         }
         return columnNames
     }
     
     // MARK: - insert, delete, update
     
-    open func insertIntoTable(_ table: String, rowDict: [String : Any]) throws {
-        return try insertIntoTable(table, rowDict: rowDict, conflictAction: nil)
-    }
-    
     open func insertIntoTable(_ table: String,
                               rowDict: [String : Any],
-                              conflictAction: String?) throws // ignore or replace
+                              conflictAction: ConflictAction? = nil) throws
     {
-        let insertString = ["insert", conflictAction].compactMap { $0 }.joined(separator: " or ")
+        let insertString = ["insert", conflictAction?.rawValue].compactMap { $0 }.joined(separator: " or ")
         let sqlDict = type(of: self).sqlDictFromRowDict(rowDict, assignListSeparator: nil)
-        let queryString = "\(insertString) into \"\(table)\" (\(sqlDict["columns"] as! String)) values (\(sqlDict["placeholders"] as! String))"
-        try executeUpdate(queryString, values: sqlDict["arguments"] as? [Any])
+        let sql = "\(insertString) into \"\(table)\" (\(sqlDict["columns"] as! String)) values (\(sqlDict["placeholders"] as! String))"
+        try executeUpdate(sql: sql, arguments: sqlDict["arguments"] as! [Any?])
     }
     
     open func insertIntoTable(_ table: String,
                               sourceDictArray: [[String : Any]],
                               columnKeyPathMap: [String : String],
-                              conflictAction: String) throws
+                              conflictAction: ConflictAction) throws
     {
-        let columns = columnNamesInTable(table)
+        let columns = try columnNamesInTable(table)
         #if DEBUG
         var missingColumns = Array(columnKeyPathMap.keys)
         for tableColumn in columns {
             for mapColumn in missingColumns {
-                if tableColumn.compare(mapColumn) == .orderedSame {
+                if tableColumn.compare(mapColumn, options: .caseInsensitive) == .orderedSame {
                     missingColumns.removeAll(where: { $0 == mapColumn })
                     break
                 }
@@ -79,25 +191,23 @@ open class BFWDatabase: FMDatabase {
     }
     
     open func deleteFromTable(_ table: String,
-                              whereDict: [String : Any]) -> Bool
+                              whereDict: [String : Any]) throws
     {
         let whereSqlDict = type(of: self).sqlDictFromRowDict(whereDict, assignListSeparator: " and ")
-        let queryString = "delete from \"\(table)\" where \(whereSqlDict["assign"] as! String)"
-        let success = executeUpdate(queryString, withArgumentsIn: whereSqlDict["arguments"] as! [Any])
-        return success
+        let sql = "delete from \"\(table)\" where \(whereSqlDict["assign"] as! String)"
+        try executeUpdate(sql: sql, arguments: whereSqlDict["arguments"] as! [Any?])
     }
     
     open func updateTable(_ table: String,
                           rowDict: [String : Any],
-                          whereDict: [String : Any]) -> Bool
+                          whereDict: [String : Any]) throws
     {
         let rowSqlDict = type(of: self).sqlDictFromRowDict(rowDict, assignListSeparator: ", ")
         let whereSqlDict = type(of: self).sqlDictFromRowDict(whereDict, assignListSeparator: " and ")
-        let queryString = "update \"\(table)\" set \(rowSqlDict["assign"] as! String) where \(whereSqlDict["assign"] as! String)"
-        var arguments = rowSqlDict["arguments"] as! [Any]
-        arguments += whereSqlDict["arguments"] as! [Any]
-        let success = executeUpdate(queryString, withArgumentsIn: arguments)
-        return success
+        let sql = "update \"\(table)\" set \(rowSqlDict["assign"] as! String) where \(whereSqlDict["assign"] as! String)"
+        var arguments = rowSqlDict["arguments"] as! [Any?]
+        arguments += whereSqlDict["arguments"] as! [Any?]
+        try executeUpdate(sql: sql, arguments: arguments)
     }
     
     // MARK: - SQL construction
@@ -116,7 +226,7 @@ open class BFWDatabase: FMDatabase {
                                           assignListSeparator: String?) -> [String : Any]
     {
         var assignArray = [String]()
-        var arguments = [Any]()
+        var arguments = [Any?]()
         for (columnName, value) in rowDict {
             let quotedColumnName = "\"\(columnName)\""
             let assignString = "\(quotedColumnName) = ?"
@@ -147,7 +257,8 @@ open class BFWDatabase: FMDatabase {
             string = "\(quoteMark)\(escapedQuoteString)\(quoteMark)"
         } else if value == nil {
             string = "?"
-        } else { // need to cater for NSData to blob syntax
+        } else {
+            // TODO: Cater for Data to blob syntax
             string = String(describing: value)
         }
         return string
