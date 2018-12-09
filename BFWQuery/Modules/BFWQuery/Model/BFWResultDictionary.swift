@@ -10,8 +10,7 @@ import Foundation
 
 open class BFWResultDictionary {
     
-    // TODO: Check for retain cycle
-    open var resultArray: BFWResultArray
+    open weak var resultArray: BFWResultArray!
     open var row: Int
     
     init(resultArray: BFWResultArray, row: Int) {

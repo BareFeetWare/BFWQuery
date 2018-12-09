@@ -32,11 +32,12 @@ extension Database {
         
         // MARK: - Variables
         
-        public let database: Database
+        public weak var database: Database!
         public let sql: String
         public let arguments: [Any?]
         public let statement: OpaquePointer
-        public var tableName: String? // if querying a single table or view
+        /// If querying a single table or view.
+        public var tableName: String?
         
         // MARK: - Init
         
