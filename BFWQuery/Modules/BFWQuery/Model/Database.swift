@@ -244,24 +244,4 @@ open class Database {
         return sqlDict
     }
     
-    public static func stringForValue(_ value: Any?,
-                                      usingNullString nullString: String,
-                                      quoteMark: String) -> String
-    {
-        let quotedQuote = "\(quoteMark)\(quoteMark)"
-        let string: String
-        if value is NSNull {
-            string = nullString
-        } else if let value = value as? String {
-            let escapedQuoteString = value.replacingOccurrences(of: quoteMark, with: quotedQuote)
-            string = "\(quoteMark)\(escapedQuoteString)\(quoteMark)"
-        } else if value == nil {
-            string = "?"
-        } else {
-            // TODO: Cater for Data to blob syntax
-            string = String(describing: value)
-        }
-        return string
-    }
-    
 }

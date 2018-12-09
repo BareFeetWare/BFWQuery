@@ -28,6 +28,7 @@
 		E2405E0321B8D82200A7F01B /* CountriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2405E0221B8D82200A7F01B /* CountriesViewController.swift */; };
 		E2405E0521B8D8B000A7F01B /* Countries.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2405E0421B8D87C00A7F01B /* Countries.storyboard */; };
 		E2B5B30F21BCCF7B000FB05D /* Array+case.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B5B30E21BCCF7B000FB05D /* Array+case.swift */; };
+		E2B5B31121BCD2A1000FB05D /* Query+CustomStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B5B31021BCD2A1000FB05D /* Query+CustomStringConvertible.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +95,7 @@
 		E2405E0421B8D87C00A7F01B /* Countries.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Countries.storyboard; sourceTree = "<group>"; };
 		E2405E0C21B8E2EE00A7F01B /* readme.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = readme.txt; sourceTree = SOURCE_ROOT; };
 		E2B5B30E21BCCF7B000FB05D /* Array+case.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+case.swift"; sourceTree = "<group>"; };
+		E2B5B31021BCD2A1000FB05D /* Query+CustomStringConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Query+CustomStringConvertible.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +193,7 @@
 				E2405DB421B8D5D500A7F01B /* Database.swift */,
 				E2405DB621B8D5D500A7F01B /* Dictionary+case.swift */,
 				E2405DB721B8D5D500A7F01B /* Query.swift */,
+				E2B5B31021BCD2A1000FB05D /* Query+CustomStringConvertible.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -411,6 +414,7 @@
 				E2405DBE21B8D5D600A7F01B /* Query.swift in Sources */,
 				E2405DB921B8D5D500A7F01B /* BFWResultArray.swift in Sources */,
 				E2405DBB21B8D5D600A7F01B /* Database.swift in Sources */,
+				E2B5B31121BCD2A1000FB05D /* Query+CustomStringConvertible.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

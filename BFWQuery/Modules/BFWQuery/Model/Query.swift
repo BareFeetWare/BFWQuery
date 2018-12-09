@@ -94,24 +94,6 @@ extension Database {
         
         // MARK: - Query
         
-        /// Arguments embedded in the SQL string.
-        public var argumentsInSQL: String {
-            let components = sql.components(separatedBy: "?")
-            var descriptionArray = [String]()
-            // TODO: handle if arguments is a Dictionary
-            for argumentN in 0 ..< arguments.count {
-                let component = components[argumentN]
-                descriptionArray.append(component)
-                let argument = argumentN < arguments.count
-                    ? arguments[argumentN]
-                    : nil
-                let argumentString = Database.stringForValue(argument, usingNullString: "null", quoteMark: "'")
-                descriptionArray.append(argumentString)
-            }
-            descriptionArray.append(components.last!)
-            return descriptionArray.joined()
-        }
-        
         public func value<T>(atRow row: Int, columnIndex: Int) -> T? {
             currentRow = row
             return value(columnIndex: columnIndex)
@@ -186,12 +168,6 @@ extension Database {
         }
         
         // TODO: Finish implementing caching for backwards scrolling
-        
-        // MARK: - NSObject
-        
-        public var description: String {
-            return argumentsInSQL
-        }
         
     }
 }
