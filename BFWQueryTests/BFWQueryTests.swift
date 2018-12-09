@@ -54,7 +54,7 @@ create table Test
     
     func testCaseInsensitiveKeysInQuery() {
         try! database.insertIntoTable("Test", rowDict: ["name" : "Tom"])
-        let query = try! Database.Query(database: database, table: "Test")
+        let query = try! database.query(table: "Test")
         query.currentRow = 0
         let lowerKeyValue: String = query.value(columnName: "name")!
         let upperKeyValue: String = query.value(columnName: "Name")!
@@ -80,15 +80,13 @@ create table Test
             }
         }
         if success {
-            let query = try! Database.Query(database: database,
-                                            table: "Test",
+            let query = try! database.query(table: "Test",
                                             columns: ["id", "name", "row"],
                                             whereDict: ["name" : "tom"])
             debugPrint("BFWQuery rowCount start")
             let rowCount = query.rowCount
             debugPrint("BFWQuery rowCount end. rowCount = \(rowCount)")
-            let countQuery = try! Database.Query(database: database,
-                                                 sql: "select count(*) as count from Test where name = ?",
+            let countQuery = try! database.query(sql: "select count(*) as count from Test where name = ?",
                                                  arguments: ["Tom"])
             debugPrint("count(*) start")
             countQuery.currentRow = 0

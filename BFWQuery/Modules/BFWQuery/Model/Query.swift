@@ -10,6 +10,24 @@ import SQLite3
 
 extension Database {
     
+    open func query(sql: String,
+                    arguments: [Any?] = []) throws -> Query
+    {
+        return try Query(database: self,
+                         sql: sql,
+                         arguments: arguments)
+    }
+    
+    open func query(table tableName: String,
+                    columns columnNames: [String]? = nil,
+                    whereDict: [String: Any]? = nil) throws -> Query
+    {
+        return try Query(database: self,
+                         table: tableName,
+                         columns: columnNames,
+                         whereDict: whereDict)
+    }
+    
     open class Query {
         
         // MARK: - Variables
@@ -23,9 +41,9 @@ extension Database {
         // MARK: - Init
         
         /// Designated initializer
-        public init(database: Database,
-                    sql: String,
-                    arguments: [Any?] = []) throws
+        fileprivate init(database: Database,
+                         sql: String,
+                         arguments: [Any?] = []) throws
         {
             self.database = database
             self.sql = sql
@@ -34,10 +52,10 @@ extension Database {
             self.statement = try database.preparedStatement(sql: sql, arguments: arguments)
         }
         
-        public convenience init(database: Database,
-                                table tableName: String,
-                                columns columnNames: [String]? = nil,
-                                whereDict: [String: Any]? = nil) throws
+        fileprivate convenience init(database: Database,
+                                     table tableName: String,
+                                     columns columnNames: [String]? = nil,
+                                     whereDict: [String: Any]? = nil) throws
         {
             var whereString = ""
             var arguments = [Any?]()

@@ -20,7 +20,7 @@ class BFWCountries {
     }()
     
     var queryForAllCountries: Database.Query {
-        return try! Database.Query(database: database, table: "Country")
+        return try! database.query(table: "Country")
     }
     
     func queryForCountriesContaining(_ searchString: String) -> Database.Query {
@@ -29,8 +29,7 @@ select * from Country
 where name like '%%' || ? || '%%' or code like '%%' || ? || '%%'
 order by name
 """
-        return try! Database.Query(database: database,
-                                   sql: sql,
+        return try! database.query(sql: sql,
                                    arguments: [searchString, searchString])
     }
     

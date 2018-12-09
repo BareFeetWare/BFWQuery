@@ -140,7 +140,7 @@ open class Database {
     // MARK: - Introspection
     
     open func columnNamesInTable(_ tableName: String) throws -> [String] {
-        let query = try Query(database: self, sql: "pragma table_info('\(tableName)')")
+        let query = try self.query(sql: "pragma table_info('\(tableName)')")
         var columnNames = [String]()
         while sqlite3_step(query.statement) != SQLITE_DONE {
             columnNames.append(query.value(columnIndex: 0)!)
