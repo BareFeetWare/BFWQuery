@@ -98,10 +98,12 @@ open class Database {
         try guardIsOK(sqlite3_close(pointer))
     }
     
+    /// Execute multi line SQL, separated by ";".
     open func execute(sql: String) throws {
         try guardIsOK(sqlite3_exec(pointer, sql, nil, nil, nil))
     }
     
+    /// Execute single line SQL, up to first ";".
     open func executeUpdate(sql: String, arguments: [Any?] = []) throws {
         let statement = try preparedStatement(sql: sql, arguments: arguments)
         guard sqlite3_step(statement) == SQLITE_DONE
