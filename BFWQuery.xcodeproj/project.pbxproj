@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E202EDFC21BE286A00ACF227 /* Row+CustomStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = E202EDFB21BE286A00ACF227 /* Row+CustomStringConvertible.swift */; };
 		E2405D9F21B8D5A900A7F01B /* BFWQuery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2405D9521B8D5A900A7F01B /* BFWQuery.framework */; };
 		E2405DA421B8D5AA00A7F01B /* BFWQueryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2405DA321B8D5AA00A7F01B /* BFWQueryTests.swift */; };
 		E2405DA621B8D5AA00A7F01B /* BFWQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = E2405D9821B8D5A900A7F01B /* BFWQuery.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -70,6 +71,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E202EDFB21BE286A00ACF227 /* Row+CustomStringConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Row+CustomStringConvertible.swift"; sourceTree = "<group>"; };
 		E2405D9521B8D5A900A7F01B /* BFWQuery.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BFWQuery.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2405D9821B8D5A900A7F01B /* BFWQuery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BFWQuery.h; sourceTree = "<group>"; };
 		E2405D9921B8D5A900A7F01B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 				E2B5B31021BCD2A1000FB05D /* Query+CustomStringConvertible.swift */,
 				E2405DB221B8D5D500A7F01B /* Query+Sequence.swift */,
 				E2405DB521B8D5D500A7F01B /* Row.swift */,
+				E202EDFB21BE286A00ACF227 /* Row+CustomStringConvertible.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -415,6 +418,7 @@
 				E2B5B31121BCD2A1000FB05D /* Query+CustomStringConvertible.swift in Sources */,
 				E2405DB921B8D5D500A7F01B /* Query+Sequence.swift in Sources */,
 				E2405DBC21B8D5D600A7F01B /* Row.swift in Sources */,
+				E202EDFC21BE286A00ACF227 /* Row+CustomStringConvertible.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -51,5 +51,17 @@ public extension Database.Query {
             return value(columnName: columnName)
         }
         
+        public var values: [Any?] {
+            var values = [Any?]()
+            for columnN in 0 ..< query.columnCount {
+                values.append(value(columnIndex: columnN))
+            }
+            return values
+        }
+        
+        public var dictionary: [String : Any?] {
+            return Dictionary(uniqueKeysWithValues: zip(query.columnNames, values))
+        }
+        
     }
 }
