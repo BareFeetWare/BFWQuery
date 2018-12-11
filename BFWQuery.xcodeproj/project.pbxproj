@@ -7,17 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E202EDFC21BE286A00ACF227 /* Row+CustomStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = E202EDFB21BE286A00ACF227 /* Row+CustomStringConvertible.swift */; };
 		E2405D9F21B8D5A900A7F01B /* BFWQuery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2405D9521B8D5A900A7F01B /* BFWQuery.framework */; };
 		E2405DA421B8D5AA00A7F01B /* BFWQueryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2405DA321B8D5AA00A7F01B /* BFWQueryTests.swift */; };
 		E2405DA621B8D5AA00A7F01B /* BFWQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = E2405D9821B8D5A900A7F01B /* BFWQuery.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E2405DB921B8D5D500A7F01B /* BFWResultArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2405DB221B8D5D500A7F01B /* BFWResultArray.swift */; };
-		E2405DBA21B8D5D600A7F01B /* FMResultSet+ColumnType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2405DB321B8D5D500A7F01B /* FMResultSet+ColumnType.swift */; };
-		E2405DBB21B8D5D600A7F01B /* BFWDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2405DB421B8D5D500A7F01B /* BFWDatabase.swift */; };
-		E2405DBC21B8D5D600A7F01B /* BFWResultDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2405DB521B8D5D500A7F01B /* BFWResultDictionary.swift */; };
+		E2405DB921B8D5D500A7F01B /* Query+Sequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2405DB221B8D5D500A7F01B /* Query+Sequence.swift */; };
+		E2405DBB21B8D5D600A7F01B /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2405DB421B8D5D500A7F01B /* Database.swift */; };
+		E2405DBC21B8D5D600A7F01B /* Row.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2405DB521B8D5D500A7F01B /* Row.swift */; };
 		E2405DBD21B8D5D600A7F01B /* Dictionary+case.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2405DB621B8D5D500A7F01B /* Dictionary+case.swift */; };
-		E2405DBE21B8D5D600A7F01B /* BFWQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2405DB721B8D5D500A7F01B /* BFWQuery.swift */; };
+		E2405DBE21B8D5D600A7F01B /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2405DB721B8D5D500A7F01B /* Query.swift */; };
 		E2405DBF21B8D5D600A7F01B /* Array+joined.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2405DB821B8D5D500A7F01B /* Array+joined.swift */; };
-		E2405DDB21B8D67B00A7F01B /* FMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2405DD521B8D67200A7F01B /* FMDB.framework */; };
 		E2405DDD21B8D68300A7F01B /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E2405DDC21B8D68300A7F01B /* libsqlite3.tbd */; };
 		E2405DE521B8D6B700A7F01B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2405DE421B8D6B700A7F01B /* AppDelegate.swift */; };
 		E2405DEA21B8D6B800A7F01B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2405DE821B8D6B800A7F01B /* Main.storyboard */; };
@@ -29,6 +28,8 @@
 		E2405E0121B8D80B00A7F01B /* BFWCountries.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2405DFF21B8D80B00A7F01B /* BFWCountries.swift */; };
 		E2405E0321B8D82200A7F01B /* CountriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2405E0221B8D82200A7F01B /* CountriesViewController.swift */; };
 		E2405E0521B8D8B000A7F01B /* Countries.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2405E0421B8D87C00A7F01B /* Countries.storyboard */; };
+		E2B5B30F21BCCF7B000FB05D /* Array+case.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B5B30E21BCCF7B000FB05D /* Array+case.swift */; };
+		E2B5B31121BCD2A1000FB05D /* Query+CustomStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B5B31021BCD2A1000FB05D /* Query+CustomStringConvertible.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,55 +39,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = E2405D9421B8D5A900A7F01B;
 			remoteInfo = BFWQuery;
-		};
-		E2405DCC21B8D67200A7F01B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E2405DC221B8D67100A7F01B /* fmdb.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 8DD76FA10486AA7600D96B5E;
-			remoteInfo = fmdb;
-		};
-		E2405DCE21B8D67200A7F01B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E2405DC221B8D67100A7F01B /* fmdb.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = EE4290EF12B42F870088BD94;
-			remoteInfo = FMDB;
-		};
-		E2405DD021B8D67200A7F01B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E2405DC221B8D67100A7F01B /* fmdb.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = BF5D041618416BB2008C5AA9;
-			remoteInfo = Tests;
-		};
-		E2405DD221B8D67200A7F01B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E2405DC221B8D67100A7F01B /* fmdb.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 6290CBB5188FE836009790F8;
-			remoteInfo = "FMDB-IOS";
-		};
-		E2405DD421B8D67200A7F01B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E2405DC221B8D67100A7F01B /* fmdb.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 83C73EFE1C326AB000FFC730;
-			remoteInfo = "FMDB iOS";
-		};
-		E2405DD621B8D67200A7F01B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E2405DC221B8D67100A7F01B /* fmdb.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 83C73F0B1C326ADA00FFC730;
-			remoteInfo = "FMDB MacOS";
-		};
-		E2405DD821B8D67200A7F01B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E2405DC221B8D67100A7F01B /* fmdb.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 2CD2426D1FCC09CA00479FDE;
-			remoteInfo = "FMDB watchOS";
 		};
 		E2405DF721B8D70200A7F01B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -119,20 +71,19 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E202EDFB21BE286A00ACF227 /* Row+CustomStringConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Row+CustomStringConvertible.swift"; sourceTree = "<group>"; };
 		E2405D9521B8D5A900A7F01B /* BFWQuery.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BFWQuery.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2405D9821B8D5A900A7F01B /* BFWQuery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BFWQuery.h; sourceTree = "<group>"; };
 		E2405D9921B8D5A900A7F01B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E2405D9E21B8D5A900A7F01B /* BFWQueryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BFWQueryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2405DA321B8D5AA00A7F01B /* BFWQueryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BFWQueryTests.swift; sourceTree = "<group>"; };
 		E2405DA521B8D5AA00A7F01B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E2405DB221B8D5D500A7F01B /* BFWResultArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BFWResultArray.swift; sourceTree = "<group>"; };
-		E2405DB321B8D5D500A7F01B /* FMResultSet+ColumnType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FMResultSet+ColumnType.swift"; sourceTree = "<group>"; };
-		E2405DB421B8D5D500A7F01B /* BFWDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BFWDatabase.swift; sourceTree = "<group>"; };
-		E2405DB521B8D5D500A7F01B /* BFWResultDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BFWResultDictionary.swift; sourceTree = "<group>"; };
+		E2405DB221B8D5D500A7F01B /* Query+Sequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Query+Sequence.swift"; sourceTree = "<group>"; };
+		E2405DB421B8D5D500A7F01B /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
+		E2405DB521B8D5D500A7F01B /* Row.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Row.swift; sourceTree = "<group>"; };
 		E2405DB621B8D5D500A7F01B /* Dictionary+case.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+case.swift"; sourceTree = "<group>"; };
-		E2405DB721B8D5D500A7F01B /* BFWQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BFWQuery.swift; sourceTree = "<group>"; };
+		E2405DB721B8D5D500A7F01B /* Query.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Query.swift; sourceTree = "<group>"; };
 		E2405DB821B8D5D500A7F01B /* Array+joined.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+joined.swift"; sourceTree = "<group>"; };
-		E2405DC221B8D67100A7F01B /* fmdb.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = fmdb.xcodeproj; path = FMDB/fmdb.xcodeproj; sourceTree = "<group>"; };
 		E2405DDC21B8D68300A7F01B /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		E2405DE221B8D6B700A7F01B /* BFWQuery Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BFWQuery Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2405DE421B8D6B700A7F01B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -145,6 +96,8 @@
 		E2405E0221B8D82200A7F01B /* CountriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountriesViewController.swift; sourceTree = "<group>"; };
 		E2405E0421B8D87C00A7F01B /* Countries.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Countries.storyboard; sourceTree = "<group>"; };
 		E2405E0C21B8E2EE00A7F01B /* readme.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = readme.txt; sourceTree = SOURCE_ROOT; };
+		E2B5B30E21BCCF7B000FB05D /* Array+case.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+case.swift"; sourceTree = "<group>"; };
+		E2B5B31021BCD2A1000FB05D /* Query+CustomStringConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Query+CustomStringConvertible.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,7 +106,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2405DDD21B8D68300A7F01B /* libsqlite3.tbd in Frameworks */,
-				E2405DDB21B8D67B00A7F01B /* FMDB.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -182,7 +134,6 @@
 				E2405D9721B8D5A900A7F01B /* BFWQuery */,
 				E2405DA221B8D5AA00A7F01B /* BFWQueryTests */,
 				E2405DE321B8D6B700A7F01B /* BFWQuery Demo */,
-				E2405DC121B8D66500A7F01B /* Submodules */,
 				E2405D9621B8D5A900A7F01B /* Products */,
 				E2405DDA21B8D67B00A7F01B /* Frameworks */,
 			);
@@ -237,37 +188,17 @@
 		E2405DB121B8D5D500A7F01B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E2B5B30E21BCCF7B000FB05D /* Array+case.swift */,
 				E2405DB821B8D5D500A7F01B /* Array+joined.swift */,
-				E2405DB421B8D5D500A7F01B /* BFWDatabase.swift */,
-				E2405DB721B8D5D500A7F01B /* BFWQuery.swift */,
-				E2405DB221B8D5D500A7F01B /* BFWResultArray.swift */,
-				E2405DB521B8D5D500A7F01B /* BFWResultDictionary.swift */,
+				E2405DB421B8D5D500A7F01B /* Database.swift */,
 				E2405DB621B8D5D500A7F01B /* Dictionary+case.swift */,
-				E2405DB321B8D5D500A7F01B /* FMResultSet+ColumnType.swift */,
+				E2405DB721B8D5D500A7F01B /* Query.swift */,
+				E2B5B31021BCD2A1000FB05D /* Query+CustomStringConvertible.swift */,
+				E2405DB221B8D5D500A7F01B /* Query+Sequence.swift */,
+				E2405DB521B8D5D500A7F01B /* Row.swift */,
+				E202EDFB21BE286A00ACF227 /* Row+CustomStringConvertible.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		E2405DC121B8D66500A7F01B /* Submodules */ = {
-			isa = PBXGroup;
-			children = (
-				E2405DC221B8D67100A7F01B /* fmdb.xcodeproj */,
-			);
-			path = Submodules;
-			sourceTree = "<group>";
-		};
-		E2405DC321B8D67100A7F01B /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				E2405DCD21B8D67200A7F01B /* fmdb */,
-				E2405DCF21B8D67200A7F01B /* libFMDB.a */,
-				E2405DD121B8D67200A7F01B /* Tests.xctest */,
-				E2405DD321B8D67200A7F01B /* libFMDB-IOS.a */,
-				E2405DD521B8D67200A7F01B /* FMDB.framework */,
-				E2405DD721B8D67200A7F01B /* FMDB.framework */,
-				E2405DD921B8D67200A7F01B /* FMDB.framework */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		E2405DDA21B8D67B00A7F01B /* Frameworks */ = {
@@ -436,12 +367,6 @@
 			mainGroup = E2405D8B21B8D5A900A7F01B;
 			productRefGroup = E2405D9621B8D5A900A7F01B /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = E2405DC321B8D67100A7F01B /* Products */;
-					ProjectRef = E2405DC221B8D67100A7F01B /* fmdb.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				E2405D9421B8D5A900A7F01B /* BFWQuery */,
@@ -450,58 +375,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		E2405DCD21B8D67200A7F01B /* fmdb */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.executable";
-			path = fmdb;
-			remoteRef = E2405DCC21B8D67200A7F01B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		E2405DCF21B8D67200A7F01B /* libFMDB.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libFMDB.a;
-			remoteRef = E2405DCE21B8D67200A7F01B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		E2405DD121B8D67200A7F01B /* Tests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = Tests.xctest;
-			remoteRef = E2405DD021B8D67200A7F01B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		E2405DD321B8D67200A7F01B /* libFMDB-IOS.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libFMDB-IOS.a";
-			remoteRef = E2405DD221B8D67200A7F01B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		E2405DD521B8D67200A7F01B /* FMDB.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = FMDB.framework;
-			remoteRef = E2405DD421B8D67200A7F01B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		E2405DD721B8D67200A7F01B /* FMDB.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = FMDB.framework;
-			remoteRef = E2405DD621B8D67200A7F01B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		E2405DD921B8D67200A7F01B /* FMDB.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = FMDB.framework;
-			remoteRef = E2405DD821B8D67200A7F01B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		E2405D9321B8D5A900A7F01B /* Resources */ = {
@@ -538,12 +411,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2405DBF21B8D5D600A7F01B /* Array+joined.swift in Sources */,
-				E2405DBC21B8D5D600A7F01B /* BFWResultDictionary.swift in Sources */,
+				E2B5B30F21BCCF7B000FB05D /* Array+case.swift in Sources */,
 				E2405DBD21B8D5D600A7F01B /* Dictionary+case.swift in Sources */,
-				E2405DBE21B8D5D600A7F01B /* BFWQuery.swift in Sources */,
-				E2405DBA21B8D5D600A7F01B /* FMResultSet+ColumnType.swift in Sources */,
-				E2405DB921B8D5D500A7F01B /* BFWResultArray.swift in Sources */,
-				E2405DBB21B8D5D600A7F01B /* BFWDatabase.swift in Sources */,
+				E2405DBB21B8D5D600A7F01B /* Database.swift in Sources */,
+				E2405DBE21B8D5D600A7F01B /* Query.swift in Sources */,
+				E2B5B31121BCD2A1000FB05D /* Query+CustomStringConvertible.swift in Sources */,
+				E2405DB921B8D5D500A7F01B /* Query+Sequence.swift in Sources */,
+				E2405DBC21B8D5D600A7F01B /* Row.swift in Sources */,
+				E202EDFC21BE286A00ACF227 /* Row+CustomStringConvertible.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -657,7 +532,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -715,7 +590,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

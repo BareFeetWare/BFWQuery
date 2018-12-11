@@ -1,12 +1,11 @@
 //
-//  BFWQueryTests.m
+//  BFWQueryTests.swift
 //  BFWQueryTests
 //
 //  Created by Tom Brodhurst-Hill on 26/03/2014.
 //  Copyright (c) 2014 BareFeetWare. All rights reserved.
 //
 
-import FMDB
 import XCTest
 @testable import BFWQuery
 
@@ -15,63 +14,49 @@ class BFWQueryTests: XCTestCase {
     // MARK: - Variables
     
     let databasePath = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("TestDatabase.sqlite").path
-    var database: BFWDatabase!
+    var database: Database!
     
     // MARK: - Setup and tear down
     
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        createDatabase()
+        try! createDatabase()
     }
     
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
-        deleteDatabase()
+        try! deleteDatabase()
     }
     
-    func createDatabase() {
-        database = BFWDatabase(path: databasePath)
-        var success = database.open()
-        if success {
-            success = database.beginImmediateTransaction()
-            if success {
-                let createTableSql = """
+    func createDatabase() throws {
+        try? FileManager.default.removeItem(atPath: databasePath)
+        database = try Database(path: databasePath)
+        let createTableSql = """
 create table Test
 (    id integer primary key not null
 ,    name text not null
 ,    row integer
 )
 """
-                success = database.executeUpdate(createTableSql, withArgumentsIn: [])
-                if success {
-                    // Created successfully
-                } else {
-                    XCTFail("Failed test \"\(#function)\", SQL error: \(database.lastErrorMessage)")
-                }
-            } else {
-                XCTFail("Failed test \"\(#function)\", SQL error: \(database.lastErrorMessage)")
-            }
-        } else {
-            XCTFail("Failed test \"\(#function)\", SQL error: \(database.lastErrorMessage)")
-        }
+        try database.executeUpdate(sql: createTableSql)
     }
     
-    func deleteDatabase() {
-        database.close()
-        try! FileManager.default.removeItem(atPath: databasePath)
+    func deleteDatabase() throws {
+        try? database.close()
+        try FileManager.default.removeItem(atPath: databasePath)
     }
     
-    func emptyTable() {
-        database.executeUpdate("delete * from Test", withArgumentsIn: [])
+    func emptyTable() throws {
+        try database.executeUpdate(sql: "delete * from Test")
     }
     
     // MARK: - Tests
     
     func testCaseInsensitiveKeysInQuery() {
         try! database.insertIntoTable("Test", rowDict: ["name" : "Tom"])
-        let query = BFWQuery(database: database, queryString: "select * from Test", arguments: nil)
-        let countryDict = query.resultArray.dictionary(atRow: 0)
-        let isCaseInsensitiveKeys = (countryDict.object(forKey: "name") as! String) == (countryDict.object(forKey: "Name") as! String)
+        let query = try! database.query(table: "Test")
+        let row = query[0]
+        let isCaseInsensitiveKeys = row["name"] == row["Name"]
         if !isCaseInsensitiveKeys {
             XCTFail("Failed test \"\(#function)\"")
         }
@@ -93,22 +78,21 @@ create table Test
             }
         }
         if success {
-            let query = BFWQuery(database: database,
-                                 table: "Test",
-                                 columns: ["id", "name", "row"],
-                                 whereDict: ["name" : "tom"])
+            let query = try! database.query(table: "Test",
+                                            columns: ["id", "name", "row"],
+                                            whereDict: ["name" : "tom"])
             debugPrint("BFWQuery rowCount start")
             let rowCount = query.rowCount
             debugPrint("BFWQuery rowCount end. rowCount = \(rowCount)")
-            let countQuery = BFWQuery(database: database,
-                                      queryString: "select count(*) as count from Test where name = ?",
-                                      arguments: ["Tom"])
+            let countQuery = try! database.query(sql: "select count(*) as count from Test where name = ?",
+                                                 arguments: ["Tom"])
             debugPrint("count(*) start")
-            let starCount = countQuery.resultArray.object(atRow: 0, columnName: "count")!
+            countQuery.currentRow = 0
+            let starCount: Int = countQuery.value(columnName: "count")!
             debugPrint("count(*) end. Count = \(starCount)")
         }
         if !success {
-            XCTFail("Failed test \"\(#function)\", SQL error: \(database.lastErrorMessage)")
+            XCTFail("Failed test \"\(#function)\", SQL error: \(database.sqliteError)")
         }
     }
     

@@ -10,28 +10,27 @@ import Foundation
 import BFWQuery
 
 class BFWCountries {
-
+    
     private var databasePath: String {
         return Bundle.main.path(forResource: "Countries", ofType: "sqlite")!
     }
-
-    lazy var database: BFWDatabase = {
-		let database = BFWDatabase(path: databasePath)
-		_ = database.open()
-        return database
+    
+    lazy var database: Database = {
+        return try! Database(path: databasePath)
     }()
-
-    var queryForAllCountries: BFWQuery {
-        return BFWQuery(database: database,
-                        queryString: "select * from Country order by Name",
-                        arguments: nil)
+    
+    var queryForAllCountries: Database.Query {
+        return try! database.query(table: "Country")
     }
-
-    func queryForCountriesContaining(_ searchString: String) -> BFWQuery {
-        let queryString = "select * from Country where Name like '%%' || ? || '%%' or Code like '%%' || ? || '%%'  order by Name"
-        return BFWQuery(database: database,
-                        queryString: queryString,
-                        arguments: [searchString, searchString])
+    
+    func queryForCountriesContaining(_ searchString: String) -> Database.Query {
+        let sql = """
+select * from Country
+where name like '%%' || ? || '%%' or code like '%%' || ? || '%%'
+order by name
+"""
+        return try! database.query(sql: sql,
+                                   arguments: [searchString, searchString])
     }
-
+    
 }
