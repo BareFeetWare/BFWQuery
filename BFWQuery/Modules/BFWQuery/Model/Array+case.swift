@@ -10,7 +10,7 @@ import Foundation
 extension Array where Element == String {
     
     func caseInsensitiveIndex(of element: String) -> Int? {
-        return index(of: element)
+        return firstIndex(of: element)
             ?? firstIndex { $0.compare(element, options: .caseInsensitive) == .orderedSame }
     }
     

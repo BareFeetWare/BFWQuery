@@ -13,15 +13,15 @@ import Foundation
 
 public extension Database.Query {
     
-    public func row(number: Int) -> Database.Query.Row {
+    func row(number: Int) -> Database.Query.Row {
         return Database.Query.Row(query: self, row: number)
     }
     
-    public subscript(index: Int) -> Row {
+    subscript(index: Int) -> Row {
         return row(number: index)
     }
     
-    public class Row {
+    class Row {
         
         // MARK: - Variables
         
