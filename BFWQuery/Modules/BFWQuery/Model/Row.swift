@@ -21,19 +21,14 @@ public extension Database.Query {
         return row(number: index)
     }
     
-    class Row {
+    struct Row {
         
         // MARK: - Variables
         
+        public let query: Database.Query
         public let row: Int
-        open weak var query: Database.Query!
         
-        // MARK: - Init
-        
-        init(query: Database.Query, row: Int) {
-            self.query = query
-            self.row = row
-        }
+        // MARK: - Functions and computed variables
         
         public func value<T>(columnIndex: Int) -> T? {
             return query.value(atRow: row, columnIndex: columnIndex)
