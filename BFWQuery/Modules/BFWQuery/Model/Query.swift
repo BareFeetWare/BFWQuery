@@ -1,5 +1,5 @@
 //
-//  BFWQuery.swift
+//  Query.swift
 //
 //  Created by Tom Brodhurst-Hill on 8/09/13.
 //  Copyright (c) 2013 BareFeetWare. All rights reserved.
@@ -42,9 +42,10 @@ extension Database {
         // MARK: - Init
         
         /// Designated initializer
-        fileprivate init(database: Database,
-                         sql: String,
-                         arguments: [Any?] = []) throws
+        public init(database: Database,
+                    sql: String,
+                    arguments: [Any?] = []
+        ) throws
         {
             self.database = database
             self.sql = sql
@@ -53,10 +54,26 @@ extension Database {
             self.statement = try database.preparedStatement(sql: sql, arguments: arguments)
         }
         
-        fileprivate convenience init(database: Database,
-                                     table tableName: String,
-                                     columns columnNames: [String]? = nil,
-                                     whereDict: [String: Any]? = nil) throws
+        public convenience init(database: Database,
+                                selectSQL: String,
+                                fromSQL: String? = nil,
+                                whereSQL: String? = nil,
+                                groupBySQL: String? = nil,
+                                orderBySQL: String? = nil,
+                                limitSQL: String? = nil
+        ) throws
+        {
+            let sql = [selectSQL, fromSQL, whereSQL, groupBySQL, orderBySQL, limitSQL]
+                .compactMap { $0 }
+                .joined(separator: "\n")
+            try self.init(database: database, sql: sql)
+        }
+        
+        public convenience init(database: Database,
+                                table tableName: String,
+                                columns columnNames: [String]? = nil,
+                                whereDict: [String: Any]? = nil
+        ) throws
         {
             var whereString = ""
             var arguments = [Any?]()
