@@ -212,6 +212,31 @@ open class Database {
         try executeUpdate(sql: sql, arguments: arguments)
     }
     
+    // MARK: - Transactions
+    
+    open func beginImmediate() throws {
+        try execute(sql: "begin immediate")
+    }
+    
+    open func rollback() throws {
+        try execute(sql: "rollback")
+    }
+    
+    open func commit() throws {
+        try execute(sql: "commit")
+    }
+    
+    open func executeInTransaction(actions: () throws -> Void) throws {
+        try beginImmediate()
+        do {
+            try actions()
+            try commit()
+        } catch {
+            debugPrint("rollback due to error: \(error)")
+            try rollback()
+        }
+    }
+    
     // MARK: - SQL construction
     
     public static func placeholdersStringForCount(_ count: Int) -> String {
