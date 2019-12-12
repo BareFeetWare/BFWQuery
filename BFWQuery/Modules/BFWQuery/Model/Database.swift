@@ -200,6 +200,11 @@ open class Database {
         try executeUpdate(sql: sql, arguments: whereSqlDict["arguments"] as! [Any?])
     }
     
+    open func deleteAllFromTable(_ table: String) throws {
+        let sql = "delete from \"\(table)\""
+        try executeUpdate(sql: sql)
+    }
+    
     open func updateTable(_ table: String,
                           rowDict: [String : Any],
                           whereDict: [String : Any]) throws
