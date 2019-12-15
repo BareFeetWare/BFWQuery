@@ -79,7 +79,11 @@ open class Database {
     }
     
     deinit {
-        try! close()
+        do {
+            try close()
+        } catch {
+            print("\(#function) failed to close database \(path)")
+        }
     }
     
     // MARK: - Functions
