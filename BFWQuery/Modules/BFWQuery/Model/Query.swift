@@ -32,7 +32,7 @@ extension Database {
         
         // MARK: - Variables
         
-        public weak var database: Database!
+        public let database: Database
         public let sql: String
         public let arguments: [Any?]
         public let statement: OpaquePointer
