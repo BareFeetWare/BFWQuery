@@ -35,7 +35,7 @@ extension Database {
         public let database: Database
         public let sql: String
         public let arguments: [Any?]
-        public let statement: OpaquePointer
+        let statement: PreparedStatement
         /// If querying a single table or view.
         public var tableName: String?
         
@@ -51,7 +51,7 @@ extension Database {
             self.sql = sql
             self.arguments = arguments
             self.currentRow = -1
-            self.statement = try database.preparedStatement(sql: sql, arguments: arguments)
+            self.statement = try PreparedStatement(database: database, sql: sql, arguments: arguments)
         }
         
         public convenience init(database: Database,
@@ -91,23 +91,19 @@ extension Database {
             self.tableName = tableName
         }
         
-        deinit {
-            sqlite3_finalize(statement)
-        }
-        
         // MARK: - Computed variables
         
         public var currentRow: Int = -1 {
             didSet {
                 var stepRow: Int
                 if currentRow < oldValue {
-                    try! database.guardIsOK(sqlite3_reset(statement))
+                    try! database.guardIsOK(statement.reset())
                     stepRow = -1
                 } else {
                     stepRow = oldValue
                 }
                 while stepRow < currentRow {
-                    if sqlite3_step(statement) == SQLITE_ROW {
+                    if statement.step() == SQLITE_ROW {
                         stepRow += 1
                     } else {
                         fatalError("Tried to set currentRow > number of rows in query.")
@@ -119,10 +115,10 @@ extension Database {
         public lazy var rowCount: Int = {
             var savedCurrentRow = currentRow
             var rowCount = currentRow + 1
-            while sqlite3_step(statement) == SQLITE_ROW {
+            while statement.step() == SQLITE_ROW {
                 rowCount += 1
             }
-            try! database.guardIsOK(sqlite3_reset(statement))
+            try! database.guardIsOK(statement.reset())
             currentRow = -1
             currentRow = savedCurrentRow
             return rowCount
@@ -137,12 +133,12 @@ extension Database {
         
         public func value<T>(columnIndex: Int) -> T? {
             let sqliteColumn = Int32(columnIndex)
-            let columnType = ColumnType(sqlite3_column_type(statement, sqliteColumn))
+            let columnType = ColumnType(sqlite3_column_type(statement.statementPointer, sqliteColumn))
             switch columnType {
-            case .integer: return Int(sqlite3_column_int(statement, sqliteColumn)) as? T
-            case .real: return sqlite3_column_double(statement, sqliteColumn) as? T
-            case .text: return String(cString: sqlite3_column_text(statement, sqliteColumn)) as? T
-            case .blob: return sqlite3_column_blob(statement, sqliteColumn) as? T
+            case .integer: return Int(sqlite3_column_int(statement.statementPointer, sqliteColumn)) as? T
+            case .real: return sqlite3_column_double(statement.statementPointer, sqliteColumn) as? T
+            case .text: return String(cString: sqlite3_column_text(statement.statementPointer, sqliteColumn)) as? T
+            case .blob: return sqlite3_column_blob(statement.statementPointer, sqliteColumn) as? T
             case .null: return nil
             }
         }
@@ -160,12 +156,12 @@ extension Database {
         // MARK: - Introspection
         
         public var columnCount: Int {
-            return Int(sqlite3_column_count(statement))
+            return Int(sqlite3_column_count(statement.statementPointer))
         }
         
         public func columnType(forIndex index: Int) -> String {
             let columnType: String
-            if let columnTypeC = sqlite3_column_decltype(statement, Int32(index)) {
+            if let columnTypeC = sqlite3_column_decltype(statement.statementPointer, Int32(index)) {
                 columnType = String(cString: columnTypeC)
             } else {
                 columnType = "" // TODO: get another way, such as sample rows or function type used in view
@@ -177,7 +173,7 @@ extension Database {
             var columnDictArray = [[String : String]]()
             for columnN in 0 ..< columnCount {
                 let columnType = self.columnType(forIndex: columnN)
-                let columnName = String(cString: sqlite3_column_name(statement, Int32(columnN)))
+                let columnName = String(cString: sqlite3_column_name(statement.statementPointer, Int32(columnN)))
                 var columnDict = ["name" : columnName]
                 if !columnType.isEmpty {
                     columnDict["type"] = columnType
