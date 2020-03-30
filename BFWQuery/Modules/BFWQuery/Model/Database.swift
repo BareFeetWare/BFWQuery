@@ -128,7 +128,7 @@ open class Database {
     // MARK: - insert, delete, update
     
     open func insertIntoTable(_ table: String,
-                              rowDict: [String : Any],
+                              rowDict: [String : Any?],
                               conflictAction: ConflictAction? = nil) throws
     {
         let insertString = ["insert", conflictAction?.rawValue].compactMap { $0 }.joined(separator: " or ")
@@ -229,7 +229,7 @@ open class Database {
     }
     
     /// Returns a dictionary with ["columns" : "columnName1", ..., "placeholders" : "?", ..., "arguments" : [value1, ...]]
-    public static func sqlDictFromRowDict(_ rowDict: [String : Any],
+    public static func sqlDictFromRowDict(_ rowDict: [String : Any?],
                                           assignListSeparator: String?) -> [String : Any]
     {
         var assignArray = [String]()
