@@ -13,6 +13,25 @@ open class Database {
     
     public let path: String
     
+    internal var pointer: OpaquePointer?
+    
+    // MARK: - Init
+    
+    public init(path: String, open: Bool = true) throws {
+        self.path = path
+        if open {
+            try self.open()
+        }
+    }
+    
+    deinit {
+        do {
+            try close()
+        } catch {
+            print("\(#function) failed to close database \(path)")
+        }
+    }
+    
     // MARK: - Errors
     
     public enum Error: Swift.Error {
@@ -24,6 +43,15 @@ open class Database {
         let message = String(cString: sqlite3_errmsg(pointer)!)
         return Error.sqlite(message: message)
     }
+    
+    open func guardIsOK(_ sqliteResult: Int32) throws {
+        guard sqliteResult == SQLITE_OK
+            else { throw sqliteError }
+    }
+    
+    // From: https://stackoverflow.com/questions/28142226/sqlite-for-swift-is-unstable
+    let SQLITE_STATIC = unsafeBitCast(0, to: sqlite3_destructor_type.self)
+    let SQLITE_TRANSIENT = unsafeBitCast(-1, to: sqlite3_destructor_type.self)
     
     // MARK: - Types
     
@@ -63,35 +91,7 @@ open class Database {
         case replace
     }
     
-    // From: https://stackoverflow.com/questions/28142226/sqlite-for-swift-is-unstable
-    let SQLITE_STATIC = unsafeBitCast(0, to: sqlite3_destructor_type.self)
-    let SQLITE_TRANSIENT = unsafeBitCast(-1, to: sqlite3_destructor_type.self)
-    
-    private var pointer: OpaquePointer?
-    
-    // MARK: - Init
-    
-    public init(path: String, open: Bool = true) throws {
-        self.path = path
-        if open {
-            try self.open()
-        }
-    }
-    
-    deinit {
-        do {
-            try close()
-        } catch {
-            print("\(#function) failed to close database \(path)")
-        }
-    }
-    
     // MARK: - Functions
-    
-    open func guardIsOK(_ sqliteResult: Int32) throws {
-        guard sqliteResult == SQLITE_OK
-            else { throw sqliteError }
-    }
     
     open func open() throws {
         try guardIsOK(sqlite3_open(path, &pointer))
@@ -109,38 +109,9 @@ open class Database {
     
     /// Execute single line SQL, up to first ";".
     open func executeUpdate(sql: String, arguments: [Any?] = []) throws {
-        let statement = try preparedStatement(sql: sql, arguments: arguments)
-        guard sqlite3_step(statement) == SQLITE_DONE
+        let statement = try PreparedStatement(database: self, sql: sql, arguments: arguments)
+        guard sqlite3_step(statement.statementPointer) == SQLITE_DONE
             else { throw sqliteError }
-    }
-    
-    private func bindArgument(_ argument: Any?, toStatement statement: OpaquePointer, atIndex index: Int) throws {
-        // SQLite argument index starts at 1, not 0.
-        let sqliteIndex = Int32(index + 1)
-        if argument == nil {
-            try guardIsOK(sqlite3_bind_null(statement, sqliteIndex))
-        } else if let argument = argument as? Double {
-            try guardIsOK(sqlite3_bind_double(statement, sqliteIndex, argument))
-        } else if let argument = argument as? String {
-            try guardIsOK(sqlite3_bind_text(statement, sqliteIndex, argument, -1, SQLITE_TRANSIENT))
-        } else if let argument = argument as? Int {
-            try guardIsOK(sqlite3_bind_int(statement, sqliteIndex, Int32(argument)))
-        } else if let argument = argument {
-            throw Error.unhandledType(message: "bindArgument cannot bind a value of type \(type(of: argument))")
-        }
-    }
-    
-    private func bindArguments(_ arguments: [Any?], toStatement statement: OpaquePointer) throws {
-        for (columnIndex, argument) in arguments.enumerated() {
-            try bindArgument(argument, toStatement: statement, atIndex: columnIndex)
-        }
-    }
-    
-    open func preparedStatement(sql: String, arguments: [Any?] = []) throws -> OpaquePointer {
-        var statement: OpaquePointer?
-        try guardIsOK(sqlite3_prepare_v2(pointer, sql, -1, &statement, nil))
-        try bindArguments(arguments, toStatement: statement!)
-        return statement!
     }
     
     // MARK: - Introspection
@@ -148,7 +119,7 @@ open class Database {
     open func columnNamesInTable(_ tableName: String) throws -> [String] {
         let query = try self.query(sql: "pragma table_info('\(tableName)')")
         var columnNames = [String]()
-        while sqlite3_step(query.statement) != SQLITE_DONE {
+        while sqlite3_step(query.statement.statementPointer) != SQLITE_DONE {
             columnNames.append(query.value(columnIndex: 0)!)
         }
         return columnNames
@@ -157,7 +128,7 @@ open class Database {
     // MARK: - insert, delete, update
     
     open func insertIntoTable(_ table: String,
-                              rowDict: [String : Any],
+                              rowDict: [String : Any?],
                               conflictAction: ConflictAction? = nil) throws
     {
         let insertString = ["insert", conflictAction?.rawValue].compactMap { $0 }.joined(separator: " or ")
@@ -243,6 +214,7 @@ open class Database {
         } catch {
             debugPrint("rollback due to error: \(error)")
             try rollback()
+            throw error
         }
     }
     
@@ -258,7 +230,7 @@ open class Database {
     }
     
     /// Returns a dictionary with ["columns" : "columnName1", ..., "placeholders" : "?", ..., "arguments" : [value1, ...]]
-    public static func sqlDictFromRowDict(_ rowDict: [String : Any],
+    public static func sqlDictFromRowDict(_ rowDict: [String : Any?],
                                           assignListSeparator: String?) -> [String : Any]
     {
         var assignArray = [String]()
