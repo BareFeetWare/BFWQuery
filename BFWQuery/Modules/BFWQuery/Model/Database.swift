@@ -214,6 +214,7 @@ open class Database {
         } catch {
             debugPrint("rollback due to error: \(error)")
             try rollback()
+            throw error
         }
     }
     
