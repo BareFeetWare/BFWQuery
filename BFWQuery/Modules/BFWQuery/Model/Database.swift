@@ -34,9 +34,17 @@ open class Database {
     
     // MARK: - Errors
     
-    public enum Error: Swift.Error {
+    public enum Error: Swift.Error, LocalizedError {
         case sqlite(message: String)
         case unhandledType(message: String)
+        
+        public var errorDescription: String? {
+            switch self {
+            case .sqlite(let message): return "SQLite: \(message)"
+            case .unhandledType(let message): return "Database: \(message)"
+            }
+        }
+        
     }
     
     open var sqliteError: Error {
